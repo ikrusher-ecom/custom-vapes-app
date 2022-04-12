@@ -15,13 +15,15 @@ export default async (req, res) => {
         form.parse(req, (err, fields, files) => {
             if (err) return reject(err);
 
-            console.log(`fields: ${fields}, files: ${files}, path: ${files.file.filepath}`);
+            // console.log(`fields: ${fields}, files: ${files}, path: ${files.file.filepath}`);
 
             const oldPath = files.file.filepath;
             const newPath = `./public/uploads/${files.file.originalFilename}`;
             mv(oldPath, newPath, (err) => { console.log(err) });
 
-            res.status(200).json({ fields, files });
+            res.status(200)
+            // .json({ fields, files })
+            .json({path: `${process.env.prodDir}/uploads/${files.file.originalFilename}`})
         })
     })
 }

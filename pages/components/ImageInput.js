@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function ImageInput(props) {
     const [image, setImage] = useState(null);
     const [createObjectURL, setCreateObjectURL] = useState(null);
+    const [prodURL, setProdURL] = useState(null);
 
     const uploadToClient = (event) => {
         if (event.target.files && event.target.files[0]) {
@@ -20,11 +21,16 @@ export default function ImageInput(props) {
             method: "POST",
             body
         })
+        .then(res => res.json())
+        .then(res => {
+            console.log(res.path);
+            setProdURL(res.path);
+        })
     }
 
     return (
         <div>
-            {/* <img src={createObjectURL} /> */}
+            <img src={prodURL} />
             <input type="file" name="userImage" accept="image/png" multiple={false} onChange={uploadToClient} />
             <button className="btn btn-primary" type="submit" onClick={uploadToServer}>Send to server</button>
         </div>
