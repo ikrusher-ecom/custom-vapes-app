@@ -1,3 +1,10 @@
+/*
+ * @Author: Jinqi Li
+ * @Date: 2022-04-12 00:11:40
+ * @LastEditors: Jinqi Li
+ * @LastEditTime: 2022-04-12 00:56:26
+ * @FilePath: /custom-vapes-app/pages/components/StepOne.js
+ */
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -33,10 +40,10 @@ export default function StepOne(props) {
                 </select> */}
                 <Box sx={{ width: 200 }}>
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                        <InputLabel id="category-select-label">Category</InputLabel>
                         <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
+                            labelId="category-select-label"
+                            id="category-select"
                             value={category}
                             label="Category"
                             onChange={handleChange}
@@ -49,6 +56,7 @@ export default function StepOne(props) {
                     </FormControl>
                 </Box>
             </div>
+            <p className="cms-br">&nbsp;</p>
         </div>
     )
 }

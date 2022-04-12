@@ -1,3 +1,10 @@
+/*
+ * @Author: Jinqi Li
+ * @Date: 2022-04-12 00:11:40
+ * @LastEditors: Jinqi Li
+ * @LastEditTime: 2022-04-12 00:56:34
+ * @FilePath: /custom-vapes-app/pages/index.js
+ */
 import Head from 'next/head'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -26,7 +33,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <ImageInput />
+        {/* <ImageInput /> */}
         <StepOne category={pull_cate} />
       </main>
 
