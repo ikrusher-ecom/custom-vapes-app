@@ -11,13 +11,14 @@ import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 import ImageInput from './components/ImageInput'
 import StepOne from './components/StepOne'
+import StepTwo from './components/StepTwo'
 
 export default function Home() {
   const [cate, setCate] = useState("");
   
-  const pull_cate = (cate) => {
-    console.log(cate);
-    setCate(cate);
+  const pull_cate = (data) => {
+    console.log(data);
+    setCate(data);
   }
 
   return (
@@ -35,6 +36,7 @@ export default function Home() {
       <main className={styles.main}>
         {/* <ImageInput /> */}
         <StepOne category={pull_cate} />
+        <StepTwo cateSet={cate} />
       </main>
 
       {/* <footer className={styles.footer}>

@@ -31,13 +31,6 @@ export default function StepOne(props) {
                 <h5>Step 1: Select a Product Category</h5>
                 <p>Instruction here...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu
                     pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.</p>
-                {/* <select id="select-category" onChange={changeCategory}>
-                    <option value="none">Select a product category</option>
-                    <option value="pod-system">Pod System</option>
-                    <option value="cartridges">Cartridges</option>
-                    <option value="disposables">Disposables</option>
-                    <option value="batteries">Batteries</option>
-                </select> */}
                 <Box sx={{ width: 200 }}>
                     <FormControl fullWidth>
                         <InputLabel id="category-select-label">Category</InputLabel>
@@ -48,10 +41,10 @@ export default function StepOne(props) {
                             label="Category"
                             onChange={handleChange}
                         >
-                            <MenuItem value={"pod-system"}>Pod System</MenuItem>
-                            <MenuItem value={"cartridge"}>Cartridge</MenuItem>
-                            <MenuItem value={"disposable"}>Disposable</MenuItem>
-                            <MenuItem value={"battery"}>Battery</MenuItem>
+                            <MenuItem value={"podSystems"}>Pod System</MenuItem>
+                            <MenuItem value={"cartridges"}>Cartridge</MenuItem>
+                            <MenuItem value={"disposables"}>Disposable</MenuItem>
+                            <MenuItem value={"batteries"}>Battery</MenuItem>
                         </Select>
                     </FormControl>
                 </Box>
