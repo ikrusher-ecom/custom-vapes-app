@@ -16,14 +16,7 @@ export default function StepTwo({ cateSet }) {
 
 	return (
 		<div id="custom-step2">
-			<h5>Step 2: Select a product to customize</h5>
-			<p>
-				Instruction here...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate
-				eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.
-			</p>
-			<div className="step2-group">
-				<ProductButtons cateDisplay={cateSet} />
-			</div>
+			<ProductButtons cateDisplay={cateSet} />
 		</div>
 	);
 }
