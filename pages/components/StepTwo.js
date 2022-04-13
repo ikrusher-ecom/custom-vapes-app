@@ -15,7 +15,7 @@ export default function StepTwo({ cateSet }) {
 	console.log(cateSet);
 
 	return (
-		<div id="custom-step2" style={{ display: "none" }}>
+		<div id="custom-step2">
 			<h5>Step 2: Select a product to customize</h5>
 			<p>
 				Instruction here...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate
