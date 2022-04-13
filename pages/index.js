@@ -2,23 +2,31 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-12 00:11:40
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-12 00:56:34
+ * @LastEditTime: 2022-04-13 01:01:00
  * @FilePath: /custom-vapes-app/pages/index.js
  */
-import Head from 'next/head'
-import Image from 'next/image'
-import { useState } from 'react'
-import styles from '../styles/Home.module.css'
-import ImageInput from './components/ImageInput'
-import StepOne from './components/StepOne'
-import StepTwo from './components/StepTwo'
+import * as React from 'react';
+import Head from 'next/head';
+import Image from 'next/image';
+import { useState } from 'react';
+import styles from '../styles/Home.module.css';
+import ImageInput from './components/ImageInput';
+import StepOne from './components/StepOne';
+import StepThree from './components/StepThree';
+import StepTwo from './components/StepTwo';
 
 export default function Home() {
   const [cate, setCate] = useState("");
+  const [prod, setProd] = useState("");
   
   const pull_cate = (data) => {
-    console.log(data);
+    console.log(`pull cate: ${data}`);
     setCate(data);
+  }
+
+  const pull_prod = (data) => {
+    console.log(`pull prod: ${data}`);
+    setProd(data);
   }
 
   return (
@@ -36,7 +44,8 @@ export default function Home() {
       <main className={styles.main}>
         {/* <ImageInput /> */}
         <StepOne category={pull_cate} />
-        <StepTwo cateSet={cate} />
+        <StepTwo cateSet={cate} product={pull_prod} />
+        <StepThree prodName={prod} />
       </main>
 
       {/* <footer className={styles.footer}>
