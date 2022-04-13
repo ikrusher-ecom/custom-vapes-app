@@ -218,36 +218,43 @@ export default function ProductButtons({ cateDisplay }) {
 	if (cateDisplay === "batteries") {
 		return (
 			<div>
-				<Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
-					{batteries.map((image) => (
-						<ImageButton
-							focusRipple
-							key={image.title}
-							style={{
-								width: image.width,
-							}}
-						>
-							<ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
-							<ImageBackdrop className="MuiImageBackdrop-root" />
-							<Image>
-								<Typography
-									component="span"
-									variant="subtitle1"
-									color="inherit"
-									sx={{
-										position: 'relative',
-										p: 4,
-										pt: 2,
-										pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-									}}
-								>
-									{image.title}
-									<ImageMarked className="MuiImageMarked-root" />
-								</Typography>
-							</Image>
-						</ImageButton>
-					))}
-				</Box>
+				<h5>Step 2: Select a product to customize</h5>
+				<p>
+					Instruction here...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate
+					eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.
+				</p>
+				<div className="step2-group">
+					<Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
+						{batteries.map((image) => (
+							<ImageButton
+								focusRipple
+								key={image.title}
+								style={{
+									width: image.width,
+								}}
+							>
+								<ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
+								<ImageBackdrop className="MuiImageBackdrop-root" />
+								<Image>
+									<Typography
+										component="span"
+										variant="subtitle1"
+										color="inherit"
+										sx={{
+											position: 'relative',
+											p: 4,
+											pt: 2,
+											pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+										}}
+									>
+										{image.title}
+										<ImageMarked className="MuiImageMarked-root" />
+									</Typography>
+								</Image>
+							</ImageButton>
+						))}
+					</Box>
+				</div>
 			</div>
 		);
 	}
@@ -255,36 +262,43 @@ export default function ProductButtons({ cateDisplay }) {
 	else if (cateDisplay === "cartridges") {
 		return (
 			<div>
-				<Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
-					{cartridges.map((image) => (
-						<ImageButton
-							focusRipple
-							key={image.title}
-							style={{
-								width: image.width,
-							}}
-						>
-							<ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
-							<ImageBackdrop className="MuiImageBackdrop-root" />
-							<Image>
-								<Typography
-									component="span"
-									variant="subtitle1"
-									color="inherit"
-									sx={{
-										position: 'relative',
-										p: 4,
-										pt: 2,
-										pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-									}}
-								>
-									{image.title}
-									<ImageMarked className="MuiImageMarked-root" />
-								</Typography>
-							</Image>
-						</ImageButton>
-					))}
-				</Box>
+				<h5>Step 2: Select a product to customize</h5>
+				<p>
+					Instruction here...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate
+					eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.
+				</p>
+				<div className="step2-group">
+					<Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
+						{cartridges.map((image) => (
+							<ImageButton
+								focusRipple
+								key={image.title}
+								style={{
+									width: image.width,
+								}}
+							>
+								<ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
+								<ImageBackdrop className="MuiImageBackdrop-root" />
+								<Image>
+									<Typography
+										component="span"
+										variant="subtitle1"
+										color="inherit"
+										sx={{
+											position: 'relative',
+											p: 4,
+											pt: 2,
+											pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+										}}
+									>
+										{image.title}
+										<ImageMarked className="MuiImageMarked-root" />
+									</Typography>
+								</Image>
+							</ImageButton>
+						))}
+					</Box>
+				</div>
 			</div>
 		);
 	}
@@ -292,36 +306,43 @@ export default function ProductButtons({ cateDisplay }) {
 	else if (cateDisplay === "disposables") {
 		return (
 			<div>
-				<Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
-					{disposables.map((image) => (
-						<ImageButton
-							focusRipple
-							key={image.title}
-							style={{
-								width: image.width,
-							}}
-						>
-							<ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
-							<ImageBackdrop className="MuiImageBackdrop-root" />
-							<Image>
-								<Typography
-									component="span"
-									variant="subtitle1"
-									color="inherit"
-									sx={{
-										position: 'relative',
-										p: 4,
-										pt: 2,
-										pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-									}}
-								>
-									{image.title}
-									<ImageMarked className="MuiImageMarked-root" />
-								</Typography>
-							</Image>
-						</ImageButton>
-					))}
-				</Box>
+				<h5>Step 2: Select a product to customize</h5>
+				<p>
+					Instruction here...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate
+					eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.
+				</p>
+				<div className="step2-group">
+					<Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
+						{disposables.map((image) => (
+							<ImageButton
+								focusRipple
+								key={image.title}
+								style={{
+									width: image.width,
+								}}
+							>
+								<ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
+								<ImageBackdrop className="MuiImageBackdrop-root" />
+								<Image>
+									<Typography
+										component="span"
+										variant="subtitle1"
+										color="inherit"
+										sx={{
+											position: 'relative',
+											p: 4,
+											pt: 2,
+											pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+										}}
+									>
+										{image.title}
+										<ImageMarked className="MuiImageMarked-root" />
+									</Typography>
+								</Image>
+							</ImageButton>
+						))}
+					</Box>
+				</div>
 			</div>
 		);
 	}
@@ -329,36 +350,43 @@ export default function ProductButtons({ cateDisplay }) {
 	else if (cateDisplay === "podSystems") {
 		return (
 			<div>
-				<Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
-					{podSystems.map((image) => (
-						<ImageButton
-							focusRipple
-							key={image.title}
-							style={{
-								width: image.width,
-							}}
-						>
-							<ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
-							<ImageBackdrop className="MuiImageBackdrop-root" />
-							<Image>
-								<Typography
-									component="span"
-									variant="subtitle1"
-									color="inherit"
-									sx={{
-										position: 'relative',
-										p: 4,
-										pt: 2,
-										pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-									}}
-								>
-									{image.title}
-									<ImageMarked className="MuiImageMarked-root" />
-								</Typography>
-							</Image>
-						</ImageButton>
-					))}
-				</Box>
+				<h5>Step 2: Select a product to customize</h5>
+				<p>
+					Instruction here...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate
+					eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.
+				</p>
+				<div className="step2-group">
+					<Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
+						{podSystems.map((image) => (
+							<ImageButton
+								focusRipple
+								key={image.title}
+								style={{
+									width: image.width,
+								}}
+							>
+								<ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
+								<ImageBackdrop className="MuiImageBackdrop-root" />
+								<Image>
+									<Typography
+										component="span"
+										variant="subtitle1"
+										color="inherit"
+										sx={{
+											position: 'relative',
+											p: 4,
+											pt: 2,
+											pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+										}}
+									>
+										{image.title}
+										<ImageMarked className="MuiImageMarked-root" />
+									</Typography>
+								</Image>
+							</ImageButton>
+						))}
+					</Box>
+				</div>
 			</div>
 		);
 	}
