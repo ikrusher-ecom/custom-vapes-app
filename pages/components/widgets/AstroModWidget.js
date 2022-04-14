@@ -2,7 +2,7 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-13 17:37:17
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-14 02:12:36
+ * @LastEditTime: 2022-04-14 02:18:09
  * @FilePath: /custom-vapes-app/pages/components/widgets/AstroModWidget.js
  */
 import * as React from 'react';
@@ -60,7 +60,7 @@ export default function AstroModWidget(props) {
 			'IKrusher-Astro-Mod-Lilac-Custom-09.jpg',
 			'IKrusher-Astro-Mod-Lilac-Custom-10.jpg'
 		],
-		blue: [
+		metablue: [
 			'IKrusher-Astro-Mod-Metallic-Blue-Pod-Custom-01.jpg',
 			'IKrusher-Astro-Mod-Metallic-Blue-Pod-Custom-02.jpg',
 			'IKrusher-Astro-Mod-Metallic-Blue-Pod-Custom-03.jpg',
@@ -97,7 +97,7 @@ export default function AstroModWidget(props) {
 			'IKrusher-Astro-Mod-Rosegold-Pod-Custom-10.jpg'
 		]
 	};
-	const productColors = [ 'black', 'gunmetal', 'lilac', 'blue', 'red', 'rosegold' ];
+	const productColors = [ 'black', 'gunmetal', 'lilac', 'metablue', 'red', 'rosegold' ];
 
 	const [ num, setNum ] = useState(1);
 
