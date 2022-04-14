@@ -2,13 +2,14 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-12 23:13:36
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-13 01:09:47
+ * @LastEditTime: 2022-04-14 01:31:58
  * @FilePath: /custom-vapes-app/pages/components/StepThree.js
  */
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import styles from '../../styles/Component.module.css';
 import ProductDescription from "./ProductDescription";
+import AstroModWidget from './widgets/AstroModWidget';
 
 const products = [
     {
@@ -140,13 +141,10 @@ const products = [
 
 export default function StepThree(props) {
     const [widget, setWidget] = useState('');
-    const [widgetPath, setWidgetPath] = useState('');
 
     const pull_widget = (data) => {
         console.log(`pull widget: ${data}`);
         setWidget(data);
-
-        setWidgetPath(require(`./widgets/${data}.js`).default);
     }
     if (props.prodName) {
         const findURL = products.filter(obj => obj.title === props.prodName)[0].url;
@@ -157,7 +155,7 @@ export default function StepThree(props) {
                 <div id="product-description">
                     <ProductDescription productName={props.prodName} colors={findColors} url={findURL} clickWidget={pull_widget} />
                 </div>
-                {widgetPath}
+                {(widget === "AstroModWidget") && <AstroModWidget />}
             </div>
         )
     }
