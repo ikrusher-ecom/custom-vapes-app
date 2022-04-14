@@ -72,3 +72,8 @@ a {
 #product-description>div>span {
   display: inline-block;
 }
+
+.input-group {
+  position: absolute;
+  left: 700px;
+}
