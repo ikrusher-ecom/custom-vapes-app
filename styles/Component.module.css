@@ -5,16 +5,16 @@
 }
 
 .funcBtn {
-	color: white;
-	font-size: 16px;
-	border: none;
-	background-color: #85a1a9;
+	color: white !important;
+	font-size: 16px !important;
+	border: none !important;
+	background-color: #85a1a9 !important;
 	box-shadow: none !important;
 }
 
 .funcBtn:hover,
 .funcBtn:active {
-	background-color: #85a1a9;
+	background-color: #85a1a9 !important;
 	box-shadow: none !important;
 }
 
@@ -23,26 +23,26 @@
 }
 
 .roundBtn {
-	background: #85a1a9;
-	border-radius: 50%;
+	background: #85a1a9 !important;
+	border-radius: 50% !important;
 	padding: 0;
-	color: #fff;
-	font-weight: 900;
-	font-size: 20px;
-	border: 2px solid #85a1a9;
-    height: 64px;
-    width: 50px;
+	color: #fff !important;
+	font-weight: 900 !important;
+	font-size: 20px !important;
+	border: 2px solid #85a1a9 !important;
+    height: 64px !important;
+    width: 50px !important;
 }
 
 .roundBtn:hover, .roundBtn:hover {
-    background: #fff;
-    color: #85a1a9;
+    background: #fff !important;
+    color: #85a1a9 !important;
 }
 
 .angleBtns {
-    height: 800px;
-    width: 600px;
-    position: absolute;
-    z-index: 99;
-    margin: 368px auto;
+    height: 800px !important;
+    width: 600px !important;
+    position: absolute !important;
+    z-index: 99 !important;
+    margin: 368px auto !important;
 }
