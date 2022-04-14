@@ -8,6 +8,7 @@
 import * as React from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
+import styles from '../../styles/Component.module.css';
 import ProductButtons from './ProductButtons';
 
 export default function StepTwo(props) {

@@ -14,3 +14,61 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.custom-btn {
+  border: 1px solid #85a1a9;
+  background: #85a1a9;
+  color: #fff;
+  padding: 6px 20px;
+  border-radius: 27px;
+}
+
+#custom-vapes h5 {
+  margin-bottom: 1em;
+}
+
+.step2-product {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: space-around;
+  align-items: center;
+}
+
+.product-img {
+  margin: 0 50px 50px 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: none;
+  background: transparent;
+}
+
+.product-img>span {
+  margin: 0 auto;
+}
+
+#product-description {
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 1%;
+  margin: 2% auto;
+  max-width: 800px;
+}
+
+#product-description>div {
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#product-description>div>table {
+  border: none;
+  margin: 0 0 0 2%;
+  width: 64%;
+  max-width: 489px;
+}
+
+#product-description>div>span {
+  display: inline-block;
+}

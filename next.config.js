@@ -10,4 +10,7 @@ module.exports = {
     devDir: 'http://localhost:3000',
     prodDir: 'https://custom-vapes-app.vercel.app'
   },
+  images: {
+    domains: ['custom-vapes-app.vercel.app'],
+  },
 }

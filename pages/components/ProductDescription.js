@@ -6,16 +6,20 @@
  * @FilePath: /custom-vapes-app/pages/components/ProductDescription.js
  */
 import * as React from 'react';
+import styles from '../../styles/Component.module.css';
 import Image from 'next/image';
+import Button from '@mui/material/Button';
 
 export default function ProductDescription(props) {
     const showCustom = () => {
-        console.log(props.productName)
+        props.clickWidget(props.productName.replace(/\s/g, '') + "Widget");
     }
+
     return (
-        <div id="des-astro-mod" className="des-all">
-                {/* <span><Image src="/media/customVapes/pod-system/astro-mod.jpg" alt="astro mod" width="200" /></span> */}
-                <table>
+        <div id={props.productName.replace(/\s/g, '-').toLowerCase()} className="des-all">
+            <Image src={process.env.prodDir + props.url} alt={props.productName} width="256" height="341" />
+            <table className={styles.desTable}>
+                <tbody>
                     <tr>
                         <th>Product Name:</th>
                         <td>{props.productName}</td>
@@ -42,11 +46,19 @@ export default function ProductDescription(props) {
                         <td>Custom User Manual, Custom Packaging or Shipping Carton</td>
                     </tr>
                     <tr>
-                        <td style={{textAlign: 'center'}}><button type="button" className="custom-btn"
-                                value="widget-astro-mod" onClick={showCustom}>Start Customization</button>
+                        <td colSpan="2" style={{ textAlign: 'center', paddingTop: '1em' }}>
+                            <Button
+                                variant="contained"
+                                className={"custom-btn " + styles.funcBtn}
+                                value={"widget" + props.productName.replace(/\s/g, '-').toLowerCase()}
+                                onClick={showCustom}
+                            >
+                                Start Customization
+                            </Button>
                         </td>
                     </tr>
-                </table>
-            </div>
+                </tbody>
+            </table>
+        </div>
     )
 }

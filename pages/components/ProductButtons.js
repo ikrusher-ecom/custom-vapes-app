@@ -3,20 +3,15 @@
  * @Date: 2022-04-12 01:06:02
  * @LastEditors: Jinqi Li
  * @LastEditTime: 2022-04-13 01:01:14
- * @FilePath: /custom-vapes-app/pages/components/ProductButtons.js
+ * @FilePath: /custom-vapes-app/pages/components/ProductimgBtn.js
  */
 import * as React from 'react';
 import { useState } from 'react';
+import styles from '../../styles/Component.module.css';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
-
-const buttonStyles = {
-	color: 'white',
-	fontSize: '16px',
-	border: 'none'
-};
 
 const batteries = [
 	{
@@ -40,7 +35,7 @@ const batteries = [
 		width: '20%'
 	},
 	{
-		url: '/products/battery/vfire-pro-battery/Vfire-Pro-Battery-green-01.jpg',
+		url: '/products/battery/vfire-pro-battery/Vfire-Pro-Battery-gunmetal-01.jpg',
 		title: 'Vfire Pro Battery',
 		width: '20%'
 	}
@@ -219,7 +214,7 @@ const ImageMarked = styled('span')(({ theme }) => ({
 	transition: theme.transitions.create('opacity')
 }));
 
-export default function ProductButtons(props) {
+export default function ProductimgBtn(props) {
 	const handleSetProduct = (event) => {
 		props.product(event.target.textContent);
 	}
@@ -255,7 +250,7 @@ export default function ProductButtons(props) {
 									pt: 2,
 									pb: (theme) => `calc(${theme.spacing(1)} + 6px)`
 								}}
-								style={buttonStyles}
+								className={styles.imgBtn}
 							>
 								{image.title}
 								<ImageMarked className="MuiImageMarked-root" />
@@ -296,7 +291,7 @@ export default function ProductButtons(props) {
 									pt: 2,
 									pb: (theme) => `calc(${theme.spacing(1)} + 6px)`
 								}}
-								style={buttonStyles}
+								className={styles.imgBtn}
 							>
 								{image.title}
 								<ImageMarked className="MuiImageMarked-root" />
@@ -337,7 +332,7 @@ export default function ProductButtons(props) {
 									pt: 2,
 									pb: (theme) => `calc(${theme.spacing(1)} + 6px)`
 								}}
-								style={buttonStyles}
+								className={styles.imgBtn}
 							>
 								{image.title}
 								<ImageMarked className="MuiImageMarked-root" />
@@ -378,7 +373,7 @@ export default function ProductButtons(props) {
 									pt: 2,
 									pb: (theme) => `calc(${theme.spacing(1)} + 6px)`
 								}}
-								style={buttonStyles}
+								className={styles.imgBtn}
 							>
 								{image.title}
 								<ImageMarked className="MuiImageMarked-root" />

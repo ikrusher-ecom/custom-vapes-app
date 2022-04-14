@@ -1,0 +1,22 @@
+.imgBtn {
+    color: white !important;
+    font-size: 16px !important;
+    border: none !important;
+}
+
+.funcBtn {
+    color: white;
+    font-size: 16px;
+    border: none;
+    background-color: #85a1a9;
+    box-shadow: none !important;
+}
+
+.funcBtn:hover, .funcBtn:active {
+    background-color: #85a1a9;
+    box-shadow: none !important;
+}
+
+.desTable {
+    display: inline-block;
+}

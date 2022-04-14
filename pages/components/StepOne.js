@@ -7,6 +7,7 @@
  */
 import * as React from 'react';
 import { useState } from 'react';
+import styles from '../../styles/Component.module.css';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -14,8 +15,11 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export default function StepOne(props) {
+    const [category, setCategory] = useState('');
+
 	const handleChange = (event) => {
 		props.category(event.target.value);
+        setCategory(event.target.value);
 	};
 
 	const formStyles = {
@@ -47,7 +51,7 @@ export default function StepOne(props) {
 						<Select
 							labelId="category-select-label"
 							id="category-select"
-							value={''}
+							value={category}
 							label="Category"
 							onChange={handleChange}
 							style={{ fontSize: '16px' }}
