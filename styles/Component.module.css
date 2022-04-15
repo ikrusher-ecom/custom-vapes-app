@@ -30,19 +30,35 @@
 	font-weight: 900 !important;
 	font-size: 20px !important;
 	border: 2px solid #85a1a9 !important;
-    height: 64px !important;
-    width: 50px !important;
+	height: 64px !important;
+	width: 50px !important;
 }
 
-.roundBtn:hover, .roundBtn:hover {
-    background: #fff !important;
-    color: #85a1a9 !important;
+.roundBtn:hover,
+.roundBtn:hover {
+	background: #fff !important;
+	color: #85a1a9 !important;
 }
 
 .angleBtns {
-    height: 800px !important;
-    width: 600px !important;
-    position: absolute !important;
-    z-index: 99 !important;
-    margin: 368px auto !important;
+	/* height: 800px !important; */
+	width: 600px !important;
+	position: absolute !important;
+	z-index: 99 !important;
+	margin: 368px auto !important;
 }
+
+.previewBtn {
+	margin: 320px 25% 0 25%;
+	width: 50%;
+	background: #85a1a9;
+	color: #fff;
+	padding: 10px 16px;
+	font-size: 16px;
+}
+
+.previewBtn:hover, .previewBtn:active {
+    background: #85a1a9 !important;
+	color: #fff !important;
+}
+

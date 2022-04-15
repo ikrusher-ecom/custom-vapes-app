@@ -15,6 +15,15 @@ a {
   box-sizing: border-box;
 }
 
+.angleTwo {
+  transform: rotateY(45deg);
+  width: 55%;
+}
+
+.react-draggable {
+  cursor: pointer;
+}
+
 .custom-btn {
   border: 1px solid #85a1a9;
   background: #85a1a9;
@@ -148,16 +157,7 @@ a.button-style:active {
 #display-text-one,
 #display-text-five {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 220px;
-  width: 100%;
-  max-width: 235px;
-  text-align: center;
-  display: block;
-  overflow: hidden;
   z-index: 99;
-  margin: 0 auto;
   color: gray;
   word-break: break-word;
 }
@@ -214,10 +214,10 @@ a.button-style:active {
   height: 20pt;
 }
 
-#display-text-three,
+/* #display-text-three,
 #display-text-one {
   transform: rotate(90deg);
-}
+} */
 
 #display-text-seven,
 #display-text-five {
