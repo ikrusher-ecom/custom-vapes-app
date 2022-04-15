@@ -102,7 +102,7 @@ export default function AstroModWidget(props) {
     const productColors = ['black', 'gunmetal', 'lilac', 'metablue', 'red', 'rosegold'];
 
     const [num, setNum] = useState(1);
-    const [showOne, setShowOne] = useState(false);
+    const [showOne, setShowOne] = useState(true);
     const [showThree, setShowThree] = useState(false);
     const [showFive, setShowFive] = useState(false);
     const [showSeven, setShowSeven] = useState(false);
@@ -411,43 +411,51 @@ export default function AstroModWidget(props) {
                         <tr style={{ height: '50px' }}>
                             <th>Customize Text:</th>
                             <td>
-                                <div className="custom-text-div" id="input-text-one">
-                                    <Input
-                                        type="text"
-                                        id="custom-text-one"
-                                        maxLength="15"
-                                        placeholder="Less than 15 characters"
-                                        onChange={onTextInputOne}
-                                    />
-                                </div>
-                                <div className="custom-text-div" id="input-text-three">
-                                    <Input
-                                        type="text"
-                                        id="custom-text-three"
-                                        maxLength="15"
-                                        placeholder="Less than 15 characters"
-                                        onChange={onTextInputThree}
-                                    />
-                                </div>
-                                <div className="custom-text-div" id="input-text-five">
-                                    <Input
-                                        type="text"
-                                        id="custom-text-five"
-                                        maxLength="15"
-                                        placeholder="Less than 15 characters"
-                                        onChange={onTextInputFive}
-                                    />
-                                </div>
-                                <div className="custom-text-div" id="input-text-seven">
-                                    <Input
-                                        type="text"
-                                        id="custom-text-seven"
-                                        maxLength="15"
-                                        placeholder="Less than 15 characters"
-                                        onChange={onTextInputSeven}
-                                    />
-                                </div>
-                                <Input type="color" id="picker" name="picker" value="#808080" onChange={e => console.log(e.target.value)} />
+                                {showOne && (
+                                    <div className="custom-text-div" id="input-text-one">
+                                        <Input
+                                            type="text"
+                                            id="custom-text-one"
+                                            maxLength="15"
+                                            placeholder="Less than 15 characters"
+                                            onChange={onTextInputOne}
+                                        />
+                                    </div>
+                                )}
+                                {showThree && (
+                                    <div className="custom-text-div" id="input-text-three">
+                                        <Input
+                                            type="text"
+                                            id="custom-text-three"
+                                            maxLength="15"
+                                            placeholder="Less than 15 characters"
+                                            onChange={onTextInputThree}
+                                        />
+                                    </div>
+                                )}
+                                {showFive && (
+                                    <div className="custom-text-div" id="input-text-five">
+                                        <Input
+                                            type="text"
+                                            id="custom-text-five"
+                                            maxLength="15"
+                                            placeholder="Less than 15 characters"
+                                            onChange={onTextInputFive}
+                                        />
+                                    </div>
+                                )}
+                                {showSeven && (
+                                    <div className="custom-text-div" id="input-text-seven">
+                                        <Input
+                                            type="text"
+                                            id="custom-text-seven"
+                                            maxLength="15"
+                                            placeholder="Less than 15 characters"
+                                            onChange={onTextInputSeven}
+                                        />
+                                    </div>
+                                )}
+                                {/* <Input type="color" id="picker" name="picker" value="#808080" onChange={e => console.log(e.target.value)} /> */}
                             </td>
                         </tr>
                         {/* <tr>
