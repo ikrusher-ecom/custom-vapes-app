@@ -14,11 +14,13 @@ import ImageInput from './components/ImageInput';
 import StepOne from './components/StepOne';
 import StepThree from './components/StepThree';
 import StepTwo from './components/StepTwo';
+import { ikrusherTheme } from './theme';
+import { ThemeProvider } from '@mui/material/styles';
 
 export default function Home() {
   const [cate, setCate] = useState("");
   const [prod, setProd] = useState("");
-  
+
   const pull_cate = (data) => {
     console.log(`pull cate: ${data}`);
     setCate(data);
@@ -43,9 +45,11 @@ export default function Home() {
 
       <main className={styles.main}>
         {/* <ImageInput /> */}
-        <StepOne category={pull_cate} />
-        <StepTwo cateSet={cate} product={pull_prod} />
-        <StepThree prodName={prod} />
+        <ThemeProvider theme={ikrusherTheme}>
+          <StepOne category={pull_cate} />
+          <StepTwo cateSet={cate} product={pull_prod} />
+          <StepThree prodName={prod} />
+        </ThemeProvider>
       </main>
 
       {/* <footer className={styles.footer}>
