@@ -3,7 +3,7 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-12 00:11:40
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-14 22:21:07
+ * @LastEditTime: 2022-04-16 01:45:58
  * @FilePath: /custom-vapes-app/pages/api/image.js
  */
 import formidable from "formidable";
@@ -23,7 +23,7 @@ export default async (req, res) => {
         form.parse(req, (err, fields, files) => {
             if (err) return reject(err);
 
-            console.log(`fields: ${fields}, files: ${files}, path: ${files.file.filepath}`);
+            console.log(`fields: ${fields}, files: ${files}`);
 
             const oldPath = files.file.filepath;
             const newPath = `./public/uploads/${files.file.originalFilename}`;

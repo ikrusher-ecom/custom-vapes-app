@@ -12,6 +12,15 @@
 	box-shadow: none !important;
 }
 
+.screenBtn {
+    color: #85a1a9 !important;
+    background-color: white !important;
+    font-size: 16px !important;
+	border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
 .funcBtn:hover,
 .funcBtn:active {
 	background-color: #85a1a9 !important;
