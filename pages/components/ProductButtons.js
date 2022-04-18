@@ -2,8 +2,8 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-12 01:06:02
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-13 01:01:14
- * @FilePath: /custom-vapes-app/pages/components/ProductimgBtn.js
+ * @LastEditTime: 2022-04-17 04:02:50
+ * @FilePath: /custom-vapes-app/pages/components/ProductButtons.js
  */
 import * as React from 'react';
 import { useState } from 'react';
@@ -129,7 +129,7 @@ const podSystems = [
 		width: '20%'
 	},
 	{
-		url: '/products/pod-system/astro-stik/iKrusher-Astro-Stik-Pod-System-Black-Custom-1.jpg',
+		url: '/products/pod-system/astro-stik/iKrusher-Astro-Stik-Pod-System-Black-Custom-01.jpg',
 		title: 'Astro Stik',
 		width: '20%'
 	},

@@ -3,7 +3,7 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-12 00:11:40
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-16 01:45:58
+ * @LastEditTime: 2022-04-17 02:20:35
  * @FilePath: /custom-vapes-app/pages/api/image.js
  */
 import formidable from "formidable";
@@ -32,7 +32,7 @@ export default async (req, res) => {
             res.status(200)
             // .json({ fields, files })
             .json({path: `${process.env.prodDir}/uploads/${files.file.originalFilename}`})
-            console.log(`${process.env.prodDir}/uploads/${files.file.originalFilename}`)
+            // console.log(`${process.env.prodDir}/uploads/${files.file.originalFilename}`)
         })
     })
 }

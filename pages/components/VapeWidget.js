@@ -2,14 +2,14 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-13 17:37:17
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-16 06:03:06
- * @FilePath: /custom-vapes-app/pages/components/widgets/AstroModWidget.js
+ * @LastEditTime: 2022-04-17 17:11:11
+ * @FilePath: /custom-vapes-app/pages/components/VapeWidget.js
  */
 import * as React from 'react';
-import { useState, useEffect, createRef, forwardRef, useTimeout } from 'react';
-import styles from '../../../styles/Component.module.css';
+import { useState, useEffect, createRef, forwardRef, useTimeout, useRef } from 'react';
+import styles from '../../styles/Component.module.css';
 import Image from 'next/image';
-import CustomImages from '../CustomImages';
+import CustomImages from './CustomImages';
 import { Button } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -26,98 +26,13 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import StopIcon from '@mui/icons-material/Stop';
 import Draggable, { DraggableCore } from 'react-draggable';
 import { useScreenshot, createFileName } from 'use-react-screenshot';
 
-const makeid = (length) => {
-	let result = '';
-	let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-	let charactersLength = characters.length;
-	for (let i = 0; i < length; i++) {
-		result += characters.charAt(Math.floor(Math.random() * charactersLength));
-	}
-	return result;
-};
-
-export default function AstroModWidget(props) {
-	const productID = 'astro-mod';
-	const productCate = 'pod-system';
-	const productFolder = '/products/pod-system/astro-mod/';
-	const productImages = {
-		black: [
-			'IKrusher-Astro-Mod-Black-Custom-01.jpg',
-			'IKrusher-Astro-Mod-Black-Custom-02.jpg',
-			'IKrusher-Astro-Mod-Black-Custom-03.jpg',
-			'IKrusher-Astro-Mod-Black-Custom-04.jpg',
-			'IKrusher-Astro-Mod-Black-Custom-05.jpg',
-			'IKrusher-Astro-Mod-Black-Custom-06.jpg',
-			'IKrusher-Astro-Mod-Black-Custom-07.jpg',
-			'IKrusher-Astro-Mod-Black-Custom-08.jpg',
-			'IKrusher-Astro-Mod-Black-Custom-09.jpg',
-			'IKrusher-Astro-Mod-Black-Custom-10.jpg'
-		],
-		gunmetal: [
-			'IKrusher-Astro-Mod-Gunmetal-Custom-01.jpg',
-			'IKrusher-Astro-Mod-Gunmetal-Custom-02.jpg',
-			'IKrusher-Astro-Mod-Gunmetal-Custom-03.jpg',
-			'IKrusher-Astro-Mod-Gunmetal-Custom-04.jpg',
-			'IKrusher-Astro-Mod-Gunmetal-Custom-05.jpg',
-			'IKrusher-Astro-Mod-Gunmetal-Custom-06.jpg',
-			'IKrusher-Astro-Mod-Gunmetal-Custom-07.jpg',
-			'IKrusher-Astro-Mod-Gunmetal-Custom-08.jpg',
-			'IKrusher-Astro-Mod-Gunmetal-Custom-09.jpg',
-			'IKrusher-Astro-Mod-Gunmetal-Custom-10.jpg'
-		],
-		lilac: [
-			'IKrusher-Astro-Mod-Lilac-Custom-01.jpg',
-			'IKrusher-Astro-Mod-Lilac-Custom-02.jpg',
-			'IKrusher-Astro-Mod-Lilac-Custom-03.jpg',
-			'IKrusher-Astro-Mod-Lilac-Custom-04.jpg',
-			'IKrusher-Astro-Mod-Lilac-Custom-05.jpg',
-			'IKrusher-Astro-Mod-Lilac-Custom-06.jpg',
-			'IKrusher-Astro-Mod-Lilac-Custom-07.jpg',
-			'IKrusher-Astro-Mod-Lilac-Custom-08.jpg',
-			'IKrusher-Astro-Mod-Lilac-Custom-09.jpg',
-			'IKrusher-Astro-Mod-Lilac-Custom-10.jpg'
-		],
-		metablue: [
-			'IKrusher-Astro-Mod-Metallic-Blue-Pod-Custom-01.jpg',
-			'IKrusher-Astro-Mod-Metallic-Blue-Pod-Custom-02.jpg',
-			'IKrusher-Astro-Mod-Metallic-Blue-Pod-Custom-03.jpg',
-			'IKrusher-Astro-Mod-Metallic-Blue-Pod-Custom-04.jpg',
-			'IKrusher-Astro-Mod-Metallic-Blue-Pod-Custom-05.jpg',
-			'IKrusher-Astro-Mod-Metallic-Blue-Pod-Custom-06.jpg',
-			'IKrusher-Astro-Mod-Metallic-Blue-Pod-Custom-07.jpg',
-			'IKrusher-Astro-Mod-Metallic-Blue-Pod-Custom-08.jpg',
-			'IKrusher-Astro-Mod-Metallic-Blue-Pod-Custom-09.jpg',
-			'IKrusher-Astro-Mod-Metallic-Blue-Pod-Custom-10.jpg'
-		],
-		red: [
-			'IKrusher-Astro-Mod-Red-Custom-01.jpg',
-			'IKrusher-Astro-Mod-Red-Custom-02.jpg',
-			'IKrusher-Astro-Mod-Red-Custom-03.jpg',
-			'IKrusher-Astro-Mod-Red-Custom-04.jpg',
-			'IKrusher-Astro-Mod-Red-Custom-05.jpg',
-			'IKrusher-Astro-Mod-Red-Custom-06.jpg',
-			'IKrusher-Astro-Mod-Red-Custom-07.jpg',
-			'IKrusher-Astro-Mod-Red-Custom-08.jpg',
-			'IKrusher-Astro-Mod-Red-Custom-09.jpg',
-			'IKrusher-Astro-Mod-Red-Custom-10.jpg'
-		],
-		rosegold: [
-			'IKrusher-Astro-Mod-Rosegold-Pod-Custom-01.jpg',
-			'IKrusher-Astro-Mod-Rosegold-Pod-Custom-02.jpg',
-			'IKrusher-Astro-Mod-Rosegold-Pod-Custom-03.jpg',
-			'IKrusher-Astro-Mod-Rosegold-Pod-Custom-04.jpg',
-			'IKrusher-Astro-Mod-Rosegold-Pod-Custom-05.jpg',
-			'IKrusher-Astro-Mod-Rosegold-Pod-Custom-06.jpg',
-			'IKrusher-Astro-Mod-Rosegold-Pod-Custom-07.jpg',
-			'IKrusher-Astro-Mod-Rosegold-Pod-Custom-08.jpg',
-			'IKrusher-Astro-Mod-Rosegold-Pod-Custom-09.jpg',
-			'IKrusher-Astro-Mod-Rosegold-Pod-Custom-10.jpg'
-		]
-	};
-	const productColors = [ 'black', 'gunmetal', 'lilac', 'metablue', 'red', 'rosegold' ];
+export default function VapeWidget(props) {
+	console.log(props);
 
 	const [ num, setNum ] = useState(1);
 	const [ showOne, setShowOne ] = useState(true);
@@ -256,45 +171,45 @@ export default function AstroModWidget(props) {
 		() => {
 			if (preview) {
 				const interval = setInterval(() => {
-					console.log('This will run every second!');
+					// console.log('This will run every second!');
 					if (num === 1) {
-						console.log(num);
+						// console.log(num);
 						angleTwo();
 						setNum(2);
 					} else if (num === 2) {
-						console.log(num);
+						// console.log(num);
 						angleThree();
 						setNum(3);
 					} else if (num === 3) {
-						console.log(num);
+						// console.log(num);
 						angleFour();
 						setNum(4);
 					} else if (num === 4) {
-						console.log(num);
+						// console.log(num);
 						angleFive();
 						setNum(5);
 					} else if (num === 5) {
-						console.log(num);
+						// console.log(num);
 						angleSix();
 						setNum(6);
 					} else if (num === 6) {
-						console.log(num);
+						// console.log(num);
 						angleSeven();
 						setNum(7);
 					} else if (num === 7) {
-						console.log(num);
+						// console.log(num);
 						angleEight();
 						setNum(8);
 					} else if (num === 8) {
-						console.log(num);
+						// console.log(num);
 						angleNineTen();
 						setNum(9);
 					} else if (num === 9) {
-						console.log(num);
+						// console.log(num);
 						angleNineTen();
 						setNum(10);
 					} else if (num === 10) {
-						console.log(num);
+						// console.log(num);
 						angleOne();
 						setNum(1);
 					}
@@ -305,12 +220,7 @@ export default function AstroModWidget(props) {
 		[ preview, num ]
 	);
 
-	const formStyles = {
-		fontSize: '16px',
-		padding: '20px 10px 10px'
-	};
-
-	const [ prodColor, setProdColor ] = useState('black');
+	const [ prodColor, setProdColor ] = useState(props.productColors[0]);
 
 	const handleChangeColor = (event) => {
 		setProdColor(event.target.value);
@@ -402,134 +312,77 @@ export default function AstroModWidget(props) {
 	const [ designs, setDesigns ] = useState([]);
 	const [ designArray, setDesignArray ] = useState([]);
 
-	// const downloadRef = createRef(null);
+	const [ timestamp, setTimestamp ] = useState(Date.now());
 
 	const download = (image, { name = 'screenshot', extension = 'png' } = {}) => {
+		setTimestamp(Date.now());
 		const a = document.createElement('a');
 		a.href = image;
-		a.download = createFileName(extension, name);
+		a.download = createFileName(extension, name + timestamp);
 		a.click();
 	};
 
-	const [ toDownload, setToDownload ] = useState(false);
-    const [newRef, setNewRef] = useState(null);
+	const [ newRef, setNewRef ] = useState(null);
 
-    const screenRef = (ref) => {
-        console.log(`screenRef: ${ref}`);
-        setNewRef(ref);
-    }
-    
-	const downloadScreenshot = () => {
-        setNum(1);
-        console.log(`screenRef2: ${newRef}`);
-        if(newRef) {
-            takeScreenshot(newRef).then(download);
-        }
-
-		setToDownload(true);
+	const screenRef = (ref) => {
+		// console.log(`screenRef: ${ref}, ${num}`);
+		setNewRef(ref);
 	};
 
-	// const newRef = React.useCallback((node) => {
-	// 	if (node === null) {
-	// 		console.log('ref null', ref.current);
-	// 	} else {
-	// 		console.log(node, ref.current);
-	// 	}
-	// }, []);
+	const downloadScreenshot = () => {
+		// console.log(`screenRef: ${newRef}, ${num}`);
+		takeScreenshot(newRef).then(download);
+	};
 
-	useEffect(
-		() => {
-			if (toDownload) {
-                console.log("start")
-				const interval = setInterval(() => {
-					console.log('This will run every second!');
-                    if(newRef) {
-                        if (num === 1) {
-                            console.log(num);
-                            angleTwo();
-                            takeScreenshot(newRef).then(download);
-                            setNum(2);
-                        } else if (num === 2) {
-                            console.log(num);
-                            angleThree();
-                            takeScreenshot(newRef).then(download);
-                            setNum(3);
-                        } else if (num === 3) {
-                            console.log(num);
-                            angleFour();
-                            takeScreenshot(newRef).then(download);
-                            setNum(4);
-                        } else if (num === 4) {
-                            console.log(num);
-                            angleFive();
-                            takeScreenshot(newRef).then(download);
-                            setNum(5);
-                        } else if (num === 5) {
-                            console.log(num);
-                            angleSix();
-                            takeScreenshot(newRef).then(download);
-                            setNum(6);
-                        } else if (num === 6) {
-                            console.log(num);
-                            angleSeven();
-                            takeScreenshot(newRef).then(download);
-                            setNum(7);
-                        } else if (num === 7) {
-                            console.log(num);
-                            angleEight();
-                            takeScreenshot(newRef).then(download);
-                            setNum(8);
-                        } else if (num === 8) {
-                            console.log(num);
-                            angleNineTen();
-                            takeScreenshot(newRef).then(download);
-                            setNum(9);
-                        } else if (num === 9) {
-                            console.log(num);
-                            angleNineTen();
-                            takeScreenshot(newRef).then(download);
-                            setNum(10);
-                        } else if (num === 10) {
-                            console.log(num);
-                            angleOne();
-                        }
-                    }
-				}, 1000);
-			}
-			setToDownload(false);
-			return () => clearInterval(interval);
-		},
-		[ preview, num, newRef ]
-	);
-
-	const handleUploadDesign = async (event) => {
+	const handleUploadDesign = (event) => {
+		console.log(event.target.files);
 		setDisplayImages(true);
 		if (event.target.files && event.target.files[0]) {
-			setDesigns([ ...designs, event.target.files ]);
+			setDesigns([ ...designs, event.target.files[0] ]);
+			console.log(designs);
 			for (let i = 0; i < designs.length; i++) {
-				for (let j = 0; j < designs[i].length; j++) {
-					console.log(designs[i][j]);
-					await uploadScreenToServer(designs[i][j]);
-					await setDesignArray([ ...designArray, URL.createObjectURL(designs[i][j]) ]);
-				}
+				uploadScreenToServer(designs[i]);
+				setDesignArray([ ...designArray, URL.createObjectURL(designs[i]) ]);
 			}
 		}
 	};
 
-	const onSubmitCustom = async () => {
+	const uploadDesignRef = useRef(null);
+
+	const onSubmitCustom = () => {
 		if (prodURL) {
-			await setImageSaved([ ...imageSaved, prodURL ]);
+			setImageSaved([ ...imageSaved, prodURL ]);
 		}
-		await setFormInfo(`
-                Color: ${prodColor}\n
-                Custom Text: 1. ${textOne}, 2. ${textThree}, 3. ${textFive}, 4. ${textSeven}\n
-                Custom User Manual: ${manual}\n
-                Custom Packaging or Shipping Carton: ${packaging}\n
-                Email: ${emailInput}\n
-                Message: ${messageField}\n
-                Logo and Custom Designs: ${imageSaved}
-                `);
-		console.log(formInfo);
+		console.log(imageSaved);
+		setTimeout(() => {
+			setFormInfo({
+				message: `
+                    Color: ${prodColor}
+                    Custom Text: 1. ${textOne}, 2. ${textThree}, 3. ${textFive}, 4. ${textSeven}
+                    Custom User Manual: ${manual}
+                    Custom Packaging or Shipping Carton: ${packaging}
+                    Email: ${emailInput}
+                    Message: ${messageField}
+                    Logo and Custom Designs: ${imageSaved}
+                    `,
+				links: imageSaved.map((url) => <img src={url} alt={url} key={url} />)
+			});
+			console.log(formInfo);
+			fetch('/api/email', {
+				method: 'POST',
+				headers: {
+					Accept: 'application/json, text/plain, */*',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(formInfo)
+			}).then((res) => {
+				console.log('Response received');
+				if (res.status === 200) {
+					console.log('Response succeeded!');
+					setFormInfo('');
+				}
+			});
+		}, 2000);
 	};
 
 	const uploadScreenToServer = async (design) => {
@@ -554,8 +407,15 @@ export default function AstroModWidget(props) {
 				<Button onClick={nextAngle} disabled={num >= 10} className={styles.roundBtn} style={{ float: 'right' }}>
 					<ArrowForwardIosIcon fontSize="large" />
 				</Button>
+				<Button
+					onClick={downloadScreenshot}
+					className={styles.screenBtn}
+					style={{ width: '100%', marginTop: '320px' }}
+				>
+					Confirm the Design Above and Download it
+				</Button>
 				<Button onClick={onPreview} className={styles.previewBtn}>
-					Preview in 360 Degrees
+					Preview in 360° {'    '} <PlayArrowIcon /> / <StopIcon />
 				</Button>
 			</div>
 			<div className="custom-group">
@@ -574,82 +434,82 @@ export default function AstroModWidget(props) {
 					{/* <div> */}
 					<div id="one" style={{ display: num === 1 ? 'block' : 'none' }}>
 						<CustomImages
-							name={productID}
-							category={productCate}
-							folder={productFolder}
-							images={productImages[productColors.filter((color) => color === prodColor)][0]}
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][0]}
 						/>
 					</div>
 					<div id="two" style={{ display: num === 2 ? 'block' : 'none' }}>
 						<CustomImages
-							name={productID}
-							category={productCate}
-							folder={productFolder}
-							images={productImages[productColors.filter((color) => color === prodColor)][1]}
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][1]}
 						/>
 					</div>
 					<div id="three" style={{ display: num === 3 ? 'block' : 'none' }}>
 						<CustomImages
-							name={productID}
-							category={productCate}
-							folder={productFolder}
-							images={productImages[productColors.filter((color) => color === prodColor)][2]}
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][2]}
 						/>
 					</div>
 					<div id="four" style={{ display: num === 4 ? 'block' : 'none' }}>
 						<CustomImages
-							name={productID}
-							category={productCate}
-							folder={productFolder}
-							images={productImages[productColors.filter((color) => color === prodColor)][3]}
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][3]}
 						/>
 					</div>
 					<div id="five" style={{ display: num === 5 ? 'block' : 'none' }}>
 						<CustomImages
-							name={productID}
-							category={productCate}
-							folder={productFolder}
-							images={productImages[productColors.filter((color) => color === prodColor)][4]}
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][4]}
 						/>
 					</div>
 					<div id="six" style={{ display: num === 6 ? 'block' : 'none' }}>
 						<CustomImages
-							name={productID}
-							category={productCate}
-							folder={productFolder}
-							images={productImages[productColors.filter((color) => color === prodColor)][5]}
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][5]}
 						/>
 					</div>
 					<div id="seven" style={{ display: num === 7 ? 'block' : 'none' }}>
 						<CustomImages
-							name={productID}
-							category={productCate}
-							folder={productFolder}
-							images={productImages[productColors.filter((color) => color === prodColor)][6]}
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][6]}
 						/>
 					</div>
 					<div id="eight" style={{ display: num === 8 ? 'block' : 'none' }}>
 						<CustomImages
-							name={productID}
-							category={productCate}
-							folder={productFolder}
-							images={productImages[productColors.filter((color) => color === prodColor)][7]}
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][7]}
 						/>
 					</div>
 					<div id="nine" style={{ display: num === 9 ? 'block' : 'none' }}>
 						<CustomImages
-							name={productID}
-							category={productCate}
-							folder={productFolder}
-							images={productImages[productColors.filter((color) => color === prodColor)][8]}
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][8]}
 						/>
 					</div>
 					<div id="ten" style={{ display: num === 10 ? 'block' : 'none' }}>
 						<CustomImages
-							name={productID}
-							category={productCate}
-							folder={productFolder}
-							images={productImages[productColors.filter((color) => color === prodColor)][9]}
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][9]}
 						/>
 					</div>
 					{/* </div> */}
@@ -742,25 +602,157 @@ export default function AstroModWidget(props) {
 											label="Color"
 											onChange={handleChangeColor}
 											style={{ fontSize: '16px' }}
-											defaultValue={'black'}
+											defaultValue={props.productColors[0]}
 										>
-											<MenuItem style={formStyles} value={'black'} selected>
+											<MenuItem
+												style={{
+													fontSize: '16px',
+													padding: '20px 10px 10px',
+													display: props.productColors.includes('black') ? 'flex' : 'none'
+												}}
+												value={'black'}
+												selected={props.productColors.includes('black') ? true : false}
+											>
 												Black
 											</MenuItem>
-											<MenuItem style={formStyles} value={'rosegold'}>
+											<MenuItem
+												style={{
+													fontSize: '16px',
+													padding: '20px 10px 10px',
+													display: props.productColors.includes('rosegold') ? 'flex' : 'none'
+												}}
+												value={'rosegold'}
+											>
 												Rose Gold
 											</MenuItem>
-											<MenuItem style={formStyles} value={'red'}>
+											<MenuItem
+												style={{
+													fontSize: '16px',
+													padding: '20px 10px 10px',
+													display: props.productColors.includes('red') ? 'flex' : 'none'
+												}}
+												value={'red'}
+											>
 												Red
 											</MenuItem>
-											<MenuItem style={formStyles} value={'metablue'}>
+											<MenuItem
+												style={{
+													fontSize: '16px',
+													padding: '20px 10px 10px',
+													display: props.productColors.includes('metablue') ? 'flex' : 'none'
+												}}
+												value={'metablue'}
+											>
 												Metallic Blue
 											</MenuItem>
-											<MenuItem style={formStyles} value={'lilac'}>
+											<MenuItem
+												style={{
+													fontSize: '16px',
+													padding: '20px 10px 10px',
+													display: props.productColors.includes('metasilver')
+														? 'flex'
+														: 'none'
+												}}
+												value={'metasilver'}
+												selected={
+													!props.productColors.includes('black') &&
+													!props.productColors.includes('gunmetal') &&
+													props.productColors.includes('metasilver') ? (
+														true
+													) : (
+														false
+													)
+												}
+											>
+												Metallic Silver
+											</MenuItem>
+											<MenuItem
+												style={{
+													fontSize: '16px',
+													padding: '20px 10px 10px',
+													display: props.productColors.includes('lilac') ? 'flex' : 'none'
+												}}
+												value={'lilac'}
+											>
 												Lilac
 											</MenuItem>
-											<MenuItem style={formStyles} value={'gunmetal'}>
+											<MenuItem
+												style={{
+													fontSize: '16px',
+													padding: '20px 10px 10px',
+													display: props.productColors.includes('gunmetal') ? 'flex' : 'none'
+												}}
+												value={'gunmetal'}
+												selected={
+													!props.productColors.includes('black') &&
+													props.productColors.includes('gunmetal') ? (
+														true
+													) : (
+														false
+													)
+												}
+											>
 												Gunmetal
+											</MenuItem>
+											<MenuItem
+												style={{
+													fontSize: '16px',
+													padding: '20px 10px 10px',
+													display: props.productColors.includes('green') ? 'flex' : 'none'
+												}}
+												value={'green'}
+											>
+												Green Tourmaline
+											</MenuItem>
+											<MenuItem
+												style={{
+													fontSize: '16px',
+													padding: '20px 10px 10px',
+													display: props.productColors.includes('white') ? 'flex' : 'none'
+												}}
+												value={'white'}
+											>
+												White
+											</MenuItem>
+											<MenuItem
+												style={{
+													fontSize: '16px',
+													padding: '20px 10px 10px',
+													display: props.productColors.includes('yellow') ? 'flex' : 'none'
+												}}
+												value={'yellow'}
+											>
+												Yellow
+											</MenuItem>
+											<MenuItem
+												style={{
+													fontSize: '16px',
+													padding: '20px 10px 10px',
+													display: props.productColors.includes('royalblue') ? 'flex' : 'none'
+												}}
+												value={'royalblue'}
+											>
+												Royal Blue
+											</MenuItem>
+											<MenuItem
+												style={{
+													fontSize: '16px',
+													padding: '20px 10px 10px',
+													display: props.productColors.includes('blue') ? 'flex' : 'none'
+												}}
+												value={'blue'}
+											>
+												Blue
+											</MenuItem>
+											<MenuItem
+												style={{
+													fontSize: '16px',
+													padding: '20px 10px 10px',
+													display: props.productColors.includes('hotpink') ? 'flex' : 'none'
+												}}
+												value={'hotpink'}
+											>
+												Hot Pink
 											</MenuItem>
 										</Select>
 									</FormControl>
@@ -884,13 +876,12 @@ export default function AstroModWidget(props) {
 						<tr>
 							<th style={{ paddingTop: '1em' }}>Message:</th>
 							<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
-								{/* <textarea rows="3" cols="30" /> */}
 								<TextField
 									id="outlined-multiline-static"
-									label="Your message"
+									label="Your Message"
 									multiline
 									rows={2}
-									placeholder="Your message"
+									placeholder="Your Message"
 									sx={{ width: '280px' }}
 									className="messageInput"
 									onChange={onMessageField}
@@ -900,21 +891,15 @@ export default function AstroModWidget(props) {
 						<tr>
 							<th style={{ paddingTop: '1em' }}>Confirm Your Design:</th>
 							<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
-								<Button
-									onClick={downloadScreenshot}
-									className={styles.screenBtn}
-									style={{ marginBottom: '1em' }}
-								>
-									Download My Designs
-								</Button>
 								<label htmlFor="screen-button-file" style={{ display: 'block' }}>
 									<Input
 										accept="image/png"
 										id="screen-button-file"
-										multiple={true}
+										multiple
 										type="file"
 										style={{ display: 'none' }}
 										onChange={handleUploadDesign}
+										ref={uploadDesignRef}
 									/>
 									<Button variant="screen" component="span" className={styles.screenBtn}>
 										Confirm and Upload My Designs
@@ -928,7 +913,7 @@ export default function AstroModWidget(props) {
 										{designArray &&
 											designArray.map((url) => (
 												<ImageListItem key={url}>
-													<img src={url} alt={url} loading="lazy" />
+													<img src={url} alt={url} />
 												</ImageListItem>
 											))}
 									</ImageList>
@@ -942,7 +927,11 @@ export default function AstroModWidget(props) {
 						<Image src={screenshot} alt="screenshot" width="600" height="800" style={{ display: 'none' }} />
 					</a>
 				)} */}
-				<Button onClick={onSubmitCustom} className={styles.funcBtn}>
+				<Button
+					onClick={onSubmitCustom}
+					className={styles.funcBtn}
+					style={{ display: 'block', margin: '0 auto', padding: '6px 20px' }}
+				>
 					Submit
 				</Button>
 			</div>

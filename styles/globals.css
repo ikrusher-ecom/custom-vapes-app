@@ -1,18 +1,18 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	padding: 0;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+		Helvetica Neue, sans-serif;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .angle45 {
@@ -30,6 +30,18 @@ a {
 	min-width: 1205px;
 	max-width: 1405px;
 	margin: 0 auto;
+}
+
+.MuiImageList-root {
+	height: auto !important;
+	width: 280px !important;
+	grid-template-rows: repeat(4, 1fr) !important;
+	flex-wrap: wrap !important;
+}
+
+.MuiImageListItem-img {
+	object-fit: contain !important;
+	width: 90px !important;
 }
 
 .messageInput,
@@ -63,81 +75,82 @@ a {
 
 #custom-vapes h5 {
 	margin-bottom: 1em;
-  }
-  
-  .step2-product {
+}
+
+.step2-product {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	align-content: space-around;
 	align-items: center;
-  }
-  
-  .product-img {
+}
+
+.product-img {
 	margin: 0 50px 50px 0;
 	display: flex;
 	flex-direction: column;
 	text-align: center;
 	border: none;
 	background: transparent;
-  }
-  
-  .product-img>span {
+}
+
+.product-img > span {
 	margin: 0 auto;
-  }
-  
-  #product-description {
+}
+
+#product-description {
 	border: 1px solid gray;
 	border-radius: 10px;
 	padding: 1%;
 	margin: 2% auto;
 	max-width: 800px;
-  }
-  
-  #product-description>div {
+}
+
+#product-description > div {
 	flex-direction: row;
 	justify-content: space-evenly;
-  }
-  
-  #product-description>div>table {
+}
+
+#product-description > div > table {
 	border: none;
 	margin: 0 0 0 2%;
 	width: 64%;
 	max-width: 489px;
-  }
-  
-  #product-description>div>span {
+}
+
+#product-description > div > span {
 	display: inline-block;
-  }
-  
-  .input-group {
+}
+
+.input-group {
 	position: relative;
 	left: 640px;
-  }
-  
-  .input-group table tbody td, .input-group table tbody th {
+}
+
+.input-group table tbody td,
+.input-group table tbody th {
 	padding: 10px 0;
-  }
-  
-  #input-submit {
+}
+
+#input-submit {
 	width: 200px;
 	margin: 20px auto;
 	text-align: center;
-  }
-  
-  a.button-style:hover,
-  a.button-style:focus,
-  a.button-style:active {
+}
+
+a.button-style:hover,
+a.button-style:focus,
+a.button-style:active {
 	color: #fff !important;
-  }
-  
-  .text-logo {
+}
+
+.text-logo {
 	z-index: 99;
 	position: relative;
-  }
-  
-  /* .draggable {
+}
+
+/* .draggable {
 	cursor: pointer;
   }
   .custom-vape {
@@ -177,16 +190,16 @@ a {
 	vertical-align: top;
 	object-fit: contain;
   } */
-  
-  #display-text-one,
-  #display-text-five {
+
+#display-text-one,
+#display-text-five {
 	position: absolute;
 	z-index: 99;
 	color: gray;
 	word-break: break-word;
-  }
-  
-  /* .logo-div-one {
+}
+
+/* .logo-div-one {
 	display: block;
 	position: absolute;
 	top: 0;
@@ -208,8 +221,8 @@ a {
 	top: 0;
 	bottom: 0;
   } */
-  
-  .display-logo-div {
+
+.display-logo-div {
 	width: 200px;
 	height: 200px;
 	/* vertical-align: inherit; */
@@ -218,17 +231,17 @@ a {
 	left: 0;
 	right: 0;
 	/* top: 200px; */
-  }
-  
-  #display-text-three,
-  #display-text-seven {
+}
+
+#display-text-three,
+#display-text-seven {
 	position: absolute;
 	z-index: 99;
 	color: gray;
 	word-break: break-word;
-  }
-  
-  /* #display-text-three,
+}
+
+/* #display-text-three,
   #display-text-one {
 	transform: rotate(90deg);
   }
@@ -251,18 +264,18 @@ a {
 	font-size: 20px;
 	border: 2px solid #85A1A9;
   } */
-  
-  .display-two-div,
-  .display-four-div,
-  .display-six-div,
-  .display-eight-div {
+
+.display-two-div,
+.display-four-div,
+.display-six-div,
+.display-eight-div {
 	position: absolute;
 	z-index: 99;
 	color: gray;
 	word-break: break-word;
-  }
-  
-  /* 
+}
+
+/* 
   .display-two-div,
   .display-six-div {
 	margin: 0 48% 0 auto;
@@ -287,15 +300,15 @@ a {
   #display-text-eight {
 	transform: rotateY(45deg);
   } */
-  
-  .logo-div-two,
-  .logo-div-eight {
+
+.logo-div-two,
+.logo-div-eight {
 	display: block;
 	position: absolute;
 	z-index: 99;
-  }
-  
-  /* 
+}
+
+/* 
   .logo-div-two {
 	margin: 0 49.6% 0 auto;
 	perspective-origin: left;
@@ -316,63 +329,62 @@ a {
   #display-logo-eight {
 	transform: rotateY(45deg);
   } */
-  
-  #one,
-  #two,
-  #three,
-  #four,
-  #five,
-  #six,
-  #seven,
-  #eight {
+
+#one,
+#two,
+#three,
+#four,
+#five,
+#six,
+#seven,
+#eight {
 	transition: all 0.5s ease;
-  }
-  
-  .color-box {
+}
+
+.color-box {
 	width: 20px;
 	height: 20px;
 	display: inline-block;
-  }
-  
-  .input-group>table {
+}
+
+.input-group > table {
 	border: none;
-  }
-  
-  .input-group>table th {
+}
+
+.input-group > table th {
 	width: 35%;
-  }
-  
-  .input-group>table th,
-  .input-group>table td {
+}
+
+.input-group > table th,
+.input-group > table td {
 	vertical-align: top;
-  }
-  
-  .button-style {
+}
+
+.button-style {
 	height: 40px;
-	background: #85A1A9;
+	background: #85a1a9;
 	width: auto;
 	margin: 0 3px;
 	padding: 6px 20px;
 	border-radius: 27px;
-	border: solid 1px #85A1A9 !important;
+	border: solid 1px #85a1a9 !important;
 	color: #fff;
-  }
-  
-  .logo-button {
-	background: #85A1A9;
+}
+
+.logo-button {
+	background: #85a1a9;
 	width: auto;
 	margin: 0 3px;
 	padding: 6px 20px;
 	border-radius: 27px;
-	border: solid 1px #85A1A9 !important;
+	border: solid 1px #85a1a9 !important;
 	color: #fff;
-  }
-  
-  .pattern-div {
+}
+
+.pattern-div {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-around;
 	margin: 10px 0;
-  }
-  
+}

@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 export default function ProductDescription(props) {
 	const showCustom = () => {
 		if (props.productName) {
-			props.clickWidget(props.productName.replace(/\s/g, '') + 'Widget');
+			props.clickWidget(props.productName.replace(/\s/g, ''));
 		}
 	};
 
