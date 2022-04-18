@@ -2,7 +2,7 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-12 23:13:36
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-17 17:40:10
+ * @LastEditTime: 2022-04-17 17:49:10
  * @FilePath: /custom-vapes-app/pages/components/StepThree.js
  */
 import * as React from 'react';
@@ -36,7 +36,7 @@ import {
 	XenbarPro,
 	Xodos,
 	XodosPro
-} from './data';
+} from '../../data';
 
 const products = [
 	{
