@@ -2,7 +2,7 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-12 01:06:02
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-17 17:52:35
+ * @LastEditTime: 2022-04-17 18:04:49
  * @FilePath: /custom-vapes-app/components/ProductButtons.js
  */
 import * as React from 'react';
@@ -53,7 +53,7 @@ const cartridges = [
 		width: '20%'
 	},
 	{
-		url: '/products/cartridge/tux/iKrusher-Tux--Calibr-White-Custom-03.jpg',
+		url: '/products/cartridge/tux/iKrusher-Tux-Calibr-Black-Custom-01.jpg',
 		title: 'Tux',
 		width: '20%'
 	},
