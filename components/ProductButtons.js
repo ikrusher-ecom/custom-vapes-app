@@ -219,7 +219,48 @@ export default function ProductimgBtn(props) {
 		props.product(event.target.textContent);
 	}
 
-	if (props.cateDisplay === 'podSystems') {
+	if (props.cateDisplay === 'disposables') {
+		return (
+			<Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
+				{disposables.map((image) => (
+					<ImageButton
+						focusRipple
+						key={image.title}
+						style={{
+							width: image.width
+						}}
+						onClick={handleSetProduct}
+					>
+						<ImageSrc
+							style={{
+								backgroundImage: `url(${image.url})`,
+								backgroundSize: 'contain',
+								backgroundRepeat: 'no-repeat'
+							}}
+						/>
+						<ImageBackdrop className="MuiImageBackdrop-root" />
+						<Image alt={image.title}>
+							<Typography
+								component="span"
+								variant="subtitle1"
+								color="inherit"
+								sx={{
+									position: 'relative',
+									p: 4,
+									pt: 2,
+									pb: (theme) => `calc(${theme.spacing(1)} + 6px)`
+								}}
+								className={styles.imgBtn}
+							>
+								{image.title}
+								<ImageMarked className="MuiImageMarked-root" />
+							</Typography>
+						</Image>
+					</ImageButton>
+				))}
+			</Box>
+		);
+	} else if (props.cateDisplay === 'podSystems') {
 		return (
 			<Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
 				{podSystems.map((image) => (
@@ -264,47 +305,6 @@ export default function ProductimgBtn(props) {
 		return (
 			<Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
 				{cartridges.map((image) => (
-					<ImageButton
-						focusRipple
-						key={image.title}
-						style={{
-							width: image.width
-						}}
-						onClick={handleSetProduct}
-					>
-						<ImageSrc
-							style={{
-								backgroundImage: `url(${image.url})`,
-								backgroundSize: 'contain',
-								backgroundRepeat: 'no-repeat'
-							}}
-						/>
-						<ImageBackdrop className="MuiImageBackdrop-root" />
-						<Image alt={image.title}>
-							<Typography
-								component="span"
-								variant="subtitle1"
-								color="inherit"
-								sx={{
-									position: 'relative',
-									p: 4,
-									pt: 2,
-									pb: (theme) => `calc(${theme.spacing(1)} + 6px)`
-								}}
-								className={styles.imgBtn}
-							>
-								{image.title}
-								<ImageMarked className="MuiImageMarked-root" />
-							</Typography>
-						</Image>
-					</ImageButton>
-				))}
-			</Box>
-		);
-	} else if (props.cateDisplay === 'disposables') {
-		return (
-			<Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
-				{disposables.map((image) => (
 					<ImageButton
 						focusRipple
 						key={image.title}
