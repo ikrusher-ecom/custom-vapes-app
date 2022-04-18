@@ -1,3 +1,10 @@
+/*
+ * @Author: Jinqi Li
+ * @Date: 2022-04-12 00:11:40
+ * @LastEditors: Jinqi Li
+ * @LastEditTime: 2022-04-17 17:53:50
+ * @FilePath: /custom-vapes-app/components/ImageInput.js
+ */
 import { useState } from "react";
 
 export default function ImageInput(props) {
@@ -30,7 +37,7 @@ export default function ImageInput(props) {
 
     return (
         <div>
-            <img src={prodURL} />
+            <img src={prodURL} alt={prodURL} />
             <input type="file" name="userImage" accept="image/png" multiple={false} onChange={uploadToClient} />
             <button className="btn btn-primary" type="submit" onClick={uploadToServer}>Send to server</button>
         </div>
