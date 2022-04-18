@@ -2,7 +2,7 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-12 00:11:40
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-17 17:54:54
+ * @LastEditTime: 2022-04-17 17:57:38
  * @FilePath: /custom-vapes-app/pages/index.js
  */
 import * as React from 'react';
@@ -14,7 +14,7 @@ import ImageInput from '../components/ImageInput';
 import StepOne from '../components/StepOne';
 import StepThree from '../components/StepThree';
 import StepTwo from '../components/StepTwo';
-import { ikrusherTheme } from './theme';
+import { ikrusherTheme } from '../theme';
 import { ThemeProvider } from '@mui/material/styles';
 
 export default function Home() {
