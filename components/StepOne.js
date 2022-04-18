@@ -56,14 +56,14 @@ export default function StepOne(props) {
 							onChange={handleChange}
 							style={{ fontSize: '16px' }}
 						>
+							<MenuItem style={formStyles} value={'disposables'}>
+								Disposable
+							</MenuItem>
 							<MenuItem style={formStyles} value={'podSystems'}>
 								Pod System
 							</MenuItem>
 							<MenuItem style={formStyles} value={'cartridges'}>
 								Cartridge
-							</MenuItem>
-							<MenuItem style={formStyles} value={'disposables'}>
-								Disposable
 							</MenuItem>
 							<MenuItem style={formStyles} value={'batteries'}>
 								Battery
