@@ -2,12 +2,12 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-12 00:11:40
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-12 23:31:14
- * @FilePath: /custom-vapes-app/pages/components/StepOne.js
+ * @LastEditTime: 2022-04-17 17:52:44
+ * @FilePath: /custom-vapes-app/components/StepOne.js
  */
 import * as React from 'react';
 import { useState } from 'react';
-import styles from '../../styles/Component.module.css';
+import styles from '../styles/Component.module.css';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';

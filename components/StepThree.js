@@ -2,12 +2,12 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-12 23:13:36
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-17 17:49:10
- * @FilePath: /custom-vapes-app/pages/components/StepThree.js
+ * @LastEditTime: 2022-04-17 17:51:55
+ * @FilePath: /custom-vapes-app/components/StepThree.js
  */
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import styles from '../../styles/Component.module.css';
+import styles from '../styles/Component.module.css';
 import ProductDescription from './ProductDescription';
 import VapeWidget from './VapeWidget';
 import {
@@ -36,7 +36,7 @@ import {
 	XenbarPro,
 	Xodos,
 	XodosPro
-} from '../../data';
+} from '../data';
 
 const products = [
 	{

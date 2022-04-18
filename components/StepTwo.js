@@ -2,13 +2,13 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-12 00:58:07
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-13 01:01:12
- * @FilePath: /custom-vapes-app/pages/components/StepTwo.js
+ * @LastEditTime: 2022-04-17 17:52:55
+ * @FilePath: /custom-vapes-app/components/StepTwo.js
  */
 import * as React from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
-import styles from '../../styles/Component.module.css';
+import styles from '../styles/Component.module.css';
 import ProductButtons from './ProductButtons';
 
 export default function StepTwo(props) {

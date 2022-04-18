@@ -2,11 +2,11 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-12 23:34:38
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-14 01:42:51
- * @FilePath: /custom-vapes-app/pages/components/ProductDescription.js
+ * @LastEditTime: 2022-04-17 17:52:40
+ * @FilePath: /custom-vapes-app/components/ProductDescription.js
  */
 import * as React from 'react';
-import styles from '../../styles/Component.module.css';
+import styles from '../styles/Component.module.css';
 import Image from 'next/image';
 import Button from '@mui/material/Button';
 

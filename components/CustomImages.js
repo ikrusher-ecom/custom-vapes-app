@@ -2,12 +2,12 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-13 17:37:17
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-16 04:25:26
- * @FilePath: /custom-vapes-app/pages/components/CustomImages.js
+ * @LastEditTime: 2022-04-17 17:52:27
+ * @FilePath: /custom-vapes-app/components/CustomImages.js
  */
 import * as React from 'react';
 import { useRef, useState, useEffect } from 'react';
-import styles from '../../styles/Component.module.css';
+import styles from '../styles/Component.module.css';
 import Image from 'next/image';
 
 export default function CustomImages(props) {

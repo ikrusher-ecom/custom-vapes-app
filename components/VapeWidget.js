@@ -2,12 +2,12 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-13 17:37:17
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-17 17:11:11
- * @FilePath: /custom-vapes-app/pages/components/VapeWidget.js
+ * @LastEditTime: 2022-04-17 17:52:21
+ * @FilePath: /custom-vapes-app/components/VapeWidget.js
  */
 import * as React from 'react';
 import { useState, useEffect, createRef, forwardRef, useTimeout, useRef } from 'react';
-import styles from '../../styles/Component.module.css';
+import styles from '../styles/Component.module.css';
 import Image from 'next/image';
 import CustomImages from './CustomImages';
 import { Button } from '@mui/material';
