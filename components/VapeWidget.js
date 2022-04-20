@@ -2,7 +2,7 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-13 17:37:17
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-17 17:52:21
+ * @LastEditTime: 2022-04-20 02:28:08
  * @FilePath: /custom-vapes-app/components/VapeWidget.js
  */
 import * as React from 'react';
@@ -28,9 +28,11 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StopIcon from '@mui/icons-material/Stop';
+import Rotate90DegreesCwIcon from '@mui/icons-material/Rotate90DegreesCw';
 import Draggable, { DraggableCore } from 'react-draggable';
+import ResizableContent from './ResizableContent';
 import { useScreenshot, createFileName } from 'use-react-screenshot';
-import { HexColorPicker } from "react-colorful";
+import { HexColorPicker } from 'react-colorful';
 
 export default function VapeWidget(props) {
 	console.log(props);
@@ -399,7 +401,20 @@ export default function VapeWidget(props) {
 			});
 	};
 
-	const [customColor, setCustomColor] = useState("#878787");
+	const [ customColor, setCustomColor ] = useState('#878787');
+	const [ isColorPicker, setColorPicker ] = useState(false);
+	const changeColor = {
+		color: customColor
+	};
+	const colorButton = {
+		display: 'inline-block',
+		width: '40px',
+		height: '40px',
+		border: '1px solid transparent',
+		backgroundColor: customColor,
+		padding: '0',
+		marginLeft: '10px'
+	};
 
 	return (
 		<div className="custom-vape">
@@ -520,20 +535,29 @@ export default function VapeWidget(props) {
 						<div className={'display-one-div ' + angleClass}>
 							{textOne &&
 							showOne && (
-								<Draggable
-									axis="both"
-									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 200, y: 300 }}
+								<ResizableContent
+									// axis="both"
+									// bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+									// defaultPosition={{ x: 200, y: 300 }}
+									top={200}
+									left={200}
+									width={300}
+									height={30}
+									rotateAngle={0}
 								>
-									<div id="display-text-one">{textOne}</div>
-								</Draggable>
+									<div id="display-text-one" style={changeColor}>
+										{textOne}
+									</div>
+								</ResizableContent>
 							)}
 							{createObjectURL &&
 							showOne && (
-								<Draggable
-									axis="both"
-									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 200, y: 300 }}
+								<ResizableContent
+									top={200}
+									left={200}
+									width={200}
+									height={200}
+									rotateAngle={0}
 								>
 									<div className="display-logo-div">
 										<Image
@@ -544,43 +568,55 @@ export default function VapeWidget(props) {
 											objectFit="contain"
 										/>
 									</div>
-								</Draggable>
+								</ResizableContent>
 							)}
 						</div>
 						{textThree &&
 						showThree && (
 							<div className="display-three-div">
-								<Draggable
-									axis="both"
-									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 200, y: 300 }}
+								<ResizableContent
+									top={200}
+									left={200}
+									width={300}
+									height={30}
+									rotateAngle={0}
 								>
-									<div id="display-text-three">{textThree}</div>
-								</Draggable>
+									<div id="display-text-three">
+										{textThree}
+									</div>
+								</ResizableContent>
 							</div>
 						)}
 						{textFive &&
 						showFive && (
 							<div className="display-five-div">
-								<Draggable
-									axis="both"
-									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 200, y: 300 }}
+								<ResizableContent
+									top={200}
+									left={200}
+									width={300}
+									height={30}
+									rotateAngle={0}
 								>
-									<div id="display-text-five">{textFive}</div>
-								</Draggable>
+									<div id="display-text-five">
+										{textFive}
+									</div>
+								</ResizableContent>
 							</div>
 						)}
 						{textSeven &&
 						showSeven && (
 							<div className="display-seven-div">
-								<Draggable
-									axis="both"
-									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 200, y: 300 }}
+								<ResizableContent
+									top={200}
+									left={200}
+									width={300}
+									height={30}
+									rotateAngle={0}
 								>
-									<div id="display-text-seven">{textSeven}</div>
-								</Draggable>
+									<div id="display-text-seven">
+										{textSeven}
+									</div>
+								</ResizableContent>
 							</div>
 						)}
 					</div>
@@ -790,54 +826,34 @@ export default function VapeWidget(props) {
 							<th>Customize Text:</th>
 							<td>
 								{showOne && (
-									<div className="custom-text-div" id="input-text-one">
-										<Input
-											type="text"
-											style={{color: {customColor}}}
-											id="custom-text-one"
-											maxLength="15"
-											placeholder="Less than 15 characters"
-											onChange={onTextInputOne}
-										/>
+									<div
+										className="custom-text-div"
+										id="input-text-one"
+									>
+										<Input type="text" id="custom-text-one" onChange={onTextInputOne} />
 									</div>
 								)}
 								{showThree && (
 									<div className="custom-text-div" id="input-text-three">
-										<Input
-											type="text"
-											style={{color: {customColor}}}
-											id="custom-text-three"
-											maxLength="15"
-											placeholder="Less than 15 characters"
-											onChange={onTextInputThree}
-										/>
+										<Input type="text" id="custom-text-three" onChange={onTextInputThree} />
 									</div>
 								)}
 								{showFive && (
 									<div className="custom-text-div" id="input-text-five">
-										<Input
-											type="text"
-											style={{color: {customColor}}}
-											id="custom-text-five"
-											maxLength="15"
-											placeholder="Less than 15 characters"
-											onChange={onTextInputFive}
-										/>
+										<Input type="text" id="custom-text-five" onChange={onTextInputFive} />
 									</div>
 								)}
 								{showSeven && (
 									<div className="custom-text-div" id="input-text-seven">
-										<Input
-											type="text"
-											style={{color: {customColor}}}
-											id="custom-text-seven"
-											maxLength="15"
-											placeholder="Less than 15 characters"
-											onChange={onTextInputSeven}
-										/>
+										<Input type="text" id="custom-text-seven" onChange={onTextInputSeven} />
 									</div>
 								)}
-								<HexColorPicker color={customColor} onChange={setCustomColor} />
+								<Button style={colorButton} onClick={setColorPicker} />
+								<HexColorPicker
+									style={{ display: isColorPicker ? 'flex' : 'none', marginTop: '10px' }}
+									color={customColor}
+									onChange={setCustomColor}
+								/>
 								{/* <Input type="color" id="picker" name="picker" value="#808080" onChange={e => console.log(e.target.value)} /> */}
 							</td>
 						</tr>

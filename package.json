@@ -27,7 +27,9 @@
     "react-colorful": "^5.5.1",
     "react-dom": "18.0.0",
     "react-draggable": "^4.4.4",
+    "react-resizable-rotatable-draggable": "^0.2.0",
     "sequelize": "^6.18.0",
+    "styled-components": "^5.3.5",
     "use-react-screenshot": "^3.0.0"
   },
   "devDependencies": {

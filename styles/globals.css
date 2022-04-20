@@ -15,9 +15,15 @@ a {
 	box-sizing: border-box;
 }
 
+.custom-text-div {
+	display: inline-block !important;
+}
+
 .angle45 {
 	transform: rotateY(45deg);
 	width: 55%;
+	left: 10%;
+    position: absolute;
 }
 
 .angleM45 {
@@ -223,10 +229,10 @@ a.button-style:active {
   } */
 
 .display-logo-div {
-	width: 200px;
-	height: 200px;
+	/* width: 200px;
+	height: 200px; */
 	/* vertical-align: inherit; */
-	position: absolute;
+	/* position: absolute; */
 	display: block;
 	left: 0;
 	right: 0;
