@@ -30,6 +30,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StopIcon from '@mui/icons-material/Stop';
 import Draggable, { DraggableCore } from 'react-draggable';
 import { useScreenshot, createFileName } from 'use-react-screenshot';
+import { HexColorPicker } from "react-colorful";
 
 export default function VapeWidget(props) {
 	console.log(props);
@@ -397,6 +398,8 @@ export default function VapeWidget(props) {
 				setImageSaved([ ...imageSaved, res.path ]);
 			});
 	};
+
+	const [customColor, setCustomColor] = useState("#878787");
 
 	return (
 		<div className="custom-vape">
@@ -790,6 +793,7 @@ export default function VapeWidget(props) {
 									<div className="custom-text-div" id="input-text-one">
 										<Input
 											type="text"
+											style={{color: {customColor}}}
 											id="custom-text-one"
 											maxLength="15"
 											placeholder="Less than 15 characters"
@@ -801,6 +805,7 @@ export default function VapeWidget(props) {
 									<div className="custom-text-div" id="input-text-three">
 										<Input
 											type="text"
+											style={{color: {customColor}}}
 											id="custom-text-three"
 											maxLength="15"
 											placeholder="Less than 15 characters"
@@ -812,6 +817,7 @@ export default function VapeWidget(props) {
 									<div className="custom-text-div" id="input-text-five">
 										<Input
 											type="text"
+											style={{color: {customColor}}}
 											id="custom-text-five"
 											maxLength="15"
 											placeholder="Less than 15 characters"
@@ -823,6 +829,7 @@ export default function VapeWidget(props) {
 									<div className="custom-text-div" id="input-text-seven">
 										<Input
 											type="text"
+											style={{color: {customColor}}}
 											id="custom-text-seven"
 											maxLength="15"
 											placeholder="Less than 15 characters"
@@ -830,6 +837,7 @@ export default function VapeWidget(props) {
 										/>
 									</div>
 								)}
+								<HexColorPicker color={customColor} onChange={setCustomColor} />
 								{/* <Input type="color" id="picker" name="picker" value="#808080" onChange={e => console.log(e.target.value)} /> */}
 							</td>
 						</tr>
@@ -902,7 +910,7 @@ export default function VapeWidget(props) {
 										ref={uploadDesignRef}
 									/>
 									<Button variant="screen" component="span" className={styles.screenBtn}>
-										Confirm and Upload My Designs
+										Confirm and Upload Your Designs
 									</Button>
 									<ImageList
 										style={{ display: displayImages ? 'flex' : 'none' }}
