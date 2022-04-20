@@ -13,12 +13,13 @@
 }
 
 .screenBtn {
-    color: #85a1a9 !important;
-    background-color: white !important;
-    font-size: 16px !important;
+	color: #85a1a9 !important;
+	background-color: white !important;
+	font-size: 16px !important;
 	border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
+	box-shadow: none !important;
+	padding: 0 !important;
+	z-index: 99 !important;
 }
 
 .funcBtn:hover,
@@ -41,6 +42,7 @@
 	border: 2px solid #85a1a9 !important;
 	height: 64px !important;
 	width: 50px !important;
+	z-index: 99 !important;
 }
 
 .roundBtn:hover,
@@ -53,7 +55,6 @@
 	/* height: 800px !important; */
 	width: 600px !important;
 	position: absolute !important;
-	z-index: 99 !important;
 	margin: 368px auto !important;
 }
 
@@ -64,10 +65,10 @@
 	color: #fff !important;
 	padding: 10px 16px !important;
 	font-size: 16px !important;
+	z-index: 99 !important;
 }
 
 .previewBtn:hover, .previewBtn:active {
 	background: #85a1a9 !important;
 	color: #fff !important;
 }
-

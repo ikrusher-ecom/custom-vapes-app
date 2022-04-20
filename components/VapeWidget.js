@@ -446,163 +446,164 @@ export default function VapeWidget(props) {
 					Preview in 360° {'    '} <PlayArrowIcon /> / <StopIcon />
 				</Button>
 			</div>
-			<div className="custom-group">
-				{/* <div className="custom-img"> */}
-				<div
-					ref={screenRef}
-					id="myCanvas"
-					style={{
-						border: '1px solid transparent',
-						zIndex: '10',
-						position: 'absolute',
-						width: '600px',
-						height: '800px'
-					}}
-				>
-					{/* <div> */}
-					<div id="one" style={{ display: num === 1 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][0]}
-						/>
-					</div>
-					<div id="two" style={{ display: num === 2 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][1]}
-						/>
-					</div>
-					<div id="three" style={{ display: num === 3 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][2]}
-						/>
-					</div>
-					<div id="four" style={{ display: num === 4 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][3]}
-						/>
-					</div>
-					<div id="five" style={{ display: num === 5 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][4]}
-						/>
-					</div>
-					<div id="six" style={{ display: num === 6 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][5]}
-						/>
-					</div>
-					<div id="seven" style={{ display: num === 7 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][6]}
-						/>
-					</div>
-					<div id="eight" style={{ display: num === 8 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][7]}
-						/>
-					</div>
-					<div id="nine" style={{ display: num === 9 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][8]}
-						/>
-					</div>
-					<div id="ten" style={{ display: num === 10 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][9]}
-						/>
-					</div>
-					{/* </div> */}
-					<div className="text-logo">
-						<div className={'display-one-div ' + angleClass}>
-							{textOne &&
-								showOne && (
-									<ResizableContent
-										// axis="both"
-										// bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-										// defaultPosition={{ x: 200, y: 300 }}
-										top={200}
-										left={200}
-										width={300}
-										height={30}
-										rotateAngle={0}
-									>
-										<div id="display-text-one" style={changeColor}>
-											{textOne}
-										</div>
-									</ResizableContent>
-								)}
-							{createObjectURL &&
-								showOne && (
-									<ResizableContent top={200} left={200} width={200} height={200} rotateAngle={0}>
-										<div className="display-logo-div">
-											<Image
-												alt={createObjectURL}
-												id="display-logo-one"
-												src={createObjectURL}
-												layout="fill"
-												objectFit="contain"
-											/>
-										</div>
-									</ResizableContent>
-								)}
-						</div>
-						{textThree &&
-							showThree && (
-								<div className="display-three-div">
-									<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
-										<div id="display-text-three" style={changeColor}>{textThree}</div>
-									</ResizableContent>
-								</div>
-							)}
-						{textFive &&
-							showFive && (
-								<div className={'display-five-div ' + angleMClass}>
-									<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
-										<div id="display-text-five" style={changeColor}>{textFive}</div>
-									</ResizableContent>
-								</div>
-							)}
-						{textSeven &&
-							showSeven && (
-								<div className="display-seven-div">
-									<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
-										<div id="display-text-seven" style={changeColor}>{textSeven}</div>
-									</ResizableContent>
-								</div>
-							)}
-					</div>
+			{/* <div className="custom-group"> */}
+			{/* <div className="custom-img"> */}
+			<div
+				className="custom-group"
+				ref={screenRef}
+				id="myCanvas"
+				style={{
+					border: '1px solid transparent',
+					zIndex: '10',
+					position: 'absolute',
+					width: '600px',
+					height: '800px'
+				}}
+			>
+				{/* <div> */}
+				<div id="one" style={{ display: num === 1 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][0]}
+					/>
+				</div>
+				<div id="two" style={{ display: num === 2 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][1]}
+					/>
+				</div>
+				<div id="three" style={{ display: num === 3 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][2]}
+					/>
+				</div>
+				<div id="four" style={{ display: num === 4 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][3]}
+					/>
+				</div>
+				<div id="five" style={{ display: num === 5 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][4]}
+					/>
+				</div>
+				<div id="six" style={{ display: num === 6 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][5]}
+					/>
+				</div>
+				<div id="seven" style={{ display: num === 7 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][6]}
+					/>
+				</div>
+				<div id="eight" style={{ display: num === 8 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][7]}
+					/>
+				</div>
+				<div id="nine" style={{ display: num === 9 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][8]}
+					/>
+				</div>
+				<div id="ten" style={{ display: num === 10 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][9]}
+					/>
 				</div>
 				{/* </div> */}
+				<div className="text-logo">
+					<div className={'display-one-div ' + angleClass}>
+						{textOne &&
+							showOne && (
+								<ResizableContent
+									// axis="both"
+									// bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+									// defaultPosition={{ x: 200, y: 300 }}
+									top={200}
+									left={200}
+									width={300}
+									height={30}
+									rotateAngle={0}
+								>
+									<div id="display-text-one" style={changeColor}>
+										{textOne}
+									</div>
+								</ResizableContent>
+							)}
+						{createObjectURL &&
+							showOne && (
+								<ResizableContent top={200} left={200} width={200} height={200} rotateAngle={0}>
+									<div className="display-logo-div">
+										<Image
+											alt={createObjectURL}
+											id="display-logo-one"
+											src={createObjectURL}
+											layout="fill"
+											objectFit="contain"
+										/>
+									</div>
+								</ResizableContent>
+							)}
+					</div>
+					{textThree &&
+						showThree && (
+							<div className="display-three-div">
+								<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
+									<div id="display-text-three" style={changeColor}>{textThree}</div>
+								</ResizableContent>
+							</div>
+						)}
+					{textFive &&
+						showFive && (
+							<div className={'display-five-div ' + angleMClass}>
+								<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
+									<div id="display-text-five" style={changeColor}>{textFive}</div>
+								</ResizableContent>
+							</div>
+						)}
+					{textSeven &&
+						showSeven && (
+							<div className="display-seven-div">
+								<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
+									<div id="display-text-seven" style={changeColor}>{textSeven}</div>
+								</ResizableContent>
+							</div>
+						)}
+				</div>
 			</div>
+			{/* </div> */}
+			{/* </div> */}
 			<div className="input-group">
 				<table>
 					<tbody>
