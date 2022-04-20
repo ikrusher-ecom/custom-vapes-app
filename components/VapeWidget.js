@@ -37,14 +37,14 @@ import { HexColorPicker } from 'react-colorful';
 export default function VapeWidget(props) {
 	console.log(props);
 
-	const [ num, setNum ] = useState(1);
-	const [ showOne, setShowOne ] = useState(true);
-	const [ showThree, setShowThree ] = useState(false);
-	const [ showFive, setShowFive ] = useState(false);
-	const [ showSeven, setShowSeven ] = useState(false);
-	const [ angleClass, setAngleClass ] = useState('');
-	const [ angleMClass, setAngleMClass ] = useState('');
-	const [ preview, setPreview ] = useState(false);
+	const [num, setNum] = useState(1);
+	const [showOne, setShowOne] = useState(true);
+	const [showThree, setShowThree] = useState(false);
+	const [showFive, setShowFive] = useState(false);
+	const [showSeven, setShowSeven] = useState(false);
+	const [angleClass, setAngleClass] = useState('');
+	const [angleMClass, setAngleMClass] = useState('');
+	const [preview, setPreview] = useState(false);
 
 	const angleOne = () => {
 		setShowOne(true);
@@ -230,19 +230,19 @@ export default function VapeWidget(props) {
 			}
 			return () => clearInterval(interval);
 		},
-		[ preview, num ]
+		[preview, num]
 	);
 
-	const [ prodColor, setProdColor ] = useState(props.productColors[0]);
+	const [prodColor, setProdColor] = useState(props.productColors[0]);
 
 	const handleChangeColor = (event) => {
 		setProdColor(event.target.value);
 	};
 
-	const [ image, setImage ] = useState(null);
-	const [ createObjectURL, setCreateObjectURL ] = useState(null);
-	const [ prodURL, setProdURL ] = useState(null);
-	const [ imageSaved, setImageSaved ] = useState([]);
+	const [image, setImage] = useState(null);
+	const [createObjectURL, setCreateObjectURL] = useState(null);
+	const [prodURL, setProdURL] = useState(null);
+	const [imageSaved, setImageSaved] = useState([]);
 
 	const uploadToClient = (event) => {
 		if (event.target.files && event.target.files[0]) {
@@ -275,10 +275,10 @@ export default function VapeWidget(props) {
 		uploadToServer(event);
 	};
 
-	const [ textOne, setTextOne ] = useState('');
-	const [ textThree, setTextThree ] = useState('');
-	const [ textFive, setTextFive ] = useState('');
-	const [ textSeven, setTextSeven ] = useState('');
+	const [textOne, setTextOne] = useState('');
+	const [textThree, setTextThree] = useState('');
+	const [textFive, setTextFive] = useState('');
+	const [textSeven, setTextSeven] = useState('');
 
 	const onTextInputOne = (event) => {
 		setTextOne(event.target.value);
@@ -296,11 +296,11 @@ export default function VapeWidget(props) {
 		setTextSeven(event.target.value);
 	};
 
-	const [ emailInput, setEmailInput ] = useState('');
-	const [ manual, setManual ] = useState('');
-	const [ packaging, setPackaging ] = useState('');
-	const [ messageField, setMessageField ] = useState('');
-	const [ displayImages, setDisplayImages ] = useState(false);
+	const [emailInput, setEmailInput] = useState('');
+	const [manual, setManual] = useState('');
+	const [packaging, setPackaging] = useState('');
+	const [messageField, setMessageField] = useState('');
+	const [displayImages, setDisplayImages] = useState(false);
 
 	const onEmailInput = (event) => {
 		setEmailInput(event.target.value);
@@ -315,17 +315,17 @@ export default function VapeWidget(props) {
 		setMessageField(event.target.value);
 	};
 
-	const [ formInfo, setFormInfo ] = useState('');
+	const [formInfo, setFormInfo] = useState('');
 
 	const ref = createRef(null);
-	const [ screenshot, takeScreenshot ] = useScreenshot({
+	const [screenshot, takeScreenshot] = useScreenshot({
 		type: 'image/png',
 		quality: 1.0
 	});
-	const [ designs, setDesigns ] = useState([]);
-	const [ designArray, setDesignArray ] = useState([]);
+	const [designs, setDesigns] = useState([]);
+	const [designArray, setDesignArray] = useState([]);
 
-	const [ timestamp, setTimestamp ] = useState(Date.now());
+	const [timestamp, setTimestamp] = useState(Date.now());
 
 	const download = (image, { name = 'screenshot', extension = 'png' } = {}) => {
 		setTimestamp(Date.now());
@@ -335,7 +335,7 @@ export default function VapeWidget(props) {
 		a.click();
 	};
 
-	const [ newRef, setNewRef ] = useState(null);
+	const [newRef, setNewRef] = useState(null);
 
 	const screenRef = (ref) => {
 		// console.log(`screenRef: ${ref}, ${num}`);
@@ -351,11 +351,11 @@ export default function VapeWidget(props) {
 		console.log(event.target.files);
 		setDisplayImages(true);
 		if (event.target.files && event.target.files[0]) {
-			setDesigns([ ...designs, event.target.files[0] ]);
+			setDesigns([...designs, event.target.files[0]]);
 			console.log(designs);
 			for (let i = 0; i < designs.length; i++) {
 				uploadScreenToServer(designs[i]);
-				setDesignArray([ ...designArray, URL.createObjectURL(designs[i]) ]);
+				setDesignArray([...designArray, URL.createObjectURL(designs[i])]);
 			}
 		}
 	};
@@ -364,7 +364,7 @@ export default function VapeWidget(props) {
 
 	const onSubmitCustom = () => {
 		if (prodURL) {
-			setImageSaved([ ...imageSaved, prodURL ]);
+			setImageSaved([...imageSaved, prodURL]);
 		}
 		console.log(imageSaved);
 		setTimeout(() => {
@@ -407,12 +407,12 @@ export default function VapeWidget(props) {
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				setImageSaved([ ...imageSaved, res.path ]);
+				setImageSaved([...imageSaved, res.path]);
 			});
 	};
 
-	const [ customColor, setCustomColor ] = useState('#878787');
-	const [ isColorPicker, setColorPicker ] = useState(false);
+	const [customColor, setCustomColor] = useState('#878787');
+	const [isColorPicker, setColorPicker] = useState(false);
 	const changeColor = {
 		color: customColor
 	};
@@ -544,61 +544,61 @@ export default function VapeWidget(props) {
 					<div className="text-logo">
 						<div className={'display-one-div ' + angleClass}>
 							{textOne &&
-							showOne && (
-								<ResizableContent
-									// axis="both"
-									// bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									// defaultPosition={{ x: 200, y: 300 }}
-									top={200}
-									left={200}
-									width={300}
-									height={30}
-									rotateAngle={0}
-								>
-									<div id="display-text-one" style={changeColor}>
-										{textOne}
-									</div>
-								</ResizableContent>
-							)}
+								showOne && (
+									<ResizableContent
+										// axis="both"
+										// bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+										// defaultPosition={{ x: 200, y: 300 }}
+										top={200}
+										left={200}
+										width={300}
+										height={30}
+										rotateAngle={0}
+									>
+										<div id="display-text-one" style={changeColor}>
+											{textOne}
+										</div>
+									</ResizableContent>
+								)}
 							{createObjectURL &&
-							showOne && (
-								<ResizableContent top={200} left={200} width={200} height={200} rotateAngle={0}>
-									<div className="display-logo-div">
-										<Image
-											alt={createObjectURL}
-											id="display-logo-one"
-											src={createObjectURL}
-											layout="fill"
-											objectFit="contain"
-										/>
-									</div>
-								</ResizableContent>
-							)}
+								showOne && (
+									<ResizableContent top={200} left={200} width={200} height={200} rotateAngle={0}>
+										<div className="display-logo-div">
+											<Image
+												alt={createObjectURL}
+												id="display-logo-one"
+												src={createObjectURL}
+												layout="fill"
+												objectFit="contain"
+											/>
+										</div>
+									</ResizableContent>
+								)}
 						</div>
 						{textThree &&
-						showThree && (
-							<div className="display-three-div">
-								<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
-									<div id="display-text-three">{textThree}</div>
-								</ResizableContent>
-							</div>
-						)}
+							showThree && (
+								<div className="display-three-div">
+									<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
+										<div id="display-text-three" style={changeColor}>{textThree}</div>
+									</ResizableContent>
+								</div>
+							)}
 						{textFive &&
-						showFive && (
-							<div className={'display-five-div ' + angleMClass}>
-								<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
-									<div id="display-text-five">{textFive}</div>
-								</ResizableContent>
-							</div>
-						)}
+							showFive && (
+								<div className={'display-five-div ' + angleMClass}>
+									<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
+										<div id="display-text-five" style={changeColor}>{textFive}</div>
+									</ResizableContent>
+								</div>
+							)}
 						{textSeven &&
-						showSeven && (
-							<div className="display-seven-div">
-								<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
-									<div id="display-text-seven">{textSeven}</div>
-								</ResizableContent>
-							</div>
-						)}
+							showSeven && (
+								<div className="display-seven-div">
+									<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
+										<div id="display-text-seven" style={changeColor}>{textSeven}</div>
+									</ResizableContent>
+								</div>
+							)}
 					</div>
 				</div>
 				{/* </div> */}
@@ -675,8 +675,8 @@ export default function VapeWidget(props) {
 												value={'metasilver'}
 												selected={
 													!props.productColors.includes('black') &&
-													!props.productColors.includes('gunmetal') &&
-													props.productColors.includes('metasilver') ? (
+														!props.productColors.includes('gunmetal') &&
+														props.productColors.includes('metasilver') ? (
 														true
 													) : (
 														false
@@ -704,7 +704,7 @@ export default function VapeWidget(props) {
 												value={'gunmetal'}
 												selected={
 													!props.productColors.includes('black') &&
-													props.productColors.includes('gunmetal') ? (
+														props.productColors.includes('gunmetal') ? (
 														true
 													) : (
 														false
