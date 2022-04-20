@@ -2,7 +2,7 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-13 17:37:17
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-20 02:28:08
+ * @LastEditTime: 2022-04-20 02:48:25
  * @FilePath: /custom-vapes-app/components/VapeWidget.js
  */
 import * as React from 'react';
@@ -43,6 +43,7 @@ export default function VapeWidget(props) {
 	const [ showFive, setShowFive ] = useState(false);
 	const [ showSeven, setShowSeven ] = useState(false);
 	const [ angleClass, setAngleClass ] = useState('');
+	const [ angleMClass, setAngleMClass ] = useState('');
 	const [ preview, setPreview ] = useState(false);
 
 	const angleOne = () => {
@@ -51,6 +52,7 @@ export default function VapeWidget(props) {
 		setShowFive(false);
 		setShowSeven(false);
 		setAngleClass('');
+		setAngleMClass('');
 	};
 
 	const angleTwo = () => {
@@ -59,6 +61,7 @@ export default function VapeWidget(props) {
 		setShowFive(false);
 		setShowSeven(false);
 		setAngleClass('angle45');
+		setAngleMClass('');
 	};
 
 	const angleThree = () => {
@@ -67,6 +70,7 @@ export default function VapeWidget(props) {
 		setShowFive(false);
 		setShowSeven(false);
 		setAngleClass('');
+		setAngleMClass('');
 	};
 
 	const angleFour = () => {
@@ -74,7 +78,8 @@ export default function VapeWidget(props) {
 		setShowThree(false);
 		setShowFive(true);
 		setShowSeven(false);
-		setAngleClass('angleM45');
+		setAngleMClass('angleM45');
+		setAngleClass('');
 	};
 
 	const angleFive = () => {
@@ -83,6 +88,7 @@ export default function VapeWidget(props) {
 		setShowFive(true);
 		setShowSeven(false);
 		setAngleClass('');
+		setAngleMClass('');
 	};
 
 	const angleSix = () => {
@@ -90,7 +96,8 @@ export default function VapeWidget(props) {
 		setShowThree(false);
 		setShowFive(true);
 		setShowSeven(false);
-		setAngleClass('angle45');
+		setAngleMClass('angle45');
+		setAngleClass('');
 	};
 
 	const angleSeven = () => {
@@ -99,6 +106,7 @@ export default function VapeWidget(props) {
 		setShowFive(false);
 		setShowSeven(true);
 		setAngleClass('');
+		setAngleMClass('');
 	};
 
 	const angleEight = () => {
@@ -106,6 +114,7 @@ export default function VapeWidget(props) {
 		setShowThree(false);
 		setShowFive(false);
 		setShowSeven(false);
+		setAngleMClass('');
 		setAngleClass('angleM45');
 	};
 
@@ -115,6 +124,7 @@ export default function VapeWidget(props) {
 		setShowFive(false);
 		setShowSeven(false);
 		setAngleClass('');
+		setAngleMClass('');
 	};
 
 	const lastAngle = () => {
@@ -552,13 +562,7 @@ export default function VapeWidget(props) {
 							)}
 							{createObjectURL &&
 							showOne && (
-								<ResizableContent
-									top={200}
-									left={200}
-									width={200}
-									height={200}
-									rotateAngle={0}
-								>
+								<ResizableContent top={200} left={200} width={200} height={200} rotateAngle={0}>
 									<div className="display-logo-div">
 										<Image
 											alt={createObjectURL}
@@ -574,48 +578,24 @@ export default function VapeWidget(props) {
 						{textThree &&
 						showThree && (
 							<div className="display-three-div">
-								<ResizableContent
-									top={200}
-									left={200}
-									width={300}
-									height={30}
-									rotateAngle={0}
-								>
-									<div id="display-text-three">
-										{textThree}
-									</div>
+								<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
+									<div id="display-text-three">{textThree}</div>
 								</ResizableContent>
 							</div>
 						)}
 						{textFive &&
 						showFive && (
-							<div className="display-five-div">
-								<ResizableContent
-									top={200}
-									left={200}
-									width={300}
-									height={30}
-									rotateAngle={0}
-								>
-									<div id="display-text-five">
-										{textFive}
-									</div>
+							<div className={'display-five-div ' + angleMClass}>
+								<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
+									<div id="display-text-five">{textFive}</div>
 								</ResizableContent>
 							</div>
 						)}
 						{textSeven &&
 						showSeven && (
 							<div className="display-seven-div">
-								<ResizableContent
-									top={200}
-									left={200}
-									width={300}
-									height={30}
-									rotateAngle={0}
-								>
-									<div id="display-text-seven">
-										{textSeven}
-									</div>
+								<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
+									<div id="display-text-seven">{textSeven}</div>
 								</ResizableContent>
 							</div>
 						)}
@@ -826,10 +806,7 @@ export default function VapeWidget(props) {
 							<th>Customize Text:</th>
 							<td>
 								{showOne && (
-									<div
-										className="custom-text-div"
-										id="input-text-one"
-									>
+									<div className="custom-text-div" id="input-text-one">
 										<Input type="text" id="custom-text-one" onChange={onTextInputOne} />
 									</div>
 								)}
