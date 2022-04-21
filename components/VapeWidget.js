@@ -178,6 +178,10 @@ export default function VapeWidget(props) {
 	const onPreview = () => {
 		setPreview(!preview);
 		if (preview) setNum(1);
+		if (!preview) {
+			setNum(1);
+			angleOne();
+		}
 	};
 
 	useEffect(
@@ -446,8 +450,6 @@ export default function VapeWidget(props) {
 					Preview in 360° {'    '} <PlayArrowIcon /> / <StopIcon />
 				</Button>
 			</div>
-			{/* <div className="custom-group"> */}
-			{/* <div className="custom-img"> */}
 			<div
 				className="custom-group"
 				ref={screenRef}
@@ -602,8 +604,6 @@ export default function VapeWidget(props) {
 						)}
 				</div>
 			</div>
-			{/* </div> */}
-			{/* </div> */}
 			<div className="input-group">
 				<table>
 					<tbody>
