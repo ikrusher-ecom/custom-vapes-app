@@ -177,11 +177,6 @@ export default function VapeWidget(props) {
 
 	const onPreview = () => {
 		setPreview(!preview);
-		if (preview) setNum(1);
-		if (!preview) {
-			setNum(1);
-			angleOne();
-		}
 	};
 
 	useEffect(
@@ -826,12 +821,16 @@ export default function VapeWidget(props) {
 										<Input type="text" id="custom-text-seven" onChange={onTextInputSeven} />
 									</div>
 								)}
-								<Button style={colorButton} onClick={setColorPicker} />
-								<HexColorPicker
-									style={{ display: isColorPicker ? 'flex' : 'none', marginTop: '10px' }}
-									color={customColor}
-									onChange={setCustomColor}
-								/>
+								{(showOne || showThree || showFive || showSeven)
+									? (<>
+										<Button style={colorButton} onClick={setColorPicker} />
+										<HexColorPicker
+											style={{ display: isColorPicker ? 'flex' : 'none', marginTop: '10px' }}
+											color={customColor}
+											onChange={setCustomColor}
+										/>
+									</>)
+									: null}
 								{/* <Input type="color" id="picker" name="picker" value="#808080" onChange={e => console.log(e.target.value)} /> */}
 							</td>
 						</tr>
