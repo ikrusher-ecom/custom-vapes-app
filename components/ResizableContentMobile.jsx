@@ -2,13 +2,13 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-20 02:10:57
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-20 02:14:51
- * @FilePath: /custom-vapes-app/components/ResizableContent.jsx
+ * @LastEditTime: 2022-04-24 16:11:38
+ * @FilePath: /custom-vapes-app/components/ResizableContentMobile.jsx
  */
 import React, { Fragment, useState } from 'react'
-import ResizableRect from 'react-resizable-rotatable-draggable'
+import ResizableRect from 'react-resizable-rotatable-draggable-touch-v2'
 
-const ResizableContent = props => {
+const ResizableContentMobile = props => {
   const [width, setWidth] = useState(props.width)
   const [height, setHeight] = useState(props.height)
   const [top, setTop] = useState(props.top)
@@ -64,4 +64,4 @@ const ResizableContent = props => {
   )
 }
 
-export default ResizableContent
+export default ResizableContentMobile

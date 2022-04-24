@@ -29,6 +29,10 @@
 
 .desTable {
 	display: inline-block !important;
+	border: none !important;
+	margin: 0 0 0 2% !important;
+	width: 64% !important;
+	max-width: 489px !important;
 }
 
 .roundBtn {
@@ -57,6 +61,13 @@
 	margin: 368px auto !important;
 }
 
+.angleMobileBtns {
+	width: 100% !important;
+	position: absolute !important;
+	z-index: 99 !important;
+	margin: 368px auto !important;
+}
+
 .previewBtn {
 	margin: 1em 25% 0 25% !important;
 	width: 50% !important;
@@ -71,3 +82,8 @@
 	color: #fff !important;
 }
 
+.mobileImg {
+	width: 100% !important;
+	margin: 0 auto !important;
+	object-fit: contain !important;
+}

@@ -15,6 +15,14 @@ a {
 	box-sizing: border-box;
 }
 
+.custom-group-mobile #myCanvas img {
+	width: 100% !important;
+}
+
+.des-mobile>span {
+	width: 100% !important;
+}
+
 .custom-text-div {
 	display: inline-block !important;
 }
@@ -118,15 +126,15 @@ a {
 	justify-content: space-evenly;
 }
 
-#product-description > div > table {
-	border: none;
-	margin: 0 0 0 2%;
-	width: 64%;
-	max-width: 489px;
-}
-
 #product-description > div > span {
 	display: inline-block;
+}
+
+.input-group-mobile {
+	position: relative;
+    top: 900px;
+	width: 100%;
+    min-width: 300px;
 }
 
 .input-group {
@@ -135,7 +143,9 @@ a {
 }
 
 .input-group table tbody td,
-.input-group table tbody th {
+.input-group table tbody th,
+.input-group-mobile table tbody td,
+.input-group-mobile table tbody th {
 	padding: 10px 0;
 }
 
@@ -353,16 +363,18 @@ a.button-style:active {
 	display: inline-block;
 }
 
-.input-group > table {
+.input-group > table, .input-group-mobile > table {
 	border: none;
 }
 
-.input-group > table th {
+.input-group > table th, .input-group-mobile > table th {
 	width: 35%;
 }
 
 .input-group > table th,
-.input-group > table td {
+.input-group > table td,
+.input-group-mobile > table th,
+.input-group-mobile > table td {
 	vertical-align: top;
 }
 
