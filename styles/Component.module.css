@@ -82,13 +82,10 @@
 .previewBtn:hover, .previewBtn:active {
 	background: #85a1a9 !important;
 	color: #fff !important;
-<<<<<<< HEAD
 }
 
 .mobileImg {
 	width: 100% !important;
 	margin: 0 auto !important;
 	object-fit: contain !important;
-=======
->>>>>>> d6cfcfd02a25b432b5b5c3b8fc4435040b249aa6
 }
