@@ -37,14 +37,14 @@ import { HexColorPicker } from 'react-colorful';
 export default function VapeWidget(props) {
 	console.log(props);
 
-	const [ num, setNum ] = useState(1);
-	const [ showOne, setShowOne ] = useState(true);
-	const [ showThree, setShowThree ] = useState(false);
-	const [ showFive, setShowFive ] = useState(false);
-	const [ showSeven, setShowSeven ] = useState(false);
-	const [ angleClass, setAngleClass ] = useState('');
-	const [ angleMClass, setAngleMClass ] = useState('');
-	const [ preview, setPreview ] = useState(false);
+	const [num, setNum] = useState(1);
+	const [showOne, setShowOne] = useState(true);
+	const [showThree, setShowThree] = useState(false);
+	const [showFive, setShowFive] = useState(false);
+	const [showSeven, setShowSeven] = useState(false);
+	const [angleClass, setAngleClass] = useState('');
+	const [angleMClass, setAngleMClass] = useState('');
+	const [preview, setPreview] = useState(false);
 
 	const angleOne = () => {
 		setShowOne(true);
@@ -177,7 +177,6 @@ export default function VapeWidget(props) {
 
 	const onPreview = () => {
 		setPreview(!preview);
-		if (preview) setNum(1);
 	};
 
 	useEffect(
@@ -230,19 +229,19 @@ export default function VapeWidget(props) {
 			}
 			return () => clearInterval(interval);
 		},
-		[ preview, num ]
+		[preview, num]
 	);
 
-	const [ prodColor, setProdColor ] = useState(props.productColors[0]);
+	const [prodColor, setProdColor] = useState(props.productColors[0]);
 
 	const handleChangeColor = (event) => {
 		setProdColor(event.target.value);
 	};
 
-	const [ image, setImage ] = useState(null);
-	const [ createObjectURL, setCreateObjectURL ] = useState(null);
-	const [ prodURL, setProdURL ] = useState(null);
-	const [ imageSaved, setImageSaved ] = useState([]);
+	const [image, setImage] = useState(null);
+	const [createObjectURL, setCreateObjectURL] = useState(null);
+	const [prodURL, setProdURL] = useState(null);
+	const [imageSaved, setImageSaved] = useState([]);
 
 	const uploadToClient = (event) => {
 		if (event.target.files && event.target.files[0]) {
@@ -275,10 +274,10 @@ export default function VapeWidget(props) {
 		uploadToServer(event);
 	};
 
-	const [ textOne, setTextOne ] = useState('');
-	const [ textThree, setTextThree ] = useState('');
-	const [ textFive, setTextFive ] = useState('');
-	const [ textSeven, setTextSeven ] = useState('');
+	const [textOne, setTextOne] = useState('');
+	const [textThree, setTextThree] = useState('');
+	const [textFive, setTextFive] = useState('');
+	const [textSeven, setTextSeven] = useState('');
 
 	const onTextInputOne = (event) => {
 		setTextOne(event.target.value);
@@ -296,11 +295,11 @@ export default function VapeWidget(props) {
 		setTextSeven(event.target.value);
 	};
 
-	const [ emailInput, setEmailInput ] = useState('');
-	const [ manual, setManual ] = useState('');
-	const [ packaging, setPackaging ] = useState('');
-	const [ messageField, setMessageField ] = useState('');
-	const [ displayImages, setDisplayImages ] = useState(false);
+	const [emailInput, setEmailInput] = useState('');
+	const [manual, setManual] = useState('');
+	const [packaging, setPackaging] = useState('');
+	const [messageField, setMessageField] = useState('');
+	const [displayImages, setDisplayImages] = useState(false);
 
 	const onEmailInput = (event) => {
 		setEmailInput(event.target.value);
@@ -315,17 +314,17 @@ export default function VapeWidget(props) {
 		setMessageField(event.target.value);
 	};
 
-	const [ formInfo, setFormInfo ] = useState('');
+	const [formInfo, setFormInfo] = useState('');
 
 	const ref = createRef(null);
-	const [ screenshot, takeScreenshot ] = useScreenshot({
+	const [screenshot, takeScreenshot] = useScreenshot({
 		type: 'image/png',
 		quality: 1.0
 	});
-	const [ designs, setDesigns ] = useState([]);
-	const [ designArray, setDesignArray ] = useState([]);
+	const [designs, setDesigns] = useState([]);
+	const [designArray, setDesignArray] = useState([]);
 
-	const [ timestamp, setTimestamp ] = useState(Date.now());
+	const [timestamp, setTimestamp] = useState(Date.now());
 
 	const download = (image, { name = 'screenshot', extension = 'png' } = {}) => {
 		setTimestamp(Date.now());
@@ -335,7 +334,7 @@ export default function VapeWidget(props) {
 		a.click();
 	};
 
-	const [ newRef, setNewRef ] = useState(null);
+	const [newRef, setNewRef] = useState(null);
 
 	const screenRef = (ref) => {
 		// console.log(`screenRef: ${ref}, ${num}`);
@@ -351,11 +350,11 @@ export default function VapeWidget(props) {
 		console.log(event.target.files);
 		setDisplayImages(true);
 		if (event.target.files && event.target.files[0]) {
-			setDesigns([ ...designs, event.target.files[0] ]);
+			setDesigns([...designs, event.target.files[0]]);
 			console.log(designs);
 			for (let i = 0; i < designs.length; i++) {
 				uploadScreenToServer(designs[i]);
-				setDesignArray([ ...designArray, URL.createObjectURL(designs[i]) ]);
+				setDesignArray([...designArray, URL.createObjectURL(designs[i])]);
 			}
 		}
 	};
@@ -364,7 +363,7 @@ export default function VapeWidget(props) {
 
 	const onSubmitCustom = () => {
 		if (prodURL) {
-			setImageSaved([ ...imageSaved, prodURL ]);
+			setImageSaved([...imageSaved, prodURL]);
 		}
 		console.log(imageSaved);
 		setTimeout(() => {
@@ -407,12 +406,12 @@ export default function VapeWidget(props) {
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				setImageSaved([ ...imageSaved, res.path ]);
+				setImageSaved([...imageSaved, res.path]);
 			});
 	};
 
-	const [ customColor, setCustomColor ] = useState('#878787');
-	const [ isColorPicker, setColorPicker ] = useState(false);
+	const [customColor, setCustomColor] = useState('#878787');
+	const [isColorPicker, setColorPicker] = useState(false);
 	const changeColor = {
 		color: customColor
 	};
@@ -446,104 +445,103 @@ export default function VapeWidget(props) {
 					Preview in 360° {'    '} <PlayArrowIcon /> / <StopIcon />
 				</Button>
 			</div>
-			<div className="custom-group">
-				{/* <div className="custom-img"> */}
-				<div
-					ref={screenRef}
-					id="myCanvas"
-					style={{
-						border: '1px solid transparent',
-						zIndex: '10',
-						position: 'absolute',
-						width: '600px',
-						height: '800px'
-					}}
-				>
-					{/* <div> */}
-					<div id="one" style={{ display: num === 1 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][0]}
-						/>
-					</div>
-					<div id="two" style={{ display: num === 2 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][1]}
-						/>
-					</div>
-					<div id="three" style={{ display: num === 3 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][2]}
-						/>
-					</div>
-					<div id="four" style={{ display: num === 4 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][3]}
-						/>
-					</div>
-					<div id="five" style={{ display: num === 5 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][4]}
-						/>
-					</div>
-					<div id="six" style={{ display: num === 6 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][5]}
-						/>
-					</div>
-					<div id="seven" style={{ display: num === 7 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][6]}
-						/>
-					</div>
-					<div id="eight" style={{ display: num === 8 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][7]}
-						/>
-					</div>
-					<div id="nine" style={{ display: num === 9 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][8]}
-						/>
-					</div>
-					<div id="ten" style={{ display: num === 10 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][9]}
-						/>
-					</div>
-					{/* </div> */}
-					<div className="text-logo">
-						<div className={'display-one-div ' + angleClass}>
-							{textOne &&
+			<div
+				className="custom-group"
+				ref={screenRef}
+				id="myCanvas"
+				style={{
+					border: '1px solid transparent',
+					zIndex: '10',
+					position: 'absolute',
+					width: '600px',
+					height: '800px'
+				}}
+			>
+				{/* <div> */}
+				<div id="one" style={{ display: num === 1 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][0]}
+					/>
+				</div>
+				<div id="two" style={{ display: num === 2 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][1]}
+					/>
+				</div>
+				<div id="three" style={{ display: num === 3 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][2]}
+					/>
+				</div>
+				<div id="four" style={{ display: num === 4 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][3]}
+					/>
+				</div>
+				<div id="five" style={{ display: num === 5 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][4]}
+					/>
+				</div>
+				<div id="six" style={{ display: num === 6 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][5]}
+					/>
+				</div>
+				<div id="seven" style={{ display: num === 7 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][6]}
+					/>
+				</div>
+				<div id="eight" style={{ display: num === 8 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][7]}
+					/>
+				</div>
+				<div id="nine" style={{ display: num === 9 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][8]}
+					/>
+				</div>
+				<div id="ten" style={{ display: num === 10 ? 'block' : 'none' }}>
+					<CustomImages
+						name={props.productID}
+						category={props.productCate}
+						folder={props.productFolder}
+						images={props.productImages[props.productColors.filter((color) => color === prodColor)][9]}
+					/>
+				</div>
+				{/* </div> */}
+				<div className="text-logo">
+					<div className={'display-one-div ' + angleClass}>
+						{textOne &&
 							showOne && (
 								<ResizableContent
 									// axis="both"
@@ -560,7 +558,7 @@ export default function VapeWidget(props) {
 									</div>
 								</ResizableContent>
 							)}
-							{createObjectURL &&
+						{createObjectURL &&
 							showOne && (
 								<ResizableContent top={200} left={200} width={200} height={200} rotateAngle={0}>
 									<div className="display-logo-div">
@@ -574,34 +572,32 @@ export default function VapeWidget(props) {
 									</div>
 								</ResizableContent>
 							)}
-						</div>
-						{textThree &&
+					</div>
+					{textThree &&
 						showThree && (
 							<div className="display-three-div">
 								<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
-									<div id="display-text-three">{textThree}</div>
+									<div id="display-text-three" style={changeColor}>{textThree}</div>
 								</ResizableContent>
 							</div>
 						)}
-						{textFive &&
+					{textFive &&
 						showFive && (
 							<div className={'display-five-div ' + angleMClass}>
 								<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
-									<div id="display-text-five">{textFive}</div>
+									<div id="display-text-five" style={changeColor}>{textFive}</div>
 								</ResizableContent>
 							</div>
 						)}
-						{textSeven &&
+					{textSeven &&
 						showSeven && (
 							<div className="display-seven-div">
 								<ResizableContent top={200} left={200} width={300} height={30} rotateAngle={0}>
-									<div id="display-text-seven">{textSeven}</div>
+									<div id="display-text-seven" style={changeColor}>{textSeven}</div>
 								</ResizableContent>
 							</div>
 						)}
-					</div>
 				</div>
-				{/* </div> */}
 			</div>
 			<div className="input-group">
 				<table>
@@ -675,8 +671,8 @@ export default function VapeWidget(props) {
 												value={'metasilver'}
 												selected={
 													!props.productColors.includes('black') &&
-													!props.productColors.includes('gunmetal') &&
-													props.productColors.includes('metasilver') ? (
+														!props.productColors.includes('gunmetal') &&
+														props.productColors.includes('metasilver') ? (
 														true
 													) : (
 														false
@@ -704,7 +700,7 @@ export default function VapeWidget(props) {
 												value={'gunmetal'}
 												selected={
 													!props.productColors.includes('black') &&
-													props.productColors.includes('gunmetal') ? (
+														props.productColors.includes('gunmetal') ? (
 														true
 													) : (
 														false
@@ -825,12 +821,16 @@ export default function VapeWidget(props) {
 										<Input type="text" id="custom-text-seven" onChange={onTextInputSeven} />
 									</div>
 								)}
-								<Button style={colorButton} onClick={setColorPicker} />
-								<HexColorPicker
-									style={{ display: isColorPicker ? 'flex' : 'none', marginTop: '10px' }}
-									color={customColor}
-									onChange={setCustomColor}
-								/>
+								{(showOne || showThree || showFive || showSeven)
+									? (<>
+										<Button style={colorButton} onClick={setColorPicker} />
+										<HexColorPicker
+											style={{ display: isColorPicker ? 'flex' : 'none', marginTop: '10px' }}
+											color={customColor}
+											onChange={setCustomColor}
+										/>
+									</>)
+									: null}
 								{/* <Input type="color" id="picker" name="picker" value="#808080" onChange={e => console.log(e.target.value)} /> */}
 							</td>
 						</tr>
