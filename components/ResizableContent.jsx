@@ -2,7 +2,7 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-20 02:10:57
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-20 02:14:51
+ * @LastEditTime: 2022-04-24 16:59:49
  * @FilePath: /custom-vapes-app/components/ResizableContent.jsx
  */
 import React, { Fragment, useState } from 'react'
@@ -33,6 +33,7 @@ const ResizableContent = props => {
   }
 
   const handleRotate = rotateAngle => {
+    console.log(rotateAngle)
     setRotateAngle(rotateAngle)
   }
 

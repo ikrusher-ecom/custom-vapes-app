@@ -59,14 +59,14 @@
 	/* height: 800px !important; */
 	width: 600px !important;
 	position: absolute !important;
-	margin: 368px auto !important;
+	margin: 368px auto 0 auto !important;
 }
 
 .angleMobileBtns {
 	width: 100% !important;
 	position: absolute !important;
-	z-index: 99 !important;
-	margin: 368px auto !important;
+	/* z-index: 99 !important; */
+	margin: 60vw auto 0 auto !important;
 }
 
 .previewBtn {

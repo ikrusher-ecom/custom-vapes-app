@@ -2,11 +2,11 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-20 02:10:57
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-24 16:11:38
+ * @LastEditTime: 2022-04-24 17:21:50
  * @FilePath: /custom-vapes-app/components/ResizableContentMobile.jsx
  */
-import React, { Fragment, useState } from 'react'
-import ResizableRect from 'react-resizable-rotatable-draggable-touch-v2'
+import React, { Fragment, useRef, useState } from 'react';
+import ResizableRect from 'react-resizable-rotatable-draggable-touch-v2';
 
 const ResizableContentMobile = props => {
   const [width, setWidth] = useState(props.width)
@@ -25,6 +25,7 @@ const ResizableContentMobile = props => {
   }
 
   const handleResize = (style, isShiftKey, type) => {
+    console.log("resize" + top + left + width + height + type)
     const { top, left, width, height } = style
     setWidth(Math.round(width))
     setHeight(Math.round(height))
@@ -33,19 +34,25 @@ const ResizableContentMobile = props => {
   }
 
   const handleRotate = rotateAngle => {
+    console.log("rotate" + rotateAngle)
     setRotateAngle(rotateAngle)
   }
 
   const handleDrag = (deltaX, deltaY) => {
+    console.log("drag")
     setLeft(left + deltaX)
     setTop(top + deltaY)
   }
+
+  const resizeRef = useRef(null);
+
 
   return (
     <Fragment>
       <div style={contentStyle}>{props.children}</div>
 
       <ResizableRect
+        ref={resizeRef}
         top={top}
         rotatable
         left={left}
@@ -54,11 +61,13 @@ const ResizableContentMobile = props => {
         width={width}
         minHeight={10}
         height={height}
-        onDrag={handleDrag}
+        onTouchStart={handleDrag}
+        // onDrag={handleDrag}
         onRotate={handleRotate}
         onResize={handleResize}
-        zoomable="nw, ne, se, sw"
+        zoomable='n, w, s, e, nw, ne, se, sw'
         rotateAngle={rotateAngle}
+        color="#eb5648"
       />
     </Fragment>
   )

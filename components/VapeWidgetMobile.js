@@ -2,7 +2,7 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-13 17:37:17
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-24 16:22:26
+ * @LastEditTime: 2022-04-24 17:26:57
  * @FilePath: /custom-vapes-app/components/VapeWidgetMobile.js
  */
 import * as React from 'react';
@@ -457,7 +457,7 @@ export default function VapeWidgetMobile(props) {
 						position: 'absolute',
 						maxWidth: '600px',
 						maxHeight: '800px',
-                        width: '100%'
+						width: '100%'
 					}}
 				>
 					{/* <div> */}
@@ -546,24 +546,28 @@ export default function VapeWidgetMobile(props) {
 						<div className={'display-one-div ' + angleClass}>
 							{textOne &&
 							showOne && (
-								<ResizableContentMobile
-									// axis="both"
-									// bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									// defaultPosition={{ x: 200, y: 300 }}
-									top={200}
-									left={200}
-									width={300}
-									height={30}
-									rotateAngle={0}
+								<Draggable
+									axis="both"
+									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+									defaultPosition={{ x: 100, y: 100 }}
+									// top={100}
+									// left={100}
+									// width={150}
+									// height={30}
+									// rotateAngle={0}
 								>
 									<div id="display-text-one" style={changeColor}>
 										{textOne}
 									</div>
-								</ResizableContentMobile>
+								</Draggable>
 							)}
 							{createObjectURL &&
 							showOne && (
-								<ResizableContentMobile top={200} left={200} width={200} height={200} rotateAngle={0}>
+								<Draggable
+									axis="both"
+									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+									defaultPosition={{ x: 100, y: 100 }}
+								>
 									<div className="display-logo-div">
 										<Image
 											alt={createObjectURL}
@@ -573,31 +577,43 @@ export default function VapeWidgetMobile(props) {
 											objectFit="contain"
 										/>
 									</div>
-								</ResizableContentMobile>
+								</Draggable>
 							)}
 						</div>
 						{textThree &&
 						showThree && (
 							<div className="display-three-div">
-								<ResizableContentMobile top={200} left={200} width={300} height={30} rotateAngle={0}>
+								<Draggable
+									axis="both"
+									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+									defaultPosition={{ x: 100, y: 100 }}
+								>
 									<div id="display-text-three">{textThree}</div>
-								</ResizableContentMobile>
+								</Draggable>
 							</div>
 						)}
 						{textFive &&
 						showFive && (
 							<div className={'display-five-div ' + angleMClass}>
-								<ResizableContentMobile top={200} left={200} width={300} height={30} rotateAngle={0}>
+								<Draggable
+									axis="both"
+									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+									defaultPosition={{ x: 100, y: 100 }}
+								>
 									<div id="display-text-five">{textFive}</div>
-								</ResizableContentMobile>
+								</Draggable>
 							</div>
 						)}
 						{textSeven &&
 						showSeven && (
 							<div className="display-seven-div">
-								<ResizableContentMobile top={200} left={200} width={300} height={30} rotateAngle={0}>
+								<Draggable
+									axis="both"
+									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+									defaultPosition={{ x: 100, y: 100 }}
+								>
 									<div id="display-text-seven">{textSeven}</div>
-								</ResizableContentMobile>
+								</Draggable>
 							</div>
 						)}
 					</div>
