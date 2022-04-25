@@ -49,8 +49,24 @@
 	z-index: 99 !important;
 }
 
+.roundBtnMobile {
+	background: #85a1a9 !important;
+	border-radius: 50% !important;
+	padding: 0;
+	color: #fff !important;
+	font-weight: 900 !important;
+	font-size: 20px !important;
+	border: 2px solid #85a1a9 !important;
+	height: 40px !important;
+	width: 40px !important;
+	z-index: 99 !important;
+	min-width: 0 !important;
+}
+
 .roundBtn:hover,
-.roundBtn:hover {
+.roundBtn:hover,
+.roundBtnMobile:hover,
+.roundBtnMobile:hover {
 	background: #fff !important;
 	color: #85a1a9 !important;
 }
@@ -79,9 +95,22 @@
 	z-index: 99 !important;
 }
 
-.previewBtn:hover, .previewBtn:active {
+.previewBtn:hover,
+.previewBtn:active,
+.previewBtnMobile:hover,
+.previewBtnMobile:active {
 	background: #85a1a9 !important;
 	color: #fff !important;
+}
+
+.previewBtnMobile {
+	margin: 1em 15% 0 15% !important;
+	width: 70% !important;
+	background: #85a1a9 !important;
+	color: #fff !important;
+	padding: 10px 16px !important;
+	font-size: 16px !important;
+	z-index: 99 !important;
 }
 
 .mobileImg {

@@ -367,8 +367,13 @@ a.button-style:active {
 	border: none;
 }
 
-.input-group > table th, .input-group-mobile > table th {
+.input-group > table th {
 	width: 35%;
+}
+
+.input-group-mobile > table th {
+	width: 45%;
+	min-width: 120px;
 }
 
 .input-group > table th,

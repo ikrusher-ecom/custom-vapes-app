@@ -429,10 +429,10 @@ export default function VapeWidgetMobile(props) {
 	return (
 		<div className="custom-vape-mobile">
 			<div className={'next-btn ' + styles.angleMobileBtns}>
-				<Button onClick={lastAngle} disabled={num <= 1} className={styles.roundBtn} style={{ float: 'left' }}>
+				<Button onClick={lastAngle} disabled={num <= 1} className={styles.roundBtnMobile} style={{ float: 'left' }}>
 					<ArrowBackIosIcon fontSize="large" />
 				</Button>
-				<Button onClick={nextAngle} disabled={num >= 10} className={styles.roundBtn} style={{ float: 'right' }}>
+				<Button onClick={nextAngle} disabled={num >= 10} className={styles.roundBtnMobile} style={{ float: 'right' }}>
 					<ArrowForwardIosIcon fontSize="large" />
 				</Button>
 				<Button
@@ -442,7 +442,7 @@ export default function VapeWidgetMobile(props) {
 				>
 					Confirm the Design Above and Download it
 				</Button>
-				<Button onClick={onPreview} className={styles.previewBtn}>
+				<Button onClick={onPreview} className={styles.previewBtnMobile}>
 					Preview in 360° {'    '} <PlayArrowIcon /> / <StopIcon />
 				</Button>
 			</div>
