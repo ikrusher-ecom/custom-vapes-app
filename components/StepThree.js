@@ -12,8 +12,6 @@ import ProductDescription from './ProductDescription';
 import ProductDescriptionMobile from './ProductDescriptionMobile';
 import VapeWidget from './VapeWidget';
 import VapeWidgetMobile from './VapeWidgetMobile';
-import { TouchBackend } from 'react-dnd-touch-backend';
-import { DndProvider } from 'react-dnd';
 import {
 	AstroMod,
 	AstroModBattery,
@@ -451,7 +449,7 @@ export default function StepThree(props) {
 		} else {
 			return (
 				<div>
-					<div id="product-description">
+					<div id="product-description" style={{padding: '0 16px 16px', margin: '16px'}}>
 						<ProductDescriptionMobile
 							productName={props.prodName}
 							colors={findColors}

@@ -37,14 +37,14 @@ import { HexColorPicker } from 'react-colorful';
 export default function VapeWidgetMobile(props) {
 	console.log(props);
 
-	const [ num, setNum ] = useState(1);
-	const [ showOne, setShowOne ] = useState(true);
-	const [ showThree, setShowThree ] = useState(false);
-	const [ showFive, setShowFive ] = useState(false);
-	const [ showSeven, setShowSeven ] = useState(false);
-	const [ angleClass, setAngleClass ] = useState('');
-	const [ angleMClass, setAngleMClass ] = useState('');
-	const [ preview, setPreview ] = useState(false);
+	const [num, setNum] = useState(1);
+	const [showOne, setShowOne] = useState(true);
+	const [showThree, setShowThree] = useState(false);
+	const [showFive, setShowFive] = useState(false);
+	const [showSeven, setShowSeven] = useState(false);
+	const [angleClass, setAngleClass] = useState('');
+	const [angleMClass, setAngleMClass] = useState('');
+	const [preview, setPreview] = useState(false);
 
 	const angleOne = () => {
 		setShowOne(true);
@@ -230,19 +230,19 @@ export default function VapeWidgetMobile(props) {
 			}
 			return () => clearInterval(interval);
 		},
-		[ preview, num ]
+		[preview, num]
 	);
 
-	const [ prodColor, setProdColor ] = useState(props.productColors[0]);
+	const [prodColor, setProdColor] = useState(props.productColors[0]);
 
 	const handleChangeColor = (event) => {
 		setProdColor(event.target.value);
 	};
 
-	const [ image, setImage ] = useState(null);
-	const [ createObjectURL, setCreateObjectURL ] = useState(null);
-	const [ prodURL, setProdURL ] = useState(null);
-	const [ imageSaved, setImageSaved ] = useState([]);
+	const [image, setImage] = useState(null);
+	const [createObjectURL, setCreateObjectURL] = useState(null);
+	const [prodURL, setProdURL] = useState(null);
+	const [imageSaved, setImageSaved] = useState([]);
 
 	const uploadToClient = (event) => {
 		if (event.target.files && event.target.files[0]) {
@@ -275,10 +275,10 @@ export default function VapeWidgetMobile(props) {
 		uploadToServer(event);
 	};
 
-	const [ textOne, setTextOne ] = useState('');
-	const [ textThree, setTextThree ] = useState('');
-	const [ textFive, setTextFive ] = useState('');
-	const [ textSeven, setTextSeven ] = useState('');
+	const [textOne, setTextOne] = useState('');
+	const [textThree, setTextThree] = useState('');
+	const [textFive, setTextFive] = useState('');
+	const [textSeven, setTextSeven] = useState('');
 
 	const onTextInputOne = (event) => {
 		setTextOne(event.target.value);
@@ -296,11 +296,11 @@ export default function VapeWidgetMobile(props) {
 		setTextSeven(event.target.value);
 	};
 
-	const [ emailInput, setEmailInput ] = useState('');
-	const [ manual, setManual ] = useState('');
-	const [ packaging, setPackaging ] = useState('');
-	const [ messageField, setMessageField ] = useState('');
-	const [ displayImages, setDisplayImages ] = useState(false);
+	const [emailInput, setEmailInput] = useState('');
+	const [manual, setManual] = useState('');
+	const [packaging, setPackaging] = useState('');
+	const [messageField, setMessageField] = useState('');
+	// const [ displayImages, setDisplayImages ] = useState(false);
 
 	const onEmailInput = (event) => {
 		setEmailInput(event.target.value);
@@ -315,17 +315,17 @@ export default function VapeWidgetMobile(props) {
 		setMessageField(event.target.value);
 	};
 
-	const [ formInfo, setFormInfo ] = useState('');
+	const [formInfo, setFormInfo] = useState('');
 
 	const ref = createRef(null);
-	const [ screenshot, takeScreenshot ] = useScreenshot({
+	const [screenshot, takeScreenshot] = useScreenshot({
 		type: 'image/png',
 		quality: 1.0
 	});
-	const [ designs, setDesigns ] = useState([]);
-	const [ designArray, setDesignArray ] = useState([]);
+	const [designs, setDesigns] = useState([]);
+	const [designArray, setDesignArray] = useState([]);
 
-	const [ timestamp, setTimestamp ] = useState(Date.now());
+	const [timestamp, setTimestamp] = useState(Date.now());
 
 	const download = (image, { name = 'screenshot', extension = 'png' } = {}) => {
 		setTimestamp(Date.now());
@@ -335,7 +335,7 @@ export default function VapeWidgetMobile(props) {
 		a.click();
 	};
 
-	const [ newRef, setNewRef ] = useState(null);
+	const [newRef, setNewRef] = useState(null);
 
 	const screenRef = (ref) => {
 		// console.log(`screenRef: ${ref}, ${num}`);
@@ -349,14 +349,17 @@ export default function VapeWidgetMobile(props) {
 
 	const handleUploadDesign = (event) => {
 		console.log(event.target.files);
-		setDisplayImages(true);
+		// setDisplayImages(true);
 		if (event.target.files && event.target.files[0]) {
-			setDesigns([ ...designs, event.target.files[0] ]);
-			console.log(designs);
-			for (let i = 0; i < designs.length; i++) {
-				uploadScreenToServer(designs[i]);
-				setDesignArray([ ...designArray, URL.createObjectURL(designs[i]) ]);
-			}
+			setDesignArray([...designArray, URL.createObjectURL(event.target.files[0])]);
+			uploadScreenToServer(event.target.files[0]);
+			console.log("uploading" + event.target.files[0]);
+			// setDesigns([...designs, event.target.files[0]]);
+			// console.log(designs);
+			// for (let i = 0; i < designs.length; i++) {
+			// 	uploadScreenToServer(designs[i]);
+			// 	console.log("uploaded" + designs[i]);
+			// }
 		}
 	};
 
@@ -364,7 +367,7 @@ export default function VapeWidgetMobile(props) {
 
 	const onSubmitCustom = () => {
 		if (prodURL) {
-			setImageSaved([ ...imageSaved, prodURL ]);
+			setImageSaved([...imageSaved, prodURL]);
 		}
 		console.log(imageSaved);
 		setTimeout(() => {
@@ -407,12 +410,13 @@ export default function VapeWidgetMobile(props) {
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				setImageSaved([ ...imageSaved, res.path ]);
+				setImageSaved([...imageSaved, res.path]);
+				console.log("uploaded" + res.path)
 			});
 	};
 
-	const [ customColor, setCustomColor ] = useState('#878787');
-	const [ isColorPicker, setColorPicker ] = useState(false);
+	const [customColor, setCustomColor] = useState('#878787');
+	const [isColorPicker, setColorPicker] = useState(false);
 	const changeColor = {
 		color: customColor
 	};
@@ -545,77 +549,77 @@ export default function VapeWidgetMobile(props) {
 					<div className="text-logo">
 						<div className={'display-one-div ' + angleClass}>
 							{textOne &&
-							showOne && (
-								<Draggable
-									axis="both"
-									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 100, y: 100 }}
+								showOne && (
+									<Draggable
+										axis="both"
+										bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+										defaultPosition={{ x: 100, y: 100 }}
 									// top={100}
 									// left={100}
 									// width={150}
 									// height={30}
 									// rotateAngle={0}
-								>
-									<div id="display-text-one" style={changeColor}>
-										{textOne}
-									</div>
-								</Draggable>
-							)}
+									>
+										<div id="display-text-one" style={changeColor}>
+											{textOne}
+										</div>
+									</Draggable>
+								)}
 							{createObjectURL &&
-							showOne && (
-								<Draggable
-									axis="both"
-									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 100, y: 100 }}
-								>
-									<div className="display-logo-div">
-										<Image
-											alt={createObjectURL}
-											id="display-logo-one"
-											src={createObjectURL}
-											layout="fill"
-											objectFit="contain"
-										/>
-									</div>
-								</Draggable>
-							)}
+								showOne && (
+									<Draggable
+										axis="both"
+										bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+										defaultPosition={{ x: 100, y: 100 }}
+									>
+										<div className="display-logo-div">
+											<Image
+												alt={createObjectURL}
+												id="display-logo-one"
+												src={createObjectURL}
+												layout="fill"
+												objectFit="contain"
+											/>
+										</div>
+									</Draggable>
+								)}
 						</div>
 						{textThree &&
-						showThree && (
-							<div className="display-three-div">
-								<Draggable
-									axis="both"
-									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 100, y: 100 }}
-								>
-									<div id="display-text-three">{textThree}</div>
-								</Draggable>
-							</div>
-						)}
+							showThree && (
+								<div className="display-three-div">
+									<Draggable
+										axis="both"
+										bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+										defaultPosition={{ x: 100, y: 100 }}
+									>
+										<div id="display-text-three">{textThree}</div>
+									</Draggable>
+								</div>
+							)}
 						{textFive &&
-						showFive && (
-							<div className={'display-five-div ' + angleMClass}>
-								<Draggable
-									axis="both"
-									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 100, y: 100 }}
-								>
-									<div id="display-text-five">{textFive}</div>
-								</Draggable>
-							</div>
-						)}
+							showFive && (
+								<div className={'display-five-div ' + angleMClass}>
+									<Draggable
+										axis="both"
+										bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+										defaultPosition={{ x: 100, y: 100 }}
+									>
+										<div id="display-text-five">{textFive}</div>
+									</Draggable>
+								</div>
+							)}
 						{textSeven &&
-						showSeven && (
-							<div className="display-seven-div">
-								<Draggable
-									axis="both"
-									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 100, y: 100 }}
-								>
-									<div id="display-text-seven">{textSeven}</div>
-								</Draggable>
-							</div>
-						)}
+							showSeven && (
+								<div className="display-seven-div">
+									<Draggable
+										axis="both"
+										bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+										defaultPosition={{ x: 100, y: 100 }}
+									>
+										<div id="display-text-seven">{textSeven}</div>
+									</Draggable>
+								</div>
+							)}
 					</div>
 				</div>
 				{/* </div> */}
@@ -626,7 +630,7 @@ export default function VapeWidgetMobile(props) {
 						<tr>
 							<th>Available Colors:</th>
 							<td>
-								<Box sx={{ width: 300 }}>
+								<Box sx={{ width: 200 }}>
 									<FormControl fullWidth style={{ fontSize: '16px' }}>
 										<InputLabel id="color-select-label" style={{ fontSize: '16px' }}>
 											Color
@@ -692,8 +696,8 @@ export default function VapeWidgetMobile(props) {
 												value={'metasilver'}
 												selected={
 													!props.productColors.includes('black') &&
-													!props.productColors.includes('gunmetal') &&
-													props.productColors.includes('metasilver') ? (
+														!props.productColors.includes('gunmetal') &&
+														props.productColors.includes('metasilver') ? (
 														true
 													) : (
 														false
@@ -721,7 +725,7 @@ export default function VapeWidgetMobile(props) {
 												value={'gunmetal'}
 												selected={
 													!props.productColors.includes('black') &&
-													props.productColors.includes('gunmetal') ? (
+														props.productColors.includes('gunmetal') ? (
 														true
 													) : (
 														false
@@ -812,7 +816,7 @@ export default function VapeWidgetMobile(props) {
 											Upload
 										</Button>
 									</label>
-									<p style={{ fontSize: '12px', maxWidth: '280px' }}>
+									<p style={{ fontSize: '12px', maxWidth: '200px' }}>
 										Click the button above to select a logo file from your computer or other file
 										storage. We accept PNG FILE and FILE SIZE not more than 1 MB only.
 									</p>
@@ -824,22 +828,22 @@ export default function VapeWidgetMobile(props) {
 							<td>
 								{showOne && (
 									<div className="custom-text-div" id="input-text-one">
-										<Input type="text" id="custom-text-one" onChange={onTextInputOne} />
+										<Input type="text" id="custom-text-one" onChange={onTextInputOne} sx={{ width: '120px' }} />
 									</div>
 								)}
 								{showThree && (
 									<div className="custom-text-div" id="input-text-three">
-										<Input type="text" id="custom-text-three" onChange={onTextInputThree} />
+										<Input type="text" id="custom-text-three" onChange={onTextInputThree} sx={{ width: '120px' }} />
 									</div>
 								)}
 								{showFive && (
 									<div className="custom-text-div" id="input-text-five">
-										<Input type="text" id="custom-text-five" onChange={onTextInputFive} />
+										<Input type="text" id="custom-text-five" onChange={onTextInputFive} sx={{ width: '120px' }} />
 									</div>
 								)}
 								{showSeven && (
 									<div className="custom-text-div" id="input-text-seven">
-										<Input type="text" id="custom-text-seven" onChange={onTextInputSeven} />
+										<Input type="text" id="custom-text-seven" onChange={onTextInputSeven} sx={{ width: '120px' }} />
 									</div>
 								)}
 								<Button style={colorButton} onClick={setColorPicker} />
@@ -888,7 +892,7 @@ export default function VapeWidgetMobile(props) {
 						<tr>
 							<th style={{ paddingTop: '1em' }}>Your Email Address:</th>
 							<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
-								<Input type="email" id="customerEmail" onChange={onEmailInput} />
+								<Input type="email" id="customerEmail" onChange={onEmailInput} sx={{ width: '200px' }} />
 							</td>
 						</tr>
 						<tr>
@@ -900,7 +904,7 @@ export default function VapeWidgetMobile(props) {
 									multiline
 									rows={2}
 									placeholder="Your Message"
-									sx={{ width: '280px' }}
+									sx={{ width: '200px' }}
 									className="messageInput"
 									onChange={onMessageField}
 								/>
@@ -923,12 +927,12 @@ export default function VapeWidgetMobile(props) {
 										Confirm and Upload Your Designs
 									</Button>
 									<ImageList
-										style={{ display: displayImages ? 'flex' : 'none' }}
-										sx={{ width: 500, height: 450 }}
+										style={{ display: designArray[0] ? 'flex' : 'none' }}
+										sx={{ width: 200, height: 150 }}
 										cols={3}
-										rowHeight={164}
+										rowHeight={120}
 									>
-										{designArray &&
+										{designArray[0] &&
 											designArray.map((url) => (
 												<ImageListItem key={url}>
 													<img src={url} alt={url} />

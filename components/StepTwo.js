@@ -18,7 +18,7 @@ export default function StepTwo(props) {
 
 	if (props.cateSet) {
 		return (
-			<div id="custom-step2">
+			<div id="custom-step2" style={{padding: '0 16px'}}>
 				<h5>Step 2: Select a product to customize</h5>
 				<p>
 					Instruction here...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit,

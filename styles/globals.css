@@ -135,11 +135,13 @@ a {
     top: 800px;
 	width: 100%;
     min-width: 300px;
+	padding: 0 16px 16px;
 }
 
 .input-group {
 	position: relative;
 	left: 640px;
+	padding: 0 16px 16px;
 }
 
 .input-group table tbody td,

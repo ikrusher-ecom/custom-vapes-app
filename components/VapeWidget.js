@@ -348,14 +348,17 @@ export default function VapeWidget(props) {
 
 	const handleUploadDesign = (event) => {
 		console.log(event.target.files);
-		setDisplayImages(true);
+		// setDisplayImages(true);
 		if (event.target.files && event.target.files[0]) {
-			setDesigns([...designs, event.target.files[0]]);
-			console.log(designs);
-			for (let i = 0; i < designs.length; i++) {
-				uploadScreenToServer(designs[i]);
-				setDesignArray([...designArray, URL.createObjectURL(designs[i])]);
-			}
+			setDesignArray([...designArray, URL.createObjectURL(event.target.files[0])]);
+			uploadScreenToServer(event.target.files[0]);
+			console.log("uploading" + event.target.files[0]);
+			// setDesigns([...designs, event.target.files[0]]);
+			// console.log(designs);
+			// for (let i = 0; i < designs.length; i++) {
+			// 	uploadScreenToServer(designs[i]);
+			// 	console.log("uploaded" + designs[i]);
+			// }
 		}
 	};
 
@@ -407,6 +410,7 @@ export default function VapeWidget(props) {
 			.then((res) => res.json())
 			.then((res) => {
 				setImageSaved([...imageSaved, res.path]);
+				console.log("uploaded" + res.path);
 			});
 	};
 
@@ -906,12 +910,12 @@ export default function VapeWidget(props) {
 										Confirm and Upload Your Designs
 									</Button>
 									<ImageList
-										style={{ display: displayImages ? 'flex' : 'none' }}
+										style={{ display: designArray[0] ? 'flex' : 'none' }}
 										sx={{ width: 500, height: 450 }}
 										cols={3}
 										rowHeight={164}
 									>
-										{designArray &&
+										{designArray[0] &&
 											designArray.map((url) => (
 												<ImageListItem key={url}>
 													<img src={url} alt={url} />

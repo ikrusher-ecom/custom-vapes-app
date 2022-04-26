@@ -28,7 +28,7 @@ export default function StepOne(props) {
 	};
 
 	return (
-		<div>
+		<div style={{padding: '0 16px'}}>
 			<h3>Customize Your Vaping Hardware</h3>
 			<p>
 				We offer a variety of custom vape cartridges, vape pen batteries, disposable vape pens, and many
