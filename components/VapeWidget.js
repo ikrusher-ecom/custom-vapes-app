@@ -552,6 +552,7 @@ export default function VapeWidget(props) {
 									// axis="both"
 									// bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
 									// defaultPosition={{ x: 200, y: 300 }}
+									// fix position record
 									top={200}
 									left={200}
 									width={300}
