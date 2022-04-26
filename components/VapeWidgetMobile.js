@@ -381,7 +381,8 @@ export default function VapeWidgetMobile(props) {
                     Message: ${messageField}
                     Logo and Custom Designs: ${imageSaved}
                     `,
-				links: imageSaved.map((url) => <img src={url} alt={url} key={url} />)
+				links: imageSaved.map((url) => <img src={url} alt={url} key={url} />),
+				email: emailInput
 			});
 			console.log(formInfo);
 			fetch('/api/email', {

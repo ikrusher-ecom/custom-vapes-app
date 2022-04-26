@@ -20,6 +20,7 @@ export default async (req, res) => {
 	const mailData = {
 		from: 'info@ikrusher.com',
 		to: 'ecom@ikrusher.com',
+		cc: req.body.email,
 		subject: 'New Custom Vape Request',
 		text: req.body.message
 		// html: req.body.links
