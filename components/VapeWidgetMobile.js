@@ -30,7 +30,6 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StopIcon from '@mui/icons-material/Stop';
 import Rotate90DegreesCwIcon from '@mui/icons-material/Rotate90DegreesCw';
 import Draggable, { DraggableCore } from 'react-draggable';
-import ResizableContentMobile from './ResizableContentMobile';
 import { useScreenshot, createFileName } from 'use-react-screenshot';
 import { HexColorPicker } from 'react-colorful';
 
@@ -252,7 +251,7 @@ export default function VapeWidgetMobile(props) {
 		}
 	};
 
-	const uploadToServer = async (event) => {
+	const uploadToServer = async () => {
 		const body = new FormData();
 		body.append('file', image);
 		const response = await fetch('/api/image', {
@@ -300,7 +299,6 @@ export default function VapeWidgetMobile(props) {
 	const [manual, setManual] = useState('');
 	const [packaging, setPackaging] = useState('');
 	const [messageField, setMessageField] = useState('');
-	// const [ displayImages, setDisplayImages ] = useState(false);
 
 	const onEmailInput = (event) => {
 		setEmailInput(event.target.value);
@@ -317,104 +315,122 @@ export default function VapeWidgetMobile(props) {
 
 	const [formInfo, setFormInfo] = useState('');
 
-	const ref = createRef(null);
 	const [screenshot, takeScreenshot] = useScreenshot({
 		type: 'image/png',
 		quality: 1.0
 	});
-	const [designs, setDesigns] = useState([]);
-	const [designArray, setDesignArray] = useState([]);
-
-	const [timestamp, setTimestamp] = useState(Date.now());
-
-	const download = (image, { name = 'screenshot', extension = 'png' } = {}) => {
-		setTimestamp(Date.now());
-		const a = document.createElement('a');
-		a.href = image;
-		a.download = createFileName(extension, name + timestamp);
-		a.click();
-	};
 
 	const [newRef, setNewRef] = useState(null);
-
 	const screenRef = (ref) => {
-		// console.log(`screenRef: ${ref}, ${num}`);
 		setNewRef(ref);
 	};
 
-	const downloadScreenshot = () => {
-		// console.log(`screenRef: ${newRef}, ${num}`);
-		takeScreenshot(newRef).then(download);
-	};
+	const [screenfile, setScreenfile] = useState(null);
+	const [timeStamp, setTimeStamp] = useState(Date.now());
 
-	const handleUploadDesign = (event) => {
-		console.log(event.target.files);
-		// setDisplayImages(true);
-		if (event.target.files && event.target.files[0]) {
-			setDesignArray([...designArray, URL.createObjectURL(event.target.files[0])]);
-			uploadScreenToServer(event.target.files[0]);
-			console.log("uploading" + event.target.files[0]);
-			// setDesigns([...designs, event.target.files[0]]);
-			// console.log(designs);
-			// for (let i = 0; i < designs.length; i++) {
-			// 	uploadScreenToServer(designs[i]);
-			// 	console.log("uploaded" + designs[i]);
-			// }
+	const urlToObject = (dataurl, filename) => {
+		let arr = dataurl.split(','),
+			mime = arr[0].match(/:(.*?);/)[1],
+			bstr = window.atob(arr[1]),
+			n = bstr.length,
+			u8arr = new Uint8Array(n);
+		while (n--) {
+			u8arr[n] = bstr.charCodeAt(n);
 		}
-	};
+		return new File([u8arr], filename, {
+			type: mime
+		});
+	}
 
-	const uploadDesignRef = useRef(null);
+	useEffect(() => {
+		submitNext();
+	}, [screenshot])
+
+	useEffect(() => {
+		uploadScreenNext();
+	}, [screenfile])
+
+	useEffect(() => {
+		screenshotNext();
+	}, [imageSaved, uploaded])
+
+	useEffect(() => {
+		sendEmail();
+	}, [formInfo])
 
 	const onSubmitCustom = () => {
+		angleOne();
+		setNum(1);
+		takeScreenshot(newRef);
+	};
+
+	const submitNext = () => {
+		if (screenshot) {
+			uploadScreenToServer();
+		}
 		if (prodURL) {
 			setImageSaved([...imageSaved, prodURL]);
 		}
-		console.log(imageSaved);
-		setTimeout(() => {
+	}
+
+	const screenshotNext = () => {
+		if (imageSaved[0]) {
 			setFormInfo({
 				message: `
-                    Color: ${prodColor}
-                    Custom Text: 1. ${textOne}, 2. ${textThree}, 3. ${textFive}, 4. ${textSeven}
-                    Custom User Manual: ${manual}
-                    Custom Packaging or Shipping Carton: ${packaging}
-                    Email: ${emailInput}
-                    Message: ${messageField}
-                    Logo and Custom Designs: ${imageSaved}
-                    `,
+					Color: ${prodColor}
+					Custom Text: 1. ${textOne}, 2. ${textThree}, 3. ${textFive}, 4. ${textSeven}
+					Custom User Manual: ${manual}
+					Custom Packaging or Shipping Carton: ${packaging}
+					Email: ${emailInput}
+					Message: ${messageField}
+					Logo and Custom Designs: ${imageSaved}
+					`,
 				links: imageSaved.map((url) => <img src={url} alt={url} key={url} />),
 				email: emailInput
 			});
-			console.log(formInfo);
-			fetch('/api/email', {
-				method: 'POST',
-				headers: {
-					Accept: 'application/json, text/plain, */*',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(formInfo)
-			}).then((res) => {
-				console.log('Response received');
-				if (res.status === 200) {
-					console.log('Response succeeded!');
-					setFormInfo('');
-				}
-			});
-		}, 2000);
+		}
+	}
+
+	const sendEmail = () => {
+		console.log("form: " + formInfo);
+		fetch('/api/email', {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json, text/plain, */*',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(formInfo)
+		}).then((res) => {
+			console.log('Response received');
+			if (res.status === 200) {
+				console.log('Response succeeded!');
+				setFormInfo('');
+			}
+		})
+	}
+
+	const uploadScreenToServer = () => {
+		setTimeStamp(Date.now());
+		setScreenfile(urlToObject(screenshot, `screenshot${timeStamp}.png`));
 	};
 
-	const uploadScreenToServer = async (design) => {
-		const body = new FormData();
-		body.append('file', design);
-		const response = await fetch('/api/image', {
-			method: 'POST',
-			body
-		})
-			.then((res) => res.json())
-			.then((res) => {
-				setImageSaved([...imageSaved, res.path]);
-				console.log("uploaded" + res.path)
-			});
-	};
+	const [uploaded, setUploaded] = useState(false);
+	const uploadScreenNext = async () => {
+		if (screenfile) {
+			const body = new FormData();
+			body.append('file', screenfile);
+			const response = await fetch('/api/image', {
+				method: 'POST',
+				body
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					setImageSaved([...imageSaved, res.path]);
+					setUploaded(!uploaded);
+					console.log("uploaded" + res.path)
+				});
+		}
+	}
 
 	const [customColor, setCustomColor] = useState('#878787');
 	const [isColorPicker, setColorPicker] = useState(false);
@@ -440,13 +456,13 @@ export default function VapeWidgetMobile(props) {
 				<Button onClick={nextAngle} disabled={num >= 10} className={styles.roundBtnMobile} style={{ float: 'right' }}>
 					<ArrowForwardIosIcon fontSize="large" />
 				</Button>
-				<Button
+				{/* <Button
 					onClick={downloadScreenshot}
 					className={styles.screenBtn}
 					style={{ width: '100%', marginTop: '320px' }}
 				>
 					Confirm the Design Above and Download it
-				</Button>
+				</Button> */}
 				<Button onClick={onPreview} className={styles.previewBtnMobile}>
 					Preview in 360° {'    '} <PlayArrowIcon /> / <StopIcon />
 				</Button>
@@ -462,7 +478,8 @@ export default function VapeWidgetMobile(props) {
 						position: 'absolute',
 						maxWidth: '600px',
 						maxHeight: '800px',
-						width: '100%'
+						width: '100%',
+						height: '800px'
 					}}
 				>
 					{/* <div> */}
@@ -911,7 +928,7 @@ export default function VapeWidgetMobile(props) {
 								/>
 							</td>
 						</tr>
-						<tr>
+						{/* <tr>
 							<th style={{ paddingTop: '1em' }}>Confirm Your Design:</th>
 							<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
 								<label htmlFor="screen-button-file" style={{ display: 'block' }}>
@@ -942,14 +959,9 @@ export default function VapeWidgetMobile(props) {
 									</ImageList>
 								</label>
 							</td>
-						</tr>
+						</tr> */}
 					</tbody>
 				</table>
-				{/* {screenshot && (
-					<a href={screenshot} download ref={downloadRef} style={{ display: 'none' }}>
-						<Image src={screenshot} alt="screenshot" width="600" height="800" style={{ display: 'none' }} />
-					</a>
-				)} */}
 				<Button
 					onClick={onSubmitCustom}
 					className={styles.funcBtn}
@@ -957,6 +969,11 @@ export default function VapeWidgetMobile(props) {
 				>
 					Submit
 				</Button>
+				{/* {screenshot && (
+					<a href={screenshot} download ref={downloadRef} style={{ display: 'none' }}>
+					<img ref={screenshotRef} src={screenshot} alt="screenshot" width="600" height="800" style={{ display: 'none' }} />
+					</a>
+				)} */}
 			</div>
 		</div>
 	);

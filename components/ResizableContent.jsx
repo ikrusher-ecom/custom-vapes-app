@@ -5,8 +5,8 @@
  * @LastEditTime: 2022-04-24 16:59:49
  * @FilePath: /custom-vapes-app/components/ResizableContent.jsx
  */
-import React, { Fragment, useState } from 'react'
-import ResizableRect from 'react-resizable-rotatable-draggable'
+import React, { Fragment, useState } from 'react';
+import ResizableRect from 'react-resizable-rotatable-draggable';
 
 const ResizableContent = props => {
   const [width, setWidth] = useState(props.width)
