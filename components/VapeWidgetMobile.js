@@ -391,8 +391,16 @@ export default function VapeWidgetMobile(props) {
 		}
 	}
 
+	const [sentEmail, setSentEmail] = useState(false);
+	useEffect(() => {
+		if (sentEmail) {
+			alert("Email sent successfully!");
+			setSentEmail(false);
+		}
+	}, [sentEmail])
+
 	const sendEmail = () => {
-		console.log("form: " + formInfo);
+		console.log(formInfo);
 		fetch('/api/email', {
 			method: 'POST',
 			headers: {
@@ -404,6 +412,7 @@ export default function VapeWidgetMobile(props) {
 			console.log('Response received');
 			if (res.status === 200) {
 				console.log('Response succeeded!');
+				setSentEmail(true);
 				setFormInfo('');
 			}
 		})
