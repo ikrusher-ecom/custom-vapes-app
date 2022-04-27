@@ -26,6 +26,7 @@ export default function StepTwo(props) {
 				<div className="step2-group">
 					<ProductButtons cateDisplay={props.cateSet} product={pull_product} />
 				</div>
+				<p className="cms-br">&nbsp;</p>
 			</div>
 		);
 	}

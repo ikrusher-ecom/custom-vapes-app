@@ -459,482 +459,483 @@ export default function VapeWidget(props) {
 	};
 
 	return (
-		<div className="custom-vape" id="custom-step4" style={{ padding: '0 16px' }}>
-			<h5>Customize Your Device Now!</h5>
-			<div className={'next-btn ' + styles.angleBtns}>
-				<Button onClick={lastAngle} disabled={num <= 1} className={styles.roundBtn} style={{ float: 'left' }}>
-					<ArrowBackIosIcon fontSize="large" />
-				</Button>
-				<Button onClick={nextAngle} disabled={num >= 10} className={styles.roundBtn} style={{ float: 'right' }}>
-					<ArrowForwardIosIcon fontSize="large" />
-				</Button>
-				{/* <Button
+		<React.Fragment>
+			<h5 style={{ padding: '0 16px' }}>Step 4: Customize Your Device Now!</h5>
+			<div className="custom-vape" id="custom-step4">
+				<div className={'next-btn ' + styles.angleBtns}>
+					<Button onClick={lastAngle} disabled={num <= 1} className={styles.roundBtn} style={{ float: 'left' }}>
+						<ArrowBackIosIcon fontSize="large" />
+					</Button>
+					<Button onClick={nextAngle} disabled={num >= 10} className={styles.roundBtn} style={{ float: 'right' }}>
+						<ArrowForwardIosIcon fontSize="large" />
+					</Button>
+					{/* <Button
 					onClick={downloadScreenshot}
 					className={styles.screenBtn}
 					style={{ width: '100%', marginTop: '320px' }}
 				>
 					Confirm the Design Above and Download it
 				</Button> */}
-				<Button onClick={onPreview} className={styles.previewBtn}>
-					Preview in 360° {'    '} <PlayArrowIcon /> / <StopIcon />
-				</Button>
-			</div>
-			<div
-				className="custom-group"
-				ref={screenRef}
-				id="myCanvas"
-				style={{
-					border: '1px solid transparent',
-					zIndex: '10',
-					position: 'absolute',
-					width: '600px',
-					height: '800px'
-				}}
-			>
-				{/* <div> */}
-				<div id="one" style={{ display: num === 1 ? 'block' : 'none' }}>
-					<CustomImages
-						name={props.productID}
-						category={props.productCate}
-						folder={props.productFolder}
-						images={props.productImages[props.productColors.filter((color) => color === prodColor)][0]}
-					/>
+					<Button onClick={onPreview} className={styles.previewBtn}>
+						Preview in 360° {'    '} <PlayArrowIcon /> / <StopIcon />
+					</Button>
 				</div>
-				<div id="two" style={{ display: num === 2 ? 'block' : 'none' }}>
-					<CustomImages
-						name={props.productID}
-						category={props.productCate}
-						folder={props.productFolder}
-						images={props.productImages[props.productColors.filter((color) => color === prodColor)][1]}
-					/>
-				</div>
-				<div id="three" style={{ display: num === 3 ? 'block' : 'none' }}>
-					<CustomImages
-						name={props.productID}
-						category={props.productCate}
-						folder={props.productFolder}
-						images={props.productImages[props.productColors.filter((color) => color === prodColor)][2]}
-					/>
-				</div>
-				<div id="four" style={{ display: num === 4 ? 'block' : 'none' }}>
-					<CustomImages
-						name={props.productID}
-						category={props.productCate}
-						folder={props.productFolder}
-						images={props.productImages[props.productColors.filter((color) => color === prodColor)][3]}
-					/>
-				</div>
-				<div id="five" style={{ display: num === 5 ? 'block' : 'none' }}>
-					<CustomImages
-						name={props.productID}
-						category={props.productCate}
-						folder={props.productFolder}
-						images={props.productImages[props.productColors.filter((color) => color === prodColor)][4]}
-					/>
-				</div>
-				<div id="six" style={{ display: num === 6 ? 'block' : 'none' }}>
-					<CustomImages
-						name={props.productID}
-						category={props.productCate}
-						folder={props.productFolder}
-						images={props.productImages[props.productColors.filter((color) => color === prodColor)][5]}
-					/>
-				</div>
-				<div id="seven" style={{ display: num === 7 ? 'block' : 'none' }}>
-					<CustomImages
-						name={props.productID}
-						category={props.productCate}
-						folder={props.productFolder}
-						images={props.productImages[props.productColors.filter((color) => color === prodColor)][6]}
-					/>
-				</div>
-				<div id="eight" style={{ display: num === 8 ? 'block' : 'none' }}>
-					<CustomImages
-						name={props.productID}
-						category={props.productCate}
-						folder={props.productFolder}
-						images={props.productImages[props.productColors.filter((color) => color === prodColor)][7]}
-					/>
-				</div>
-				<div id="nine" style={{ display: num === 9 ? 'block' : 'none' }}>
-					<CustomImages
-						name={props.productID}
-						category={props.productCate}
-						folder={props.productFolder}
-						images={props.productImages[props.productColors.filter((color) => color === prodColor)][8]}
-					/>
-				</div>
-				<div id="ten" style={{ display: num === 10 ? 'block' : 'none' }}>
-					<CustomImages
-						name={props.productID}
-						category={props.productCate}
-						folder={props.productFolder}
-						images={props.productImages[props.productColors.filter((color) => color === prodColor)][9]}
-					/>
-				</div>
-				{/* </div> */}
-				<div className="text-logo">
-					<div className={'display-one-div ' + angleClass}>
-						{textOne &&
-							showOne && (
-								<Draggable
-									axis="both"
-									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 200, y: 300 }}
-								>
-									<div id="display-text-one" style={changeColor}>
-										{textOne}
-									</div>
-								</Draggable>
+				<div
+					className="custom-group"
+					ref={screenRef}
+					id="myCanvas"
+					style={{
+						border: '1px solid transparent',
+						zIndex: '10',
+						position: 'absolute',
+						width: '600px',
+						height: '800px'
+					}}
+				>
+					{/* <div> */}
+					<div id="one" style={{ display: num === 1 ? 'block' : 'none' }}>
+						<CustomImages
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][0]}
+						/>
+					</div>
+					<div id="two" style={{ display: num === 2 ? 'block' : 'none' }}>
+						<CustomImages
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][1]}
+						/>
+					</div>
+					<div id="three" style={{ display: num === 3 ? 'block' : 'none' }}>
+						<CustomImages
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][2]}
+						/>
+					</div>
+					<div id="four" style={{ display: num === 4 ? 'block' : 'none' }}>
+						<CustomImages
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][3]}
+						/>
+					</div>
+					<div id="five" style={{ display: num === 5 ? 'block' : 'none' }}>
+						<CustomImages
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][4]}
+						/>
+					</div>
+					<div id="six" style={{ display: num === 6 ? 'block' : 'none' }}>
+						<CustomImages
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][5]}
+						/>
+					</div>
+					<div id="seven" style={{ display: num === 7 ? 'block' : 'none' }}>
+						<CustomImages
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][6]}
+						/>
+					</div>
+					<div id="eight" style={{ display: num === 8 ? 'block' : 'none' }}>
+						<CustomImages
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][7]}
+						/>
+					</div>
+					<div id="nine" style={{ display: num === 9 ? 'block' : 'none' }}>
+						<CustomImages
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][8]}
+						/>
+					</div>
+					<div id="ten" style={{ display: num === 10 ? 'block' : 'none' }}>
+						<CustomImages
+							name={props.productID}
+							category={props.productCate}
+							folder={props.productFolder}
+							images={props.productImages[props.productColors.filter((color) => color === prodColor)][9]}
+						/>
+					</div>
+					{/* </div> */}
+					<div className="text-logo">
+						<div className={'display-one-div ' + angleClass}>
+							{textOne &&
+								showOne && (
+									<Draggable
+										axis="both"
+										bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+										defaultPosition={{ x: 200, y: 300 }}
+									>
+										<div id="display-text-one" style={changeColor}>
+											{textOne}
+										</div>
+									</Draggable>
+								)}
+							{createObjectURL &&
+								showOne && (
+									<Draggable
+										axis="both"
+										bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+										defaultPosition={{ x: 200, y: 300 }}
+									>
+										<div className="display-logo-div">
+											<Image
+												alt={createObjectURL}
+												id="display-logo-one"
+												src={createObjectURL}
+												layout="fill"
+												objectFit="contain"
+											/>
+										</div>
+									</Draggable>
+								)}
+						</div>
+						{textThree &&
+							showThree && (
+								<div className="display-three-div">
+									<Draggable
+										axis="both"
+										bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+										defaultPosition={{ x: 200, y: 300 }}
+									>
+										<div id="display-text-three" style={changeColor}>{textThree}</div>
+									</Draggable>
+								</div>
 							)}
-						{createObjectURL &&
-							showOne && (
-								<Draggable
-									axis="both"
-									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 200, y: 300 }}
-								>
-									<div className="display-logo-div">
-										<Image
-											alt={createObjectURL}
-											id="display-logo-one"
-											src={createObjectURL}
-											layout="fill"
-											objectFit="contain"
-										/>
-									</div>
-								</Draggable>
+						{textFive &&
+							showFive && (
+								<div className={'display-five-div ' + angleMClass}>
+									<Draggable
+										axis="both"
+										bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+										defaultPosition={{ x: 200, y: 300 }}
+									>
+										<div id="display-text-five" style={changeColor}>{textFive}</div>
+									</Draggable>
+								</div>
+							)}
+						{textSeven &&
+							showSeven && (
+								<div className="display-seven-div">
+									<Draggable
+										axis="both"
+										bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+										defaultPosition={{ x: 200, y: 300 }}
+									>
+										<div id="display-text-seven" style={changeColor}>{textSeven}</div>
+									</Draggable>
+								</div>
 							)}
 					</div>
-					{textThree &&
-						showThree && (
-							<div className="display-three-div">
-								<Draggable
-									axis="both"
-									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 200, y: 300 }}
-								>
-									<div id="display-text-three" style={changeColor}>{textThree}</div>
-								</Draggable>
-							</div>
-						)}
-					{textFive &&
-						showFive && (
-							<div className={'display-five-div ' + angleMClass}>
-								<Draggable
-									axis="both"
-									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 200, y: 300 }}
-								>
-									<div id="display-text-five" style={changeColor}>{textFive}</div>
-								</Draggable>
-							</div>
-						)}
-					{textSeven &&
-						showSeven && (
-							<div className="display-seven-div">
-								<Draggable
-									axis="both"
-									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 200, y: 300 }}
-								>
-									<div id="display-text-seven" style={changeColor}>{textSeven}</div>
-								</Draggable>
-							</div>
-						)}
 				</div>
-			</div>
-			<div className="input-group">
-				<table>
-					<tbody>
-						<tr>
-							<th>Select a Color:</th>
-							<td>
-								<Box sx={{ width: 300 }}>
-									<FormControl fullWidth style={{ fontSize: '16px' }}>
-										<InputLabel id="color-select-label" style={{ fontSize: '16px' }}>
-											Color
-										</InputLabel>
-										<Select
-											labelId="color-select-label"
-											id="color-select"
-											value={prodColor}
-											label="Color"
-											onChange={handleChangeColor}
-											style={{ fontSize: '16px' }}
-											defaultValue={props.productColors[0]}
-										>
-											<MenuItem
-												style={{
-													fontSize: '16px',
-													padding: '20px 10px 10px',
-													display: props.productColors.includes('black') ? 'flex' : 'none'
-												}}
-												value={'black'}
-												selected={props.productColors.includes('black') ? true : false}
-											>
-												Black
-											</MenuItem>
-											<MenuItem
-												style={{
-													fontSize: '16px',
-													padding: '20px 10px 10px',
-													display: props.productColors.includes('rosegold') ? 'flex' : 'none'
-												}}
-												value={'rosegold'}
-											>
-												Rose Gold
-											</MenuItem>
-											<MenuItem
-												style={{
-													fontSize: '16px',
-													padding: '20px 10px 10px',
-													display: props.productColors.includes('red') ? 'flex' : 'none'
-												}}
-												value={'red'}
-											>
-												Red
-											</MenuItem>
-											<MenuItem
-												style={{
-													fontSize: '16px',
-													padding: '20px 10px 10px',
-													display: props.productColors.includes('metablue') ? 'flex' : 'none'
-												}}
-												value={'metablue'}
-											>
-												Metallic Blue
-											</MenuItem>
-											<MenuItem
-												style={{
-													fontSize: '16px',
-													padding: '20px 10px 10px',
-													display: props.productColors.includes('metasilver')
-														? 'flex'
-														: 'none'
-												}}
-												value={'metasilver'}
-												selected={
-													!props.productColors.includes('black') &&
-														!props.productColors.includes('gunmetal') &&
-														props.productColors.includes('metasilver') ? (
-														true
-													) : (
-														false
-													)
-												}
-											>
-												Metallic Silver
-											</MenuItem>
-											<MenuItem
-												style={{
-													fontSize: '16px',
-													padding: '20px 10px 10px',
-													display: props.productColors.includes('lilac') ? 'flex' : 'none'
-												}}
-												value={'lilac'}
-											>
-												Lilac
-											</MenuItem>
-											<MenuItem
-												style={{
-													fontSize: '16px',
-													padding: '20px 10px 10px',
-													display: props.productColors.includes('gunmetal') ? 'flex' : 'none'
-												}}
-												value={'gunmetal'}
-												selected={
-													!props.productColors.includes('black') &&
-														props.productColors.includes('gunmetal') ? (
-														true
-													) : (
-														false
-													)
-												}
-											>
-												Gunmetal
-											</MenuItem>
-											<MenuItem
-												style={{
-													fontSize: '16px',
-													padding: '20px 10px 10px',
-													display: props.productColors.includes('green') ? 'flex' : 'none'
-												}}
-												value={'green'}
-											>
-												Green Tourmaline
-											</MenuItem>
-											<MenuItem
-												style={{
-													fontSize: '16px',
-													padding: '20px 10px 10px',
-													display: props.productColors.includes('white') ? 'flex' : 'none'
-												}}
-												value={'white'}
-											>
-												White
-											</MenuItem>
-											<MenuItem
-												style={{
-													fontSize: '16px',
-													padding: '20px 10px 10px',
-													display: props.productColors.includes('yellow') ? 'flex' : 'none'
-												}}
-												value={'yellow'}
-											>
-												Yellow
-											</MenuItem>
-											<MenuItem
-												style={{
-													fontSize: '16px',
-													padding: '20px 10px 10px',
-													display: props.productColors.includes('royalblue') ? 'flex' : 'none'
-												}}
-												value={'royalblue'}
-											>
-												Royal Blue
-											</MenuItem>
-											<MenuItem
-												style={{
-													fontSize: '16px',
-													padding: '20px 10px 10px',
-													display: props.productColors.includes('blue') ? 'flex' : 'none'
-												}}
-												value={'blue'}
-											>
-												Blue
-											</MenuItem>
-											<MenuItem
-												style={{
-													fontSize: '16px',
-													padding: '20px 10px 10px',
-													display: props.productColors.includes('hotpink') ? 'flex' : 'none'
-												}}
-												value={'hotpink'}
-											>
-												Hot Pink
-											</MenuItem>
-										</Select>
-									</FormControl>
-								</Box>
-							</td>
-						</tr>
-						<tr className="custom-logo-div" id="upload-logo-one" style={{ height: '150px' }}>
-							<th>Upload Logo:</th>
-							{showOne && (
+				<div className="input-group">
+					<table>
+						<tbody>
+							<tr>
+								<th>Select a Color:</th>
 								<td>
-									<label htmlFor="contained-button-file">
-										<Input
-											accept="image/png"
-											id="contained-button-file"
-											multiple={false}
-											type="file"
-											style={{ display: 'none' }}
-											onChange={handleChangeLogo}
-										/>
-										<Button variant="contained" component="span" className={styles.funcBtn}>
-											Upload
-										</Button>
-									</label>
-									<p style={{ fontSize: '12px', maxWidth: '280px' }}>
-										Click the button above to select a logo file from your computer or other file
-										storage. We accept PNG FILE and FILE SIZE not more than 1 MB only.
-									</p>
+									<Box sx={{ width: 300 }}>
+										<FormControl fullWidth style={{ fontSize: '16px' }}>
+											<InputLabel id="color-select-label" style={{ fontSize: '16px' }}>
+												Color
+											</InputLabel>
+											<Select
+												labelId="color-select-label"
+												id="color-select"
+												value={prodColor}
+												label="Color"
+												onChange={handleChangeColor}
+												style={{ fontSize: '16px' }}
+												defaultValue={props.productColors[0]}
+											>
+												<MenuItem
+													style={{
+														fontSize: '16px',
+														padding: '20px 10px 10px',
+														display: props.productColors.includes('black') ? 'flex' : 'none'
+													}}
+													value={'black'}
+													selected={props.productColors.includes('black') ? true : false}
+												>
+													Black
+												</MenuItem>
+												<MenuItem
+													style={{
+														fontSize: '16px',
+														padding: '20px 10px 10px',
+														display: props.productColors.includes('rosegold') ? 'flex' : 'none'
+													}}
+													value={'rosegold'}
+												>
+													Rose Gold
+												</MenuItem>
+												<MenuItem
+													style={{
+														fontSize: '16px',
+														padding: '20px 10px 10px',
+														display: props.productColors.includes('red') ? 'flex' : 'none'
+													}}
+													value={'red'}
+												>
+													Red
+												</MenuItem>
+												<MenuItem
+													style={{
+														fontSize: '16px',
+														padding: '20px 10px 10px',
+														display: props.productColors.includes('metablue') ? 'flex' : 'none'
+													}}
+													value={'metablue'}
+												>
+													Metallic Blue
+												</MenuItem>
+												<MenuItem
+													style={{
+														fontSize: '16px',
+														padding: '20px 10px 10px',
+														display: props.productColors.includes('metasilver')
+															? 'flex'
+															: 'none'
+													}}
+													value={'metasilver'}
+													selected={
+														!props.productColors.includes('black') &&
+															!props.productColors.includes('gunmetal') &&
+															props.productColors.includes('metasilver') ? (
+															true
+														) : (
+															false
+														)
+													}
+												>
+													Metallic Silver
+												</MenuItem>
+												<MenuItem
+													style={{
+														fontSize: '16px',
+														padding: '20px 10px 10px',
+														display: props.productColors.includes('lilac') ? 'flex' : 'none'
+													}}
+													value={'lilac'}
+												>
+													Lilac
+												</MenuItem>
+												<MenuItem
+													style={{
+														fontSize: '16px',
+														padding: '20px 10px 10px',
+														display: props.productColors.includes('gunmetal') ? 'flex' : 'none'
+													}}
+													value={'gunmetal'}
+													selected={
+														!props.productColors.includes('black') &&
+															props.productColors.includes('gunmetal') ? (
+															true
+														) : (
+															false
+														)
+													}
+												>
+													Gunmetal
+												</MenuItem>
+												<MenuItem
+													style={{
+														fontSize: '16px',
+														padding: '20px 10px 10px',
+														display: props.productColors.includes('green') ? 'flex' : 'none'
+													}}
+													value={'green'}
+												>
+													Green Tourmaline
+												</MenuItem>
+												<MenuItem
+													style={{
+														fontSize: '16px',
+														padding: '20px 10px 10px',
+														display: props.productColors.includes('white') ? 'flex' : 'none'
+													}}
+													value={'white'}
+												>
+													White
+												</MenuItem>
+												<MenuItem
+													style={{
+														fontSize: '16px',
+														padding: '20px 10px 10px',
+														display: props.productColors.includes('yellow') ? 'flex' : 'none'
+													}}
+													value={'yellow'}
+												>
+													Yellow
+												</MenuItem>
+												<MenuItem
+													style={{
+														fontSize: '16px',
+														padding: '20px 10px 10px',
+														display: props.productColors.includes('royalblue') ? 'flex' : 'none'
+													}}
+													value={'royalblue'}
+												>
+													Royal Blue
+												</MenuItem>
+												<MenuItem
+													style={{
+														fontSize: '16px',
+														padding: '20px 10px 10px',
+														display: props.productColors.includes('blue') ? 'flex' : 'none'
+													}}
+													value={'blue'}
+												>
+													Blue
+												</MenuItem>
+												<MenuItem
+													style={{
+														fontSize: '16px',
+														padding: '20px 10px 10px',
+														display: props.productColors.includes('hotpink') ? 'flex' : 'none'
+													}}
+													value={'hotpink'}
+												>
+													Hot Pink
+												</MenuItem>
+											</Select>
+										</FormControl>
+									</Box>
 								</td>
-							)}
-						</tr>
-						<tr style={{ height: '50px' }}>
-							<th>Customize Text:</th>
-							<td>
+							</tr>
+							<tr className="custom-logo-div" id="upload-logo-one" style={{ height: '150px' }}>
+								<th>Upload Logo:</th>
 								{showOne && (
-									<div className="custom-text-div" id="input-text-one">
-										<Input type="text" id="custom-text-one" onChange={onTextInputOne} />
-									</div>
+									<td>
+										<label htmlFor="contained-button-file">
+											<Input
+												accept="image/png"
+												id="contained-button-file"
+												multiple={false}
+												type="file"
+												style={{ display: 'none' }}
+												onChange={handleChangeLogo}
+											/>
+											<Button variant="contained" component="span" className={styles.funcBtn}>
+												Upload
+											</Button>
+										</label>
+										<p style={{ fontSize: '12px', maxWidth: '280px' }}>
+											Click the button above to select a logo file from your computer or other file
+											storage. We accept PNG FILE and FILE SIZE not more than 1 MB only.
+										</p>
+									</td>
 								)}
-								{showThree && (
-									<div className="custom-text-div" id="input-text-three">
-										<Input type="text" id="custom-text-three" onChange={onTextInputThree} />
-									</div>
-								)}
-								{showFive && (
-									<div className="custom-text-div" id="input-text-five">
-										<Input type="text" id="custom-text-five" onChange={onTextInputFive} />
-									</div>
-								)}
-								{showSeven && (
-									<div className="custom-text-div" id="input-text-seven">
-										<Input type="text" id="custom-text-seven" onChange={onTextInputSeven} />
-									</div>
-								)}
-								{(showOne || showThree || showFive || showSeven)
-									? (<>
-										<Button style={colorButton} onClick={setColorPicker} />
-										<HexColorPicker
-											style={{ display: isColorPicker ? 'flex' : 'none', marginTop: '10px' }}
-											color={customColor}
-											onChange={setCustomColor}
-										/>
-									</>)
-									: null}
-								{/* <Input type="color" id="picker" name="picker" value="#808080" onChange={e => console.log(e.target.value)} /> */}
-							</td>
-						</tr>
-						<tr>
-							<th>Need Custom User Manual? </th>
-							<td style={{ paddingLeft: '1em', verticalAlign: 'middle' }}>
-								<FormControl>
-									<RadioGroup
-										row
-										aria-labelledby="demo-row-radio-buttons-group-label"
-										name="row-radio-buttons-group"
-										onChange={onCustomManual}
-										className="custom-radio"
-									>
-										<FormControlLabel value="yes" control={<Radio />} label="Yes" />
-										<FormControlLabel value="no" control={<Radio />} label="No" />
-									</RadioGroup>
-								</FormControl>
-							</td>
-						</tr>
-						<tr>
-							<th>Need Custom Packaging or Shipping Carton? </th>
-							<td style={{ paddingLeft: '1em', verticalAlign: 'middle' }}>
-								<FormControl>
-									<RadioGroup
-										row
-										aria-labelledby="demo-row-radio-buttons-group-label"
-										name="row-radio-buttons-group"
-										onChange={onCustomPackaging}
-										className="custom-radio"
-									>
-										<FormControlLabel value="yes" control={<Radio />} label="Yes" />
-										<FormControlLabel value="no" control={<Radio />} label="No" />
-									</RadioGroup>
-								</FormControl>
-							</td>
-						</tr>
-						<tr>
-							<th style={{ paddingTop: '1em' }}>Your Email Address:</th>
-							<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
-								<Input type="email" id="customerEmail" onChange={onEmailInput} />
-							</td>
-						</tr>
-						<tr>
-							<th style={{ paddingTop: '1em' }}>Message:</th>
-							<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
-								<TextField
-									id="outlined-multiline-static"
-									label="Your Message"
-									multiline
-									rows={2}
-									placeholder="Your Message"
-									sx={{ width: '280px' }}
-									className="messageInput"
-									onChange={onMessageField}
-								/>
-							</td>
-						</tr>
-						{/* <tr>
+							</tr>
+							<tr style={{ height: '50px' }}>
+								<th>Customize Text:</th>
+								<td>
+									{showOne && (
+										<div className="custom-text-div" id="input-text-one">
+											<Input type="text" id="custom-text-one" onChange={onTextInputOne} />
+										</div>
+									)}
+									{showThree && (
+										<div className="custom-text-div" id="input-text-three">
+											<Input type="text" id="custom-text-three" onChange={onTextInputThree} />
+										</div>
+									)}
+									{showFive && (
+										<div className="custom-text-div" id="input-text-five">
+											<Input type="text" id="custom-text-five" onChange={onTextInputFive} />
+										</div>
+									)}
+									{showSeven && (
+										<div className="custom-text-div" id="input-text-seven">
+											<Input type="text" id="custom-text-seven" onChange={onTextInputSeven} />
+										</div>
+									)}
+									{(showOne || showThree || showFive || showSeven)
+										? (<>
+											<Button style={colorButton} onClick={setColorPicker} />
+											<HexColorPicker
+												style={{ display: isColorPicker ? 'flex' : 'none', marginTop: '10px' }}
+												color={customColor}
+												onChange={setCustomColor}
+											/>
+										</>)
+										: null}
+									{/* <Input type="color" id="picker" name="picker" value="#808080" onChange={e => console.log(e.target.value)} /> */}
+								</td>
+							</tr>
+							<tr>
+								<th>Need Custom User Manual? </th>
+								<td style={{ paddingLeft: '1em', verticalAlign: 'middle' }}>
+									<FormControl>
+										<RadioGroup
+											row
+											aria-labelledby="demo-row-radio-buttons-group-label"
+											name="row-radio-buttons-group"
+											onChange={onCustomManual}
+											className="custom-radio"
+										>
+											<FormControlLabel value="yes" control={<Radio />} label="Yes" />
+											<FormControlLabel value="no" control={<Radio />} label="No" />
+										</RadioGroup>
+									</FormControl>
+								</td>
+							</tr>
+							<tr>
+								<th>Need Custom Packaging or Shipping Carton? </th>
+								<td style={{ paddingLeft: '1em', verticalAlign: 'middle' }}>
+									<FormControl>
+										<RadioGroup
+											row
+											aria-labelledby="demo-row-radio-buttons-group-label"
+											name="row-radio-buttons-group"
+											onChange={onCustomPackaging}
+											className="custom-radio"
+										>
+											<FormControlLabel value="yes" control={<Radio />} label="Yes" />
+											<FormControlLabel value="no" control={<Radio />} label="No" />
+										</RadioGroup>
+									</FormControl>
+								</td>
+							</tr>
+							<tr>
+								<th style={{ paddingTop: '1em' }}>Your Email Address:</th>
+								<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
+									<Input type="email" id="customerEmail" onChange={onEmailInput} />
+								</td>
+							</tr>
+							<tr>
+								<th style={{ paddingTop: '1em' }}>Message:</th>
+								<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
+									<TextField
+										id="outlined-multiline-static"
+										label="Your Message"
+										multiline
+										rows={2}
+										placeholder="Your Message"
+										sx={{ width: '280px' }}
+										className="messageInput"
+										onChange={onMessageField}
+									/>
+								</td>
+							</tr>
+							{/* <tr>
 							<th style={{ paddingTop: '1em' }}>Confirm Your Design:</th>
 							<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
 								<label htmlFor="screen-button-file" style={{ display: 'block' }}>
@@ -966,21 +967,22 @@ export default function VapeWidget(props) {
 								</label>
 							</td>
 						</tr> */}
-					</tbody>
-				</table>
-				{/* {screenshot && (
+						</tbody>
+					</table>
+					{/* {screenshot && (
 					<a href={screenshot} download ref={downloadRef} style={{ display: 'none' }}>
 						<Image src={screenshot} alt="screenshot" width="600" height="800" style={{ display: 'none' }} />
 					</a>
 				)} */}
-				<Button
-					onClick={onSubmitCustom}
-					className={styles.funcBtn}
-					style={{ display: 'block', margin: '0 auto', padding: '6px 20px' }}
-				>
-					Submit
-				</Button>
+					<Button
+						onClick={onSubmitCustom}
+						className={styles.funcBtn}
+						style={{ display: 'block', margin: '0 auto', padding: '6px 20px' }}
+					>
+						Submit
+					</Button>
+				</div>
 			</div>
-		</div>
+		</React.Fragment>
 	);
 }
