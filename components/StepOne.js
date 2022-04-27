@@ -15,11 +15,11 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export default function StepOne(props) {
-    const [category, setCategory] = useState('');
+	const [category, setCategory] = useState('');
 
 	const handleChange = (event) => {
 		props.category(event.target.value);
-        setCategory(event.target.value);
+		setCategory(event.target.value);
 	};
 
 	const formStyles = {
@@ -28,8 +28,8 @@ export default function StepOne(props) {
 	};
 
 	return (
-		<div style={{padding: '0 16px'}}>
-			<h3>Customize Your Vaping Hardware</h3>
+		<div style={{ padding: '0 16px' }}>
+			<h3>iKrusher Customization Instructions</h3>
 			<p>
 				We offer a variety of custom vape cartridges, vape pen batteries, disposable vape pens, and many
 				packaging choices to go with them! We pride ourselves as a reliable and reputable company providing a
@@ -39,9 +39,7 @@ export default function StepOne(props) {
 			<div id="custom-step1">
 				<h5>Step 1: Select a Product Category</h5>
 				<p>
-					Instruction here...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit,
-					vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt
-					id.
+					Use the dropdown menu below to select the product category that you wish to customize.
 				</p>
 				<Box sx={{ width: 300 }}>
 					<FormControl fullWidth style={formStyles}>

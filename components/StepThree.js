@@ -169,8 +169,8 @@ const products = [
 ];
 
 export default function StepThree(props) {
-	const [ widget, setWidget ] = useState('');
-	const [ isReturn, setIsReturn ] = useState(false);
+	const [widget, setWidget] = useState('');
+	const [isReturn, setIsReturn] = useState(false);
 
 	const pull_widget = (data) => {
 		console.log(`pull widget: ${data}`);
@@ -185,7 +185,11 @@ export default function StepThree(props) {
 		console.log(window.innerWidth);
 		if (window.innerWidth > 810) {
 			return (
-				<div>
+				<div id="custom-step3" style={{ padding: '0 16px' }}>
+					<h5>Step 3: Review the Selected Product & Start Customization </h5>
+					<p>
+						Once you review the selected product's details and confirm that it is the right product to customize, click the "Start Customization" button to proceed.
+					</p>
 					<div id="product-description">
 						<ProductDescription
 							productName={props.prodName}
@@ -195,261 +199,265 @@ export default function StepThree(props) {
 						/>
 					</div>
 					{props.prodName === 'Astro Mod' &&
-					isReturn && (
-						<VapeWidget
-							productID={AstroMod.productID}
-							productCate={AstroMod.productCate}
-							productFolder={AstroMod.productFolder}
-							productImages={AstroMod.productImages}
-							productColors={AstroMod.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={AstroMod.productID}
+								productCate={AstroMod.productCate}
+								productFolder={AstroMod.productFolder}
+								productImages={AstroMod.productImages}
+								productColors={AstroMod.productColors}
+							/>
+						)}
 					{props.prodName === 'Astro Stik' &&
-					isReturn && (
-						<VapeWidget
-							productID={AstroStik.productID}
-							productCate={AstroStik.productCate}
-							productFolder={AstroStik.productFolder}
-							productImages={AstroStik.productImages}
-							productColors={AstroStik.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={AstroStik.productID}
+								productCate={AstroStik.productCate}
+								productFolder={AstroStik.productFolder}
+								productImages={AstroStik.productImages}
+								productColors={AstroStik.productColors}
+							/>
+						)}
 					{props.prodName === 'Katto' &&
-					isReturn && (
-						<VapeWidget
-							productID={Katto.productID}
-							productCate={Katto.productCate}
-							productFolder={Katto.productFolder}
-							productImages={Katto.productImages}
-							productColors={Katto.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={Katto.productID}
+								productCate={Katto.productCate}
+								productFolder={Katto.productFolder}
+								productImages={Katto.productImages}
+								productColors={Katto.productColors}
+							/>
+						)}
 					{props.prodName === 'Vfire Pro' &&
-					isReturn && (
-						<VapeWidget
-							productID={VfirePro.productID}
-							productCate={VfirePro.productCate}
-							productFolder={VfirePro.productFolder}
-							productImages={VfirePro.productImages}
-							productColors={VfirePro.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={VfirePro.productID}
+								productCate={VfirePro.productCate}
+								productFolder={VfirePro.productFolder}
+								productImages={VfirePro.productImages}
+								productColors={VfirePro.productColors}
+							/>
+						)}
 					{props.prodName === 'Xenair' &&
-					isReturn && (
-						<VapeWidget
-							productID={Xenair.productID}
-							productCate={Xenair.productCate}
-							productFolder={Xenair.productFolder}
-							productImages={Xenair.productImages}
-							productColors={Xenair.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={Xenair.productID}
+								productCate={Xenair.productCate}
+								productFolder={Xenair.productFolder}
+								productImages={Xenair.productImages}
+								productColors={Xenair.productColors}
+							/>
+						)}
 					{props.prodName === 'Astro Mod Battery' &&
-					isReturn && (
-						<VapeWidget
-							productID={AstroModBattery.productID}
-							productCate={AstroModBattery.productCate}
-							productFolder={AstroModBattery.productFolder}
-							productImages={AstroModBattery.productImages}
-							productColors={AstroModBattery.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={AstroModBattery.productID}
+								productCate={AstroModBattery.productCate}
+								productFolder={AstroModBattery.productFolder}
+								productImages={AstroModBattery.productImages}
+								productColors={AstroModBattery.productColors}
+							/>
+						)}
 					{props.prodName === 'Astro Stik Battery' &&
-					isReturn && (
-						<VapeWidget
-							productID={AstroStikBattery.productID}
-							productCate={AstroStikBattery.productCate}
-							productFolder={AstroStikBattery.productFolder}
-							productImages={AstroStikBattery.productImages}
-							productColors={AstroStikBattery.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={AstroStikBattery.productID}
+								productCate={AstroStikBattery.productCate}
+								productFolder={AstroStikBattery.productFolder}
+								productImages={AstroStikBattery.productImages}
+								productColors={AstroStikBattery.productColors}
+							/>
+						)}
 					{props.prodName === 'S1' &&
-					isReturn && (
-						<VapeWidget
-							productID={S1.productID}
-							productCate={S1.productCate}
-							productFolder={S1.productFolder}
-							productImages={S1.productImages}
-							productColors={S1.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={S1.productID}
+								productCate={S1.productCate}
+								productFolder={S1.productFolder}
+								productImages={S1.productImages}
+								productColors={S1.productColors}
+							/>
+						)}
 					{props.prodName === 'S2' &&
-					isReturn && (
-						<VapeWidget
-							productID={S2.productID}
-							productCate={S2.productCate}
-							productFolder={S2.productFolder}
-							productImages={S2.productImages}
-							productColors={S2.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={S2.productID}
+								productCate={S2.productCate}
+								productFolder={S2.productFolder}
+								productImages={S2.productImages}
+								productColors={S2.productColors}
+							/>
+						)}
 					{props.prodName === 'Vfire Pro Battery' &&
-					isReturn && (
-						<VapeWidget
-							productID={VfireProBattery.productID}
-							productCate={VfireProBattery.productCate}
-							productFolder={VfireProBattery.productFolder}
-							productImages={VfireProBattery.productImages}
-							productColors={VfireProBattery.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={VfireProBattery.productID}
+								productCate={VfireProBattery.productCate}
+								productFolder={VfireProBattery.productFolder}
+								productImages={VfireProBattery.productImages}
+								productColors={VfireProBattery.productColors}
+							/>
+						)}
 					{props.prodName === 'Calibr Pro Flat' &&
-					isReturn && (
-						<VapeWidget
-							productID={CalibrProFlat.productID}
-							productCate={CalibrProFlat.productCate}
-							productFolder={CalibrProFlat.productFolder}
-							productImages={CalibrProFlat.productImages}
-							productColors={CalibrProFlat.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={CalibrProFlat.productID}
+								productCate={CalibrProFlat.productCate}
+								productFolder={CalibrProFlat.productFolder}
+								productImages={CalibrProFlat.productImages}
+								productColors={CalibrProFlat.productColors}
+							/>
+						)}
 					{props.prodName === 'Calibr Pro Round' &&
-					isReturn && (
-						<VapeWidget
-							productID={CalibrProRound.productID}
-							productCate={CalibrProRound.productCate}
-							productFolder={CalibrProRound.productFolder}
-							productImages={CalibrProRound.productImages}
-							productColors={CalibrProRound.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={CalibrProRound.productID}
+								productCate={CalibrProRound.productCate}
+								productFolder={CalibrProRound.productFolder}
+								productImages={CalibrProRound.productImages}
+								productColors={CalibrProRound.productColors}
+							/>
+						)}
 					{props.prodName === 'Tux' &&
-					isReturn && (
-						<VapeWidget
-							productID={Tux.productID}
-							productCate={Tux.productCate}
-							productFolder={Tux.productFolder}
-							productImages={Tux.productImages}
-							productColors={Tux.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={Tux.productID}
+								productCate={Tux.productCate}
+								productFolder={Tux.productFolder}
+								productImages={Tux.productImages}
+								productColors={Tux.productColors}
+							/>
+						)}
 					{props.prodName === 'Tux Pro' &&
-					isReturn && (
-						<VapeWidget
-							productID={TuxPro.productID}
-							productCate={TuxPro.productCate}
-							productFolder={TuxPro.productFolder}
-							productImages={TuxPro.productImages}
-							productColors={TuxPro.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={TuxPro.productID}
+								productCate={TuxPro.productCate}
+								productFolder={TuxPro.productFolder}
+								productImages={TuxPro.productImages}
+								productColors={TuxPro.productColors}
+							/>
+						)}
 					{props.prodName === 'Eros' &&
-					isReturn && (
-						<VapeWidget
-							productID={Eros.productID}
-							productCate={Eros.productCate}
-							productFolder={Eros.productFolder}
-							productImages={Eros.productImages}
-							productColors={Eros.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={Eros.productID}
+								productCate={Eros.productCate}
+								productFolder={Eros.productFolder}
+								productImages={Eros.productImages}
+								productColors={Eros.productColors}
+							/>
+						)}
 					{props.prodName === 'Eros Pro Flat' &&
-					isReturn && (
-						<VapeWidget
-							productID={ErosProFlat.productID}
-							productCate={ErosProFlat.productCate}
-							productFolder={ErosProFlat.productFolder}
-							productImages={ErosProFlat.productImages}
-							productColors={ErosProFlat.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={ErosProFlat.productID}
+								productCate={ErosProFlat.productCate}
+								productFolder={ErosProFlat.productFolder}
+								productImages={ErosProFlat.productImages}
+								productColors={ErosProFlat.productColors}
+							/>
+						)}
 					{props.prodName === 'Eros Pro Round' &&
-					isReturn && (
-						<VapeWidget
-							productID={ErosProRound.productID}
-							productCate={ErosProRound.productCate}
-							productFolder={ErosProRound.productFolder}
-							productImages={ErosProRound.productImages}
-							productColors={ErosProRound.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={ErosProRound.productID}
+								productCate={ErosProRound.productCate}
+								productFolder={ErosProRound.productFolder}
+								productImages={ErosProRound.productImages}
+								productColors={ErosProRound.productColors}
+							/>
+						)}
 					{props.prodName === 'Nord' &&
-					isReturn && (
-						<VapeWidget
-							productID={Nord.productID}
-							productCate={Nord.productCate}
-							productFolder={Nord.productFolder}
-							productImages={Nord.productImages}
-							productColors={Nord.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={Nord.productID}
+								productCate={Nord.productCate}
+								productFolder={Nord.productFolder}
+								productImages={Nord.productImages}
+								productColors={Nord.productColors}
+							/>
+						)}
 					{props.prodName === 'Tik Pro' &&
-					isReturn && (
-						<VapeWidget
-							productID={TikPro.productID}
-							productCate={TikPro.productCate}
-							productFolder={TikPro.productFolder}
-							productImages={TikPro.productImages}
-							productColors={TikPro.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={TikPro.productID}
+								productCate={TikPro.productCate}
+								productFolder={TikPro.productFolder}
+								productImages={TikPro.productImages}
+								productColors={TikPro.productColors}
+							/>
+						)}
 					{props.prodName === 'Uzo' &&
-					isReturn && (
-						<VapeWidget
-							productID={Uzo.productID}
-							productCate={Uzo.productCate}
-							productFolder={Uzo.productFolder}
-							productImages={Uzo.productImages}
-							productColors={Uzo.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={Uzo.productID}
+								productCate={Uzo.productCate}
+								productFolder={Uzo.productFolder}
+								productImages={Uzo.productImages}
+								productColors={Uzo.productColors}
+							/>
+						)}
 					{props.prodName === 'Uzo Plus' &&
-					isReturn && (
-						<VapeWidget
-							productID={UzoPlus.productID}
-							productCate={UzoPlus.productCate}
-							productFolder={UzoPlus.productFolder}
-							productImages={UzoPlus.productImages}
-							productColors={UzoPlus.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={UzoPlus.productID}
+								productCate={UzoPlus.productCate}
+								productFolder={UzoPlus.productFolder}
+								productImages={UzoPlus.productImages}
+								productColors={UzoPlus.productColors}
+							/>
+						)}
 					{props.prodName === 'Xenbar' &&
-					isReturn && (
-						<VapeWidget
-							productID={Xenbar.productID}
-							productCate={Xenbar.productCate}
-							productFolder={Xenbar.productFolder}
-							productImages={Xenbar.productImages}
-							productColors={Xenbar.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={Xenbar.productID}
+								productCate={Xenbar.productCate}
+								productFolder={Xenbar.productFolder}
+								productImages={Xenbar.productImages}
+								productColors={Xenbar.productColors}
+							/>
+						)}
 					{props.prodName === 'Xenbar Pro' &&
-					isReturn && (
-						<VapeWidget
-							productID={XenbarPro.productID}
-							productCate={XenbarPro.productCate}
-							productFolder={XenbarPro.productFolder}
-							productImages={XenbarPro.productImages}
-							productColors={XenbarPro.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={XenbarPro.productID}
+								productCate={XenbarPro.productCate}
+								productFolder={XenbarPro.productFolder}
+								productImages={XenbarPro.productImages}
+								productColors={XenbarPro.productColors}
+							/>
+						)}
 					{props.prodName === 'Xodos' &&
-					isReturn && (
-						<VapeWidget
-							productID={Xodos.productID}
-							productCate={Xodos.productCate}
-							productFolder={Xodos.productFolder}
-							productImages={Xodos.productImages}
-							productColors={Xodos.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={Xodos.productID}
+								productCate={Xodos.productCate}
+								productFolder={Xodos.productFolder}
+								productImages={Xodos.productImages}
+								productColors={Xodos.productColors}
+							/>
+						)}
 					{props.prodName === 'Xodos Pro' &&
-					isReturn && (
-						<VapeWidget
-							productID={XodosPro.productID}
-							productCate={XodosPro.productCate}
-							productFolder={XodosPro.productFolder}
-							productImages={XodosPro.productImages}
-							productColors={XodosPro.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidget
+								productID={XodosPro.productID}
+								productCate={XodosPro.productCate}
+								productFolder={XodosPro.productFolder}
+								productImages={XodosPro.productImages}
+								productColors={XodosPro.productColors}
+							/>
+						)}
 				</div>
 			);
 		} else {
 			return (
-				<div>
-					<div id="product-description" style={{padding: '0 16px 16px', margin: '16px'}}>
+				<div id="custom-step3" style={{ padding: '0 16px' }}>
+					<h5>Step 3: Review the Selected Product & Start Customization </h5>
+					<p>
+						Once you review the selected product's details and confirm that it is the right product to customize, click the "Start Customization" button to proceed.
+					</p>
+					<div id="product-description" style={{ padding: '0 16px 16px', margin: '16px' }}>
 						<ProductDescriptionMobile
 							productName={props.prodName}
 							colors={findColors}
@@ -458,255 +466,255 @@ export default function StepThree(props) {
 						/>
 					</div>
 					{props.prodName === 'Astro Mod' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={AstroMod.productID}
-							productCate={AstroMod.productCate}
-							productFolder={AstroMod.productFolder}
-							productImages={AstroMod.productImages}
-							productColors={AstroMod.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={AstroMod.productID}
+								productCate={AstroMod.productCate}
+								productFolder={AstroMod.productFolder}
+								productImages={AstroMod.productImages}
+								productColors={AstroMod.productColors}
+							/>
+						)}
 					{props.prodName === 'Astro Stik' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={AstroStik.productID}
-							productCate={AstroStik.productCate}
-							productFolder={AstroStik.productFolder}
-							productImages={AstroStik.productImages}
-							productColors={AstroStik.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={AstroStik.productID}
+								productCate={AstroStik.productCate}
+								productFolder={AstroStik.productFolder}
+								productImages={AstroStik.productImages}
+								productColors={AstroStik.productColors}
+							/>
+						)}
 					{props.prodName === 'Katto' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={Katto.productID}
-							productCate={Katto.productCate}
-							productFolder={Katto.productFolder}
-							productImages={Katto.productImages}
-							productColors={Katto.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={Katto.productID}
+								productCate={Katto.productCate}
+								productFolder={Katto.productFolder}
+								productImages={Katto.productImages}
+								productColors={Katto.productColors}
+							/>
+						)}
 					{props.prodName === 'Vfire Pro' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={VfirePro.productID}
-							productCate={VfirePro.productCate}
-							productFolder={VfirePro.productFolder}
-							productImages={VfirePro.productImages}
-							productColors={VfirePro.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={VfirePro.productID}
+								productCate={VfirePro.productCate}
+								productFolder={VfirePro.productFolder}
+								productImages={VfirePro.productImages}
+								productColors={VfirePro.productColors}
+							/>
+						)}
 					{props.prodName === 'Xenair' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={Xenair.productID}
-							productCate={Xenair.productCate}
-							productFolder={Xenair.productFolder}
-							productImages={Xenair.productImages}
-							productColors={Xenair.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={Xenair.productID}
+								productCate={Xenair.productCate}
+								productFolder={Xenair.productFolder}
+								productImages={Xenair.productImages}
+								productColors={Xenair.productColors}
+							/>
+						)}
 					{props.prodName === 'Astro Mod Battery' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={AstroModBattery.productID}
-							productCate={AstroModBattery.productCate}
-							productFolder={AstroModBattery.productFolder}
-							productImages={AstroModBattery.productImages}
-							productColors={AstroModBattery.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={AstroModBattery.productID}
+								productCate={AstroModBattery.productCate}
+								productFolder={AstroModBattery.productFolder}
+								productImages={AstroModBattery.productImages}
+								productColors={AstroModBattery.productColors}
+							/>
+						)}
 					{props.prodName === 'Astro Stik Battery' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={AstroStikBattery.productID}
-							productCate={AstroStikBattery.productCate}
-							productFolder={AstroStikBattery.productFolder}
-							productImages={AstroStikBattery.productImages}
-							productColors={AstroStikBattery.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={AstroStikBattery.productID}
+								productCate={AstroStikBattery.productCate}
+								productFolder={AstroStikBattery.productFolder}
+								productImages={AstroStikBattery.productImages}
+								productColors={AstroStikBattery.productColors}
+							/>
+						)}
 					{props.prodName === 'S1' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={S1.productID}
-							productCate={S1.productCate}
-							productFolder={S1.productFolder}
-							productImages={S1.productImages}
-							productColors={S1.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={S1.productID}
+								productCate={S1.productCate}
+								productFolder={S1.productFolder}
+								productImages={S1.productImages}
+								productColors={S1.productColors}
+							/>
+						)}
 					{props.prodName === 'S2' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={S2.productID}
-							productCate={S2.productCate}
-							productFolder={S2.productFolder}
-							productImages={S2.productImages}
-							productColors={S2.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={S2.productID}
+								productCate={S2.productCate}
+								productFolder={S2.productFolder}
+								productImages={S2.productImages}
+								productColors={S2.productColors}
+							/>
+						)}
 					{props.prodName === 'Vfire Pro Battery' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={VfireProBattery.productID}
-							productCate={VfireProBattery.productCate}
-							productFolder={VfireProBattery.productFolder}
-							productImages={VfireProBattery.productImages}
-							productColors={VfireProBattery.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={VfireProBattery.productID}
+								productCate={VfireProBattery.productCate}
+								productFolder={VfireProBattery.productFolder}
+								productImages={VfireProBattery.productImages}
+								productColors={VfireProBattery.productColors}
+							/>
+						)}
 					{props.prodName === 'Calibr Pro Flat' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={CalibrProFlat.productID}
-							productCate={CalibrProFlat.productCate}
-							productFolder={CalibrProFlat.productFolder}
-							productImages={CalibrProFlat.productImages}
-							productColors={CalibrProFlat.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={CalibrProFlat.productID}
+								productCate={CalibrProFlat.productCate}
+								productFolder={CalibrProFlat.productFolder}
+								productImages={CalibrProFlat.productImages}
+								productColors={CalibrProFlat.productColors}
+							/>
+						)}
 					{props.prodName === 'Calibr Pro Round' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={CalibrProRound.productID}
-							productCate={CalibrProRound.productCate}
-							productFolder={CalibrProRound.productFolder}
-							productImages={CalibrProRound.productImages}
-							productColors={CalibrProRound.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={CalibrProRound.productID}
+								productCate={CalibrProRound.productCate}
+								productFolder={CalibrProRound.productFolder}
+								productImages={CalibrProRound.productImages}
+								productColors={CalibrProRound.productColors}
+							/>
+						)}
 					{props.prodName === 'Tux' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={Tux.productID}
-							productCate={Tux.productCate}
-							productFolder={Tux.productFolder}
-							productImages={Tux.productImages}
-							productColors={Tux.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={Tux.productID}
+								productCate={Tux.productCate}
+								productFolder={Tux.productFolder}
+								productImages={Tux.productImages}
+								productColors={Tux.productColors}
+							/>
+						)}
 					{props.prodName === 'Tux Pro' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={TuxPro.productID}
-							productCate={TuxPro.productCate}
-							productFolder={TuxPro.productFolder}
-							productImages={TuxPro.productImages}
-							productColors={TuxPro.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={TuxPro.productID}
+								productCate={TuxPro.productCate}
+								productFolder={TuxPro.productFolder}
+								productImages={TuxPro.productImages}
+								productColors={TuxPro.productColors}
+							/>
+						)}
 					{props.prodName === 'Eros' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={Eros.productID}
-							productCate={Eros.productCate}
-							productFolder={Eros.productFolder}
-							productImages={Eros.productImages}
-							productColors={Eros.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={Eros.productID}
+								productCate={Eros.productCate}
+								productFolder={Eros.productFolder}
+								productImages={Eros.productImages}
+								productColors={Eros.productColors}
+							/>
+						)}
 					{props.prodName === 'Eros Pro Flat' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={ErosProFlat.productID}
-							productCate={ErosProFlat.productCate}
-							productFolder={ErosProFlat.productFolder}
-							productImages={ErosProFlat.productImages}
-							productColors={ErosProFlat.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={ErosProFlat.productID}
+								productCate={ErosProFlat.productCate}
+								productFolder={ErosProFlat.productFolder}
+								productImages={ErosProFlat.productImages}
+								productColors={ErosProFlat.productColors}
+							/>
+						)}
 					{props.prodName === 'Eros Pro Round' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={ErosProRound.productID}
-							productCate={ErosProRound.productCate}
-							productFolder={ErosProRound.productFolder}
-							productImages={ErosProRound.productImages}
-							productColors={ErosProRound.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={ErosProRound.productID}
+								productCate={ErosProRound.productCate}
+								productFolder={ErosProRound.productFolder}
+								productImages={ErosProRound.productImages}
+								productColors={ErosProRound.productColors}
+							/>
+						)}
 					{props.prodName === 'Nord' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={Nord.productID}
-							productCate={Nord.productCate}
-							productFolder={Nord.productFolder}
-							productImages={Nord.productImages}
-							productColors={Nord.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={Nord.productID}
+								productCate={Nord.productCate}
+								productFolder={Nord.productFolder}
+								productImages={Nord.productImages}
+								productColors={Nord.productColors}
+							/>
+						)}
 					{props.prodName === 'Tik Pro' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={TikPro.productID}
-							productCate={TikPro.productCate}
-							productFolder={TikPro.productFolder}
-							productImages={TikPro.productImages}
-							productColors={TikPro.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={TikPro.productID}
+								productCate={TikPro.productCate}
+								productFolder={TikPro.productFolder}
+								productImages={TikPro.productImages}
+								productColors={TikPro.productColors}
+							/>
+						)}
 					{props.prodName === 'Uzo' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={Uzo.productID}
-							productCate={Uzo.productCate}
-							productFolder={Uzo.productFolder}
-							productImages={Uzo.productImages}
-							productColors={Uzo.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={Uzo.productID}
+								productCate={Uzo.productCate}
+								productFolder={Uzo.productFolder}
+								productImages={Uzo.productImages}
+								productColors={Uzo.productColors}
+							/>
+						)}
 					{props.prodName === 'Uzo Plus' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={UzoPlus.productID}
-							productCate={UzoPlus.productCate}
-							productFolder={UzoPlus.productFolder}
-							productImages={UzoPlus.productImages}
-							productColors={UzoPlus.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={UzoPlus.productID}
+								productCate={UzoPlus.productCate}
+								productFolder={UzoPlus.productFolder}
+								productImages={UzoPlus.productImages}
+								productColors={UzoPlus.productColors}
+							/>
+						)}
 					{props.prodName === 'Xenbar' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={Xenbar.productID}
-							productCate={Xenbar.productCate}
-							productFolder={Xenbar.productFolder}
-							productImages={Xenbar.productImages}
-							productColors={Xenbar.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={Xenbar.productID}
+								productCate={Xenbar.productCate}
+								productFolder={Xenbar.productFolder}
+								productImages={Xenbar.productImages}
+								productColors={Xenbar.productColors}
+							/>
+						)}
 					{props.prodName === 'Xenbar Pro' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={XenbarPro.productID}
-							productCate={XenbarPro.productCate}
-							productFolder={XenbarPro.productFolder}
-							productImages={XenbarPro.productImages}
-							productColors={XenbarPro.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={XenbarPro.productID}
+								productCate={XenbarPro.productCate}
+								productFolder={XenbarPro.productFolder}
+								productImages={XenbarPro.productImages}
+								productColors={XenbarPro.productColors}
+							/>
+						)}
 					{props.prodName === 'Xodos' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={Xodos.productID}
-							productCate={Xodos.productCate}
-							productFolder={Xodos.productFolder}
-							productImages={Xodos.productImages}
-							productColors={Xodos.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={Xodos.productID}
+								productCate={Xodos.productCate}
+								productFolder={Xodos.productFolder}
+								productImages={Xodos.productImages}
+								productColors={Xodos.productColors}
+							/>
+						)}
 					{props.prodName === 'Xodos Pro' &&
-					isReturn && (
-						<VapeWidgetMobile
-							productID={XodosPro.productID}
-							productCate={XodosPro.productCate}
-							productFolder={XodosPro.productFolder}
-							productImages={XodosPro.productImages}
-							productColors={XodosPro.productColors}
-						/>
-					)}
+						isReturn && (
+							<VapeWidgetMobile
+								productID={XodosPro.productID}
+								productCate={XodosPro.productCate}
+								productFolder={XodosPro.productFolder}
+								productImages={XodosPro.productImages}
+								productColors={XodosPro.productColors}
+							/>
+						)}
 				</div>
 			);
 		}

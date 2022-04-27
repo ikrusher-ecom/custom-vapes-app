@@ -438,7 +438,7 @@ export default function VapeWidget(props) {
 				.then((res) => {
 					setImageSaved([...imageSaved, res.path]);
 					setUploaded(!uploaded);
-					console.log("uploaded" + res.path)
+					console.log("uploaded: " + res.path)
 				});
 		}
 	}
@@ -459,7 +459,8 @@ export default function VapeWidget(props) {
 	};
 
 	return (
-		<div className="custom-vape">
+		<div className="custom-vape" id="custom-step4" style={{ padding: '0 16px' }}>
+			<h5>Customize Your Device Now!</h5>
 			<div className={'next-btn ' + styles.angleBtns}>
 				<Button onClick={lastAngle} disabled={num <= 1} className={styles.roundBtn} style={{ float: 'left' }}>
 					<ArrowBackIosIcon fontSize="large" />
@@ -647,7 +648,7 @@ export default function VapeWidget(props) {
 				<table>
 					<tbody>
 						<tr>
-							<th>Available Colors:</th>
+							<th>Select a Color:</th>
 							<td>
 								<Box sx={{ width: 300 }}>
 									<FormControl fullWidth style={{ fontSize: '16px' }}>
