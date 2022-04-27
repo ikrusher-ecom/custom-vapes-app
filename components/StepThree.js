@@ -77,7 +77,7 @@ const products = [
 		colors: 'Black, Lilac, Red, White, Yellow'
 	},
 	{
-		url: '/products/cartridge/tux/iKrusher-Tux--Calibr-White-Custom-03.jpg',
+		url: '/products/cartridge/tux/iKrusher-Tux-Calibr-Black-Custom-01.jpg',
 		title: 'Tux',
 		colors: 'Black, Red, Green Tourmaline, White'
 	},
