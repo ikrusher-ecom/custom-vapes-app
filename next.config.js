@@ -18,7 +18,7 @@ module.exports = {
 		prodDir: 'https://ikrusher-custom-vapes.herokuapp.com'
 	},
 	images: {
-		domains: [ 'custom-vapes-app.vercel.app' ]
+		domains: [ 'https://ikrusher-custom-vapes.herokuapp.com' ]
 	},
 	eslint: {
 		ignoreDuringBuilds: true
