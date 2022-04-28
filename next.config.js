@@ -15,10 +15,10 @@ module.exports = nextConfig;
 module.exports = {
 	env: {
 		devDir: 'http://localhost:3000',
-		prodDir: 'https://ikrusher-custom-vapes.herokuapp.com'
+		prodDir: 'https://custom-vapes-app.vercel.app'
 	},
 	images: {
-		domains: [ 'https://ikrusher-custom-vapes.herokuapp.com' ]
+		domains: [ 'custom-vapes-app.vercel.app' ]
 	},
 	eslint: {
 		ignoreDuringBuilds: true
