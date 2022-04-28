@@ -625,7 +625,7 @@ export default function VapeWidgetMobile(props) {
 									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
 									defaultPosition={{ x: 100, y: 100 }}
 								>
-									<div id="display-text-three">
+									<div id="display-text-three" style={changeColor}>
 										{(textThree && showThree) ? textThree : null}
 									</div>
 								</Draggable>
@@ -639,7 +639,7 @@ export default function VapeWidgetMobile(props) {
 									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
 									defaultPosition={{ x: 100, y: 100 }}
 								>
-									<div id="display-text-five">
+									<div id="display-text-five" style={changeColor}>
 										{(textFive && showFive) ? textFive : null}
 									</div>
 								</Draggable>
@@ -653,7 +653,7 @@ export default function VapeWidgetMobile(props) {
 									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
 									defaultPosition={{ x: 100, y: 100 }}
 								>
-									<div id="display-text-seven">
+									<div id="display-text-seven" style={changeColor}>
 										{(textSeven && showSeven) ? textSeven : null}
 									</div>
 								</Draggable>
