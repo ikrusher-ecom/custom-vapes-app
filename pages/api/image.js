@@ -46,6 +46,16 @@ export default async (req, res) => {
 //     });
   
 //     const bucket = storage.bucket("storage");
+
+//     const data = await new Promise((resolve, reject) => {
+//         const form = new formidable.IncomingForm();
+//         form.parse(req, (err, fields, files) => {
+//             if (err) return reject(err);
+//             console.log(`fields: ${fields}, files: ${files}`);
+
+//             const file = bucket.file(files.file);
+//         })
+//     })
 //     const file = bucket.file(req.query.file);
 //     const options = {
 //       expires: Date.now() + 1 * 60 * 1000, //  1 minute,
