@@ -15,7 +15,7 @@ module.exports = nextConfig;
 module.exports = {
 	env: {
 		devDir: 'http://localhost:3000',
-		prodDir: 'https://custom-vapes-app.vercel.app'
+		prodDir: 'https://ikrusher-custom-vapes.herokuapp.com'
 	},
 	images: {
 		domains: [ 'custom-vapes-app.vercel.app' ]
