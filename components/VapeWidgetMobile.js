@@ -489,7 +489,7 @@ export default function VapeWidgetMobile(props) {
 							maxWidth: '600px',
 							maxHeight: '800px',
 							width: '100%',
-							height: '800px'
+							height: '700px'
 						}}
 					>
 						{/* <div> */}

@@ -38,11 +38,11 @@ export default function ProductDescriptionMobile(props) {
                         </tr> */}
 						<tr>
 							<th>Allow Upload Logo:</th>
-							<td>Yes, list the image format and size</td>
+							<td>Yes.</td>
 						</tr>
 						<tr>
 							<th>Allow Custom Text:</th>
-							<td>Yes, show the font family/size and numbers of characters</td>
+							<td>Yes.</td>
 						</tr>
 						<tr>
 							<th>Others:</th>

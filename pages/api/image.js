@@ -30,9 +30,7 @@ export default async (req, res) => {
             mv(oldPath, newPath, (err) => { console.log(err) });
 
             res.status(200)
-            // .json({ fields, files })
             .json({path: `${process.env.prodDir}/uploads/${files.file.originalFilename}`})
-            // console.log(`${process.env.prodDir}/uploads/${files.file.originalFilename}`)
         })
     })
 }
