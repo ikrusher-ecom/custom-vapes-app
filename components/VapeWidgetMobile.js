@@ -253,13 +253,14 @@ export default function VapeWidgetMobile(props) {
 	const uploadToServer = async () => {
 		const body = new FormData();
 		body.append('file', image);
-		const response = await fetch('/api/image', {
+		body.append('upload_preset', 'custom-uploads');
+		const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
 			method: 'POST',
 			body
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				return setProdURL(res.path);
+				return setProdURL(res.secure_url);
 			});
 	};
 
@@ -357,18 +358,24 @@ export default function VapeWidgetMobile(props) {
 		sendEmail();
 	}, [formInfo])
 
+	useEffect(() => {
+		setImageSaved([...imageSaved, prodURL]);
+	}, [prodURL, screenshot])
+
+	useEffect(() => {
+		uploadToServer();
+	}, [image])
+
 	const onSubmitCustom = () => {
 		angleOne();
 		setNum(1);
 		takeScreenshot(newRef);
+		setUploaded(false);
 	};
 
 	const submitNext = () => {
 		if (screenshot) {
 			uploadScreenToServer();
-		}
-		if (prodURL) {
-			setImageSaved([...imageSaved, prodURL]);
 		}
 	}
 
@@ -427,15 +434,15 @@ export default function VapeWidgetMobile(props) {
 		if (screenfile) {
 			const body = new FormData();
 			body.append('file', screenfile);
-			const response = await fetch('/api/image', {
+			body.append('upload_preset', 'custom-uploads');
+			const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
 				method: 'POST',
 				body
 			})
 				.then((res) => res.json())
 				.then((res) => {
-					setImageSaved([...imageSaved, res.path]);
-					setUploaded(!uploaded);
-					console.log("uploaded: " + res.path)
+					setImageSaved([...imageSaved, res.secure_url]);
+					setUploaded(true);
 				});
 		}
 	}

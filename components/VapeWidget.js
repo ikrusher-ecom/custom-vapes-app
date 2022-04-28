@@ -36,7 +36,7 @@ import { useScreenshot, createFileName } from 'use-react-screenshot';
 import { HexColorPicker } from 'react-colorful';
 
 export default function VapeWidget(props) {
-	console.log(props);
+	// console.log(props);
 
 	const [num, setNum] = useState(1);
 	const [showOne, setShowOne] = useState(true);
@@ -252,16 +252,17 @@ export default function VapeWidget(props) {
 		}
 	};
 
-	const uploadToServer = async (event) => {
+	const uploadToServer = async () => {
 		const body = new FormData();
 		body.append('file', image);
-		const response = await fetch('/api/image', {
+		body.append('upload_preset', 'custom-uploads');
+		const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
 			method: 'POST',
 			body
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				return setProdURL(res.path);
+				return setProdURL(res.secure_url);
 			});
 	};
 
@@ -360,10 +361,19 @@ export default function VapeWidget(props) {
 		sendEmail();
 	}, [formInfo])
 
+	useEffect(() => {
+		setImageSaved([...imageSaved, prodURL]);
+	}, [prodURL, screenshot])
+
+	useEffect(() => {
+		uploadToServer();
+	}, [image])
+
 	const onSubmitCustom = () => {
 		angleOne();
 		setNum(1);
 		takeScreenshot(newRef);
+		setUploaded(false);
 	};
 
 	const submitNext = () => {
@@ -402,7 +412,7 @@ export default function VapeWidget(props) {
 	}, [sentEmail])
 
 	const sendEmail = () => {
-		console.log("form: " + formInfo);
+		console.log(formInfo);
 		fetch('/api/email', {
 			method: 'POST',
 			headers: {
@@ -430,15 +440,15 @@ export default function VapeWidget(props) {
 		if (screenfile) {
 			const body = new FormData();
 			body.append('file', screenfile);
-			const response = await fetch('/api/image', {
+			body.append('upload_preset', 'custom-uploads');
+			const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
 				method: 'POST',
 				body
 			})
 				.then((res) => res.json())
 				.then((res) => {
-					setImageSaved([...imageSaved, res.path]);
-					setUploaded(!uploaded);
-					console.log("uploaded: " + res.path)
+					setImageSaved([...imageSaved, res.secure_url]);
+					setUploaded(true);
 				});
 		}
 	}

@@ -6,35 +6,36 @@
  * @LastEditTime: 2022-04-17 02:20:35
  * @FilePath: /custom-vapes-app/pages/api/image.js
  */
-import formidable from "formidable";
-import { promises as fs } from 'fs';
-import { Storage } from '@google-cloud/storage';
+// import formidable from "formidable";
+// import { promises as fs } from 'fs';
 
-const mv = require('mv');
+// const mv = require('mv');
 
-export const config = {
-    api: {
-        bodyParser: false
-    }
-};
+// export const config = {
+//     api: {
+//         bodyParser: false
+//     }
+// };
 
-export default async (req, res) => {
-    const data = await new Promise((resolve, reject) => {
-        const form = new formidable.IncomingForm();
-        form.parse(req, (err, fields, files) => {
-            if (err) return reject(err);
+// export default async (req, res) => {
+//     const data = await new Promise((resolve, reject) => {
+//         const form = new formidable.IncomingForm();
+//         form.parse(req, (err, fields, files) => {
+//             if (err) return reject(err);
 
-            console.log(`fields: ${fields}, files: ${files}`);
+//             console.log(fields, files);
 
-            const oldPath = files.file.filepath;
-            const newPath = `./public/uploads/${files.file.originalFilename}`;
-            mv(oldPath, newPath, (err) => { console.log(err) });
+//             const oldPath = files.file.filepath;
+//             const filename = encodeURIComponent(files.file.originalFilename);
+//             const newPath = `${process.env.prodDir}/uploads/${filename}`;
+//             mv(oldPath, newPath, (err) => { console.log("error: " + err) });
+//             console.log("newpath: " + newPath);
 
-            res.status(200)
-            .json({path: `${process.env.prodDir}/uploads/${files.file.originalFilename}`})
-        })
-    })
-}
+//             res.status(200)
+//             .json({path: `${process.env.prodDir}/uploads/${filename}`})
+//         })
+//     })
+// }
 
 // export default async function handler(req, res) {
 //     const storage = new Storage({

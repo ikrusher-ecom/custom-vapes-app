@@ -173,7 +173,7 @@ export default function StepThree(props) {
 	const [isReturn, setIsReturn] = useState(false);
 
 	const pull_widget = (data) => {
-		console.log(`pull widget: ${data}`);
+		// console.log(`pull widget: ${data}`);
 		setWidget(data);
 		setIsReturn(true);
 	};
@@ -182,7 +182,7 @@ export default function StepThree(props) {
 		const findURL = products.filter((obj) => obj.title === props.prodName)[0].url;
 		const findColors = products.filter((obj) => obj.title === props.prodName)[0].colors;
 
-		console.log(window.innerWidth);
+		// console.log(window.innerWidth);
 		if (window.innerWidth > 810) {
 			return (
 				<div id="custom-step3" style={{ padding: '0 16px' }}>
