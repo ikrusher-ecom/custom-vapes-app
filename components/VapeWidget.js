@@ -576,26 +576,34 @@ export default function VapeWidget(props) {
 					{/* </div> */}
 					<div className="text-logo">
 						<div className={'display-one-div ' + angleClass}>
-							{textOne &&
-								showOne && (
-									<Draggable
-										axis="both"
-										bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-										defaultPosition={{ x: 200, y: 300 }}
-									>
-										<div id="display-text-one" style={changeColor}>
-											{textOne}
-										</div>
-									</Draggable>
-								)}
-							{createObjectURL &&
-								showOne && (
-									<Draggable
-										axis="both"
-										bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-										defaultPosition={{ x: 200, y: 300 }}
-									>
-										<div className="display-logo-div">
+							{/* {textOne &&
+									showOne && ( */}
+							<Draggable
+								axis="both"
+								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+								defaultPosition={{ x: 200, y: 300 }}
+							// style={{display: (textOne && showOne) ? 'block' : 'none'}}
+							// top={100}
+							// left={100}
+							// width={150}
+							// height={30}
+							// rotateAngle={0}
+							>
+								<div id="display-text-one" style={changeColor}>
+									{(textOne && showOne) ? textOne : null}
+								</div>
+							</Draggable>
+							{/* )} */}
+							{/* {createObjectURL &&
+									showOne && ( */}
+							<Draggable
+								axis="both"
+								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+								defaultPosition={{ x: 200, y: 300 }}
+							>
+								<div className="display-logo-div">
+									{(createObjectURL && showOne) ?
+										(
 											<Image
 												alt={createObjectURL}
 												id="display-logo-one"
@@ -603,47 +611,56 @@ export default function VapeWidget(props) {
 												layout="fill"
 												objectFit="contain"
 											/>
-										</div>
-									</Draggable>
-								)}
+
+										) : null}
+								</div>
+							</Draggable>
+							{/* )} */}
 						</div>
-						{textThree &&
-							showThree && (
-								<div className="display-three-div">
-									<Draggable
-										axis="both"
-										bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-										defaultPosition={{ x: 200, y: 300 }}
-									>
-										<div id="display-text-three" style={changeColor}>{textThree}</div>
-									</Draggable>
+						{/* {textThree &&
+								showThree && ( */}
+						<div className="display-three-div">
+							<Draggable
+								axis="both"
+								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+								defaultPosition={{ x: 200, y: 300 }}
+							>
+								<div id="display-text-three">
+									{(textThree && showThree) ? textThree : null}
 								</div>
-							)}
-						{textFive &&
-							showFive && (
-								<div className={'display-five-div ' + angleMClass}>
-									<Draggable
-										axis="both"
-										bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-										defaultPosition={{ x: 200, y: 300 }}
-									>
-										<div id="display-text-five" style={changeColor}>{textFive}</div>
-									</Draggable>
+							</Draggable>
+						</div>
+						{/* )} */}
+						{/* {textFive &&
+								showFive && ( */}
+						<div className={'display-five-div ' + angleMClass}>
+							<Draggable
+								axis="both"
+								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+								defaultPosition={{ x: 200, y: 300 }}
+							>
+								<div id="display-text-five">
+									{(textFive && showFive) ? textFive : null}
 								</div>
-							)}
-						{textSeven &&
-							showSeven && (
-								<div className="display-seven-div">
-									<Draggable
-										axis="both"
-										bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-										defaultPosition={{ x: 200, y: 300 }}
-									>
-										<div id="display-text-seven" style={changeColor}>{textSeven}</div>
-									</Draggable>
+							</Draggable>
+						</div>
+						{/* )} */}
+						{/* {textSeven &&
+								showSeven && ( */}
+						<div className="display-seven-div">
+							<Draggable
+								axis="both"
+								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+								defaultPosition={{ x: 200, y: 300 }}
+							>
+								<div id="display-text-seven">
+									{(textSeven && showSeven) ? textSeven : null}
 								</div>
-							)}
+							</Draggable>
+						</div>
+						{/* )} */}
 					</div>
+					{/* </div> */}
 				</div>
 				<div className="input-group">
 					<table>
@@ -983,6 +1000,6 @@ export default function VapeWidget(props) {
 					</Button>
 				</div>
 			</div>
-		</React.Fragment>
+		</React.Fragment >
 	);
 }

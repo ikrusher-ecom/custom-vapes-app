@@ -31,7 +31,7 @@ a {
 	transform: rotateY(45deg);
 	width: 55%;
 	left: 10%;
-    position: absolute;
+	position: absolute;
 }
 
 .angleM45 {
@@ -109,7 +109,7 @@ a {
 	background: transparent;
 }
 
-.product-img > span {
+.product-img>span {
 	margin: 0 auto;
 }
 
@@ -121,20 +121,20 @@ a {
 	max-width: 800px;
 }
 
-#product-description > div {
+#product-description>div {
 	flex-direction: row;
 	justify-content: space-evenly;
 }
 
-#product-description > div > span {
+#product-description>div>span {
 	display: inline-block;
 }
 
 .input-group-mobile {
 	position: relative;
-    top: 900px;
+	top: 900px;
 	width: 100%;
-    min-width: 300px;
+	min-width: 300px;
 	padding: 0 16px 16px;
 }
 
@@ -241,13 +241,14 @@ a.button-style:active {
   } */
 
 .display-logo-div {
-	/* width: 200px;
-	height: 200px; */
-	/* vertical-align: inherit; */
-	/* position: absolute; */
+	width: 200px;
+	height: 200px;
+	/* vertical-align: middle; */
+	position: absolute;
 	display: block;
 	left: 0;
 	right: 0;
+	z-index: 99 !important;
 	/* top: 200px; */
 }
 
@@ -365,23 +366,23 @@ a.button-style:active {
 	display: inline-block;
 }
 
-.input-group > table, .input-group-mobile > table {
+.input-group>table, .input-group-mobile>table {
 	border: none;
 }
 
-.input-group > table th {
+.input-group>table th {
 	width: 35%;
 }
 
-.input-group-mobile > table th {
+.input-group-mobile>table th {
 	width: 45%;
 	min-width: 120px;
 }
 
-.input-group > table th,
-.input-group > table td,
-.input-group-mobile > table th,
-.input-group-mobile > table td {
+.input-group>table th,
+.input-group>table td,
+.input-group-mobile>table th,
+.input-group-mobile>table td {
 	vertical-align: top;
 }
 
