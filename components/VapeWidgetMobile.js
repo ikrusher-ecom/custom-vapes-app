@@ -363,7 +363,9 @@ export default function VapeWidgetMobile(props) {
 	}, [imageSaved, uploaded])
 
 	useEffect(() => {
-		sendEmail();
+		if(uploaded) {
+			sendEmail();
+		}
 	}, [formInfo])
 
 	useEffect(() => {

@@ -325,11 +325,11 @@ export default function VapeWidget(props) {
 
 	const [formInfo, setFormInfo] = useState('');
 
-	const ref = createRef(null);
 	const [screenshot, takeScreenshot] = useScreenshot({
 		type: 'image/png',
 		quality: 1.0
 	});
+
 	const [newRef, setNewRef] = useState(null);
 	const screenRef = (ref) => {
 		setNewRef(ref);
@@ -362,15 +362,17 @@ export default function VapeWidget(props) {
 
 	useEffect(() => {
 		screenshotNext();
-	}, [uploaded])
+	}, [imageSaved, uploaded])
 
 	useEffect(() => {
-		sendEmail();
+		if(uploaded) {
+			sendEmail();
+		}
 	}, [formInfo])
 
 	useEffect(() => {
 		setImageSaved([...imageSaved, prodURL]);
-	}, [prodURL])
+	}, [prodURL, screenshot])
 
 	useEffect(() => {
 		uploadToServer();
@@ -387,13 +389,10 @@ export default function VapeWidget(props) {
 		if (screenshot) {
 			uploadScreenToServer();
 		}
-		if (prodURL) {
-			setImageSaved([...imageSaved, prodURL]);
-		}
 	}
 
 	const screenshotNext = () => {
-		// if (imageSaved) {
+		// if (imageSaved[0]) {
 		setFormInfo({
 			message: `
 					Product: ${props.productCate}, ${props.productID}
@@ -952,21 +951,9 @@ export default function VapeWidget(props) {
 								</td>
 							</tr>
 							<tr>
-								<th style={{ paddingTop: '1em' }}>Your Name:</th>
-								<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
-									<Input type="text" id="customerName" onChange={onNameInput} sx={{ width: '200px' }} />
-								</td>
-							</tr>
-							<tr>
-								<th style={{ paddingTop: '1em' }}>Your Phone Number:</th>
-								<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
-									<Input type="tel" id="customerPhone" onChange={onPhoneInput} sx={{ width: '200px' }} />
-								</td>
-							</tr>
-							<tr>
 								<th style={{ paddingTop: '1em' }}>Your Email Address:</th>
 								<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
-									<Input type="email" id="customerEmail" onChange={onEmailInput} sx={{ width: '200px' }} />
+									<Input type="email" id="customerEmail" onChange={onEmailInput} />
 								</td>
 							</tr>
 							<tr>
