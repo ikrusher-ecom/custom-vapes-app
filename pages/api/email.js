@@ -13,7 +13,7 @@ export default async (req, res) => {
 		host: 'smtp.office365.com',
 		auth: {
 			user: 'info@ikrusher.com',
-			pass: 'Yay32860'
+			pass: 'sh9er#Sw5son@9IKrus.ComlY'
 		},
 		secure: false
 	});
