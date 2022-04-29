@@ -301,11 +301,18 @@ export default function VapeWidget(props) {
 	const [manual, setManual] = useState('');
 	const [packaging, setPackaging] = useState('');
 	const [messageField, setMessageField] = useState('');
-	const [displayImages, setDisplayImages] = useState(false);
+	const [customerName, setCustomerName] = useState('');
+	const [customerPhone, setCustomerPhone] = useState('');
 
 	const onEmailInput = (event) => {
 		setEmailInput(event.target.value);
 	};
+	const onNameInput = (event) => {
+		setCustomerName(event.target.value);
+	}
+	const onPhoneInput = (event) => {
+		setCustomerPhone(event.target.value);
+	}
 	const onCustomManual = (event) => {
 		setManual(event.target.value);
 	};
@@ -355,7 +362,7 @@ export default function VapeWidget(props) {
 
 	useEffect(() => {
 		screenshotNext();
-	}, [imageSaved, uploaded])
+	}, [uploaded])
 
 	useEffect(() => {
 		sendEmail();
@@ -363,7 +370,7 @@ export default function VapeWidget(props) {
 
 	useEffect(() => {
 		setImageSaved([...imageSaved, prodURL]);
-	}, [prodURL, screenshot])
+	}, [prodURL])
 
 	useEffect(() => {
 		uploadToServer();
@@ -386,21 +393,24 @@ export default function VapeWidget(props) {
 	}
 
 	const screenshotNext = () => {
-		if (imageSaved[0]) {
-			setFormInfo({
-				message: `
+		// if (imageSaved) {
+		setFormInfo({
+			message: `
+					Product: ${props.productCate}, ${props.productID}
 					Color: ${prodColor}
 					Custom Text: 1. ${textOne}, 2. ${textThree}, 3. ${textFive}, 4. ${textSeven}
 					Custom User Manual: ${manual}
 					Custom Packaging or Shipping Carton: ${packaging}
+					Customer Name: ${customerName}
+					Phone Number: ${customerPhone}
 					Email: ${emailInput}
 					Message: ${messageField}
 					Logo and Custom Designs: ${imageSaved}
 					`,
-				links: imageSaved.map((url) => <img src={url} alt={url} key={url} />),
-				email: emailInput
-			});
-		}
+			links: imageSaved.map((url) => <img src={url} alt={url} key={url} />),
+			email: emailInput
+		});
+		// }
 	}
 
 	const [sentEmail, setSentEmail] = useState(false);
@@ -942,9 +952,21 @@ export default function VapeWidget(props) {
 								</td>
 							</tr>
 							<tr>
+								<th style={{ paddingTop: '1em' }}>Your Name:</th>
+								<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
+									<Input type="text" id="customerName" onChange={onNameInput} sx={{ width: '200px' }} />
+								</td>
+							</tr>
+							<tr>
+								<th style={{ paddingTop: '1em' }}>Your Phone Number:</th>
+								<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
+									<Input type="tel" id="customerPhone" onChange={onPhoneInput} sx={{ width: '200px' }} />
+								</td>
+							</tr>
+							<tr>
 								<th style={{ paddingTop: '1em' }}>Your Email Address:</th>
 								<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
-									<Input type="email" id="customerEmail" onChange={onEmailInput} />
+									<Input type="email" id="customerEmail" onChange={onEmailInput} sx={{ width: '200px' }} />
 								</td>
 							</tr>
 							<tr>
