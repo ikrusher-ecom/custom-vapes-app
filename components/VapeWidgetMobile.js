@@ -472,7 +472,8 @@ export default function VapeWidgetMobile(props) {
 		border: '1px solid transparent',
 		backgroundColor: customColor,
 		padding: '0',
-		marginLeft: '10px'
+		marginLeft: '10px',
+		minWidth: '40px'
 	};
 
 	return (
