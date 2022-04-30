@@ -951,9 +951,21 @@ export default function VapeWidget(props) {
 								</td>
 							</tr>
 							<tr>
+								<th style={{ paddingTop: '1em' }}>Your Name:</th>
+								<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
+									<Input type="text" id="customerName" onChange={onNameInput} sx={{ width: '200px' }} />
+								</td>
+							</tr>
+							<tr>
+								<th style={{ paddingTop: '1em' }}>Your Phone Number:</th>
+								<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
+									<Input type="tel" id="customerPhone" onChange={onPhoneInput} sx={{ width: '200px' }} />
+								</td>
+							</tr>
+							<tr>
 								<th style={{ paddingTop: '1em' }}>Your Email Address:</th>
 								<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
-									<Input type="email" id="customerEmail" onChange={onEmailInput} />
+									<Input type="email" id="customerEmail" onChange={onEmailInput} sx={{ width: '200px' }} />
 								</td>
 							</tr>
 							<tr>
