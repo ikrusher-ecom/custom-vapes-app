@@ -402,9 +402,9 @@ export default function VapeWidgetMobile(props) {
 					Phone Number: ${customerPhone}
 					Email: ${emailInput}
 					Message: ${messageField}
-					Logo and Custom Designs: ${imageSaved}
+					Logo and Custom Designs: ${imageSaved.map((url) => <p><a href={url} key={url}>{url}</a></p>)}
 					`,
-			links: imageSaved.map((url) => <img src={url} alt={url} key={url} />),
+			links: imageSaved.map((url) => <p><a href={url} key={url}>{url}</a></p>),
 			email: emailInput
 		});
 		// }
