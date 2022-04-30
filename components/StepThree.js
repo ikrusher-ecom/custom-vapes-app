@@ -147,7 +147,7 @@ const products = [
 		colors: 'Black, Gunmetal, Lilac, Metallic Blue, Red, Rosegold'
 	},
 	{
-		url: '/products/pod-system/astro-stik/iKrusher-Astro-Stik-Pod-System-Black-Custom-1.jpg',
+		url: '/products/pod-system/astro-stik/iKrusher-Astro-Stik-Pod-System-Black-Custom-01.jpg',
 		title: 'Astro Stik',
 		colors: 'Black, Gunmetal, Lilac, Metallic Blue, Metallic Silver, Red, Rosegold, Yellow'
 	},
