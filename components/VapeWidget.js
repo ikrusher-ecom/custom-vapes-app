@@ -404,7 +404,7 @@ export default function VapeWidget(props) {
 					Phone Number: ${customerPhone}
 					Email: ${emailInput}
 					Message: ${messageField}
-					Logo and Custom Designs: ${imageSaved.map((url) => <p><a href={url} key={url}>{url}</a></p>)}
+					Logo and Custom Designs: ${imageSaved}
 					`,
 			links: imageSaved.map((url) => <img src={url} alt={url} key={url} />),
 			email: emailInput

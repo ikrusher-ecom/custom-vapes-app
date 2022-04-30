@@ -22,8 +22,8 @@ export default async (req, res) => {
 		to: 'ecom@ikrusher.com',
 		cc: req.body.email ? req.body.email : '',
 		subject: 'New Custom Vape Request',
-		text: req.body.message
-		// html: req.body.links
+		text: req.body.message,
+		html: req.body.links
 	};
 	console.log(JSON.stringify(mailData.text));
 	let emailSent = await transporter.sendMail(mailData, function(err, info) {
