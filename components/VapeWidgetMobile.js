@@ -1023,6 +1023,7 @@ export default function VapeWidgetMobile(props) {
 					>
 						Submit
 					</Button>
+					<p style={{textAlign: 'center'}}>We will contact you once receiving your submisson.</p>
 					{/* {screenshot && (
 					<a href={screenshot} download ref={downloadRef} style={{ display: 'none' }}>
 					<img ref={screenshotRef} src={screenshot} alt="screenshot" width="600" height="800" style={{ display: 'none' }} />

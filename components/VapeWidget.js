@@ -1030,6 +1030,7 @@ export default function VapeWidget(props) {
 					>
 						Submit
 					</Button>
+					<p style={{textAlign: 'center'}}>We will contact you once receiving your submisson.</p>
 				</div>
 			</div>
 		</React.Fragment >
