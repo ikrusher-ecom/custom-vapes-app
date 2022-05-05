@@ -15,7 +15,8 @@ module.exports = nextConfig;
 module.exports = {
 	env: {
 		devDir: 'http://localhost:3000',
-		prodDir: 'https://custom-vapes-app.vercel.app'
+		prodDir: 'https://custom-vapes-app.vercel.app',
+		mongodbURI: 'mongodb+srv://ikrusher-custom:wpyLX5LxPbgukfTB@cluster0.nscjp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 	},
 	images: {
 		domains: [ 'custom-vapes-app.vercel.app' ]
