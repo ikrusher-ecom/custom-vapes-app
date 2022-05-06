@@ -16,12 +16,18 @@ module.exports = {
 	env: {
 		devDir: 'http://localhost:3000',
 		prodDir: 'https://custom-vapes-app.vercel.app',
-		mongodbURI: 'mongodb+srv://ikrusher-custom:wpyLX5LxPbgukfTB@cluster0.nscjp.mongodb.net/customDB?retryWrites=true&w=majority'
+		mongodbURI: 'mongodb+srv://ikrusher-custom:wpyLX5LxPbgukfTB@cluster0.nscjp.mongodb.net/customDB?retryWrites=true&w=majority',
+		mongodbID: 'customDB',
+		mode: 'dev'
 	},
 	images: {
-		domains: [ 'custom-vapes-app.vercel.app' ]
+		domains: ['custom-vapes-app.vercel.app']
 	},
 	eslint: {
 		ignoreDuringBuilds: true
+	},
+	node: {
+		dns: 'empty',
+		net: 'empty'
 	}
 };

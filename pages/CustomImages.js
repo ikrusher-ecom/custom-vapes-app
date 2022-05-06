@@ -6,9 +6,6 @@
  * @FilePath: /custom-vapes-app/components/CustomImages.js
  */
 import * as React from 'react';
-import { useRef, useState, useEffect } from 'react';
-import styles from '../styles/Component.module.css';
-import Image from 'next/image';
 
 export default function CustomImages(props) {
 	return (

@@ -7,7 +7,6 @@
  */
 import * as React from 'react';
 import { useState } from 'react';
-import styles from '../styles/Component.module.css';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';

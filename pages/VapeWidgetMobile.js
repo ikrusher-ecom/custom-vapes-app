@@ -2,11 +2,11 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-13 17:37:17
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-20 02:48:25
- * @FilePath: /custom-vapes-app/components/VapeWidget.js
+ * @LastEditTime: 2022-04-24 17:26:57
+ * @FilePath: /custom-vapes-app/components/VapeWidgetMobile.js
  */
 import * as React from 'react';
-import { useState, useEffect, createRef, forwardRef, useTimeout, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../styles/Component.module.css';
 import Image from 'next/image';
 import CustomImages from './CustomImages';
@@ -23,19 +23,14 @@ import TextField from '@mui/material/TextField';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StopIcon from '@mui/icons-material/Stop';
-import Rotate90DegreesCwIcon from '@mui/icons-material/Rotate90DegreesCw';
-import Draggable, { DraggableCore } from 'react-draggable';
-import ResizableContent from './ResizableContent';
-import ResizableRect from 'react-resizable-rotatable-draggable';
-import { useScreenshot, createFileName } from 'use-react-screenshot';
+import Slider from '@mui/material/Slider';
+import Draggable from 'react-draggable';
+import { useScreenshot } from 'use-react-screenshot';
 import { HexColorPicker } from 'react-colorful';
 
-export default function VapeWidget(props) {
+export default function VapeWidgetMobile(props) {
 	// console.log(props);
 
 	const [num, setNum] = useState(1);
@@ -365,10 +360,10 @@ export default function VapeWidget(props) {
 	}, [imageSaved, uploaded])
 
 	useEffect(() => {
-		if(uploaded) {
+		if (uploaded) {
 			sendEmail();
 		}
-	}, [formInfo])
+	}, [formInfo, uploaded])
 
 	useEffect(() => {
 		setImageSaved([...imageSaved, prodURL]);
@@ -378,7 +373,8 @@ export default function VapeWidget(props) {
 		uploadToServer();
 	}, [image])
 
-	const onSubmitCustom = () => {
+	const onSubmitCustom = (e) => {
+		e.preventDefault();
 		angleOne();
 		setNum(1);
 		takeScreenshot(newRef);
@@ -393,23 +389,38 @@ export default function VapeWidget(props) {
 
 	const screenshotNext = () => {
 		// if (imageSaved[0]) {
-		setFormInfo({
-			message: `
-					Product: ${props.productCate}, ${props.productID}
-					Color: ${prodColor}
-					Custom Text: 1. ${textOne}, 2. ${textThree}, 3. ${textFive}, 4. ${textSeven}
-					Custom User Manual: ${manual}
-					Custom Packaging or Shipping Carton: ${packaging}
-					Customer Name: ${customerName}
-					Phone Number: ${customerPhone}
-					Email: ${emailInput}
-					Message: ${messageField}
-					Logo and Custom Designs: ${imageSaved}
-					`,
-			links: imageSaved.map((url) => <img src={url} alt={url} key={url} />),
-			email: emailInput
-		});
+		// setFormInfo({
+		// 	message: `
+		// 			Product: ${props.productCate}, ${props.productID}
+		// 			Color: ${prodColor}
+		// 			Custom Text: 1. ${textOne}, 2. ${textThree}, 3. ${textFive}, 4. ${textSeven}
+		// 			Custom User Manual: ${manual}
+		// 			Custom Packaging or Shipping Carton: ${packaging}
+		// 			Customer Name: ${customerName}
+		// 			Phone Number: ${customerPhone}
+		// 			Email: ${emailInput}
+		// 			Message: ${messageField}
+		// 			Logo and Custom Designs: ${imageSaved}
+		// 			Device: Desktop
+		// 			`,
+		// 	links: imageSaved.map((url) => <img src={url} alt={url} key={url} />),
+		// 	email: emailInput
+		// });
 		// }
+
+		setFormInfo({
+			product: props.productCate + ' ' + props.productID,
+			color: prodColor,
+			custom_text: [textOne, textThree, textFive, textSeven],
+			custom_user_manual: manual,
+			custom_package: packaging,
+			customer_name: customerName,
+			phone_number: customerPhone,
+			email: emailInput,
+			message: messageField,
+			custom_designs: imageSaved,
+			device: "mobile"
+		});
 	}
 
 	const [sentEmail, setSentEmail] = useState(false);
@@ -420,23 +431,32 @@ export default function VapeWidget(props) {
 		}
 	}, [sentEmail])
 
-	const sendEmail = () => {
+	const sendEmail = async () => {
 		console.log(formInfo);
-		fetch('/api/email', {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json, text/plain, */*',
-				'Content-Type': 'application/json'
-			},
+		// fetch('/api/email', {
+		// 	method: 'POST',
+		// 	headers: {
+		// 		Accept: 'application/json, text/plain, */*',
+		// 		'Content-Type': 'application/json'
+		// 	},
+		// 	body: JSON.stringify(formInfo)
+		// }).then((res) => {
+		// 	console.log('Response received');
+		// 	if (res.status === 200) {
+		// 		console.log('Response succeeded!');
+		// 		setSentEmail(true);
+		// 		setFormInfo('');
+		// 	}
+		// })
+
+		let res = await fetch('/api/custom', {
+			method: "POST",
 			body: JSON.stringify(formInfo)
-		}).then((res) => {
-			console.log('Response received');
-			if (res.status === 200) {
-				console.log('Response succeeded!');
-				setSentEmail(true);
-				setFormInfo('');
-			}
-		})
+		});
+		res = await res.json();
+		console.log('Response succeeded!');
+		setFormInfo('');
+		setSentEmail(true);
 	}
 
 	const uploadScreenToServer = () => {
@@ -462,10 +482,13 @@ export default function VapeWidget(props) {
 		}
 	}
 
+	const [customFont, setFontSize] = useState(14);
+
 	const [customColor, setCustomColor] = useState('#878787');
 	const [isColorPicker, setColorPicker] = useState(false);
 	const changeColor = {
-		color: customColor
+		color: customColor,
+		fontSize: `${customFont}px`
 	};
 	const colorButton = {
 		display: 'inline-block',
@@ -478,15 +501,24 @@ export default function VapeWidget(props) {
 		minWidth: '40px'
 	};
 
+	const [logoWidth, setLogoWidth] = useState(200);
+	const [logoHeight, setLogoHeight] = useState(200);
+	const customLogoSize = {
+		// objectFit: 'fill',
+		width: `${logoWidth}px`,
+		height: `${logoHeight}px`
+	}
+
+	console.log(customLogoSize)
 	return (
 		<React.Fragment>
 			<h5 style={{ padding: '0 16px' }}>Step 4: Customize Your Device Now!</h5>
-			<div className="custom-vape" id="custom-step4">
-				<div className={'next-btn ' + styles.angleBtns}>
-					<Button onClick={lastAngle} disabled={num <= 1} className={styles.roundBtn} style={{ float: 'left' }}>
+			<div className="custom-vape-mobile" id="custom-step4">
+				<div className={'next-btn ' + styles.angleMobileBtns}>
+					<Button onClick={lastAngle} disabled={num <= 1} className={styles.roundBtnMobile} style={{ float: 'left' }}>
 						<ArrowBackIosIcon fontSize="large" />
 					</Button>
-					<Button onClick={nextAngle} disabled={num >= 10} className={styles.roundBtn} style={{ float: 'right' }}>
+					<Button onClick={nextAngle} disabled={num >= 10} className={styles.roundBtnMobile} style={{ float: 'right' }}>
 						<ArrowForwardIosIcon fontSize="large" />
 					</Button>
 					{/* <Button
@@ -496,199 +528,202 @@ export default function VapeWidget(props) {
 				>
 					Confirm the Design Above and Download it
 				</Button> */}
-					<Button onClick={onPreview} className={styles.previewBtn}>
+					<Button onClick={onPreview} className={styles.previewBtnMobile}>
 						Preview in 360° {'    '} <PlayArrowIcon /> / <StopIcon />
 					</Button>
 				</div>
-				<div
-					className="custom-group"
-					ref={screenRef}
-					id="myCanvas"
-					style={{
-						border: '1px solid transparent',
-						zIndex: '10',
-						position: 'absolute',
-						width: '600px',
-						height: '800px'
-					}}
-				>
-					{/* <div> */}
-					<div id="one" style={{ display: num === 1 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][0]}
-						/>
-					</div>
-					<div id="two" style={{ display: num === 2 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][1]}
-						/>
-					</div>
-					<div id="three" style={{ display: num === 3 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][2]}
-						/>
-					</div>
-					<div id="four" style={{ display: num === 4 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][3]}
-						/>
-					</div>
-					<div id="five" style={{ display: num === 5 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][4]}
-						/>
-					</div>
-					<div id="six" style={{ display: num === 6 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][5]}
-						/>
-					</div>
-					<div id="seven" style={{ display: num === 7 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][6]}
-						/>
-					</div>
-					<div id="eight" style={{ display: num === 8 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][7]}
-						/>
-					</div>
-					<div id="nine" style={{ display: num === 9 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][8]}
-						/>
-					</div>
-					<div id="ten" style={{ display: num === 10 ? 'block' : 'none' }}>
-						<CustomImages
-							name={props.productID}
-							category={props.productCate}
-							folder={props.productFolder}
-							images={props.productImages[props.productColors.filter((color) => color === prodColor)][9]}
-						/>
-					</div>
-					{/* </div> */}
-					<div className="text-logo">
-						<div className={'display-one-div ' + angleClass}>
-							{/* {textOne &&
-									showOne && ( */}
-							<Draggable
-								axis="both"
-								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-								defaultPosition={{ x: 200, y: 300 }}
-							// style={{display: (textOne && showOne) ? 'block' : 'none'}}
-							// top={100}
-							// left={100}
-							// width={150}
-							// height={30}
-							// rotateAngle={0}
-							>
-								<div id="display-text-one" style={changeColor}>
-									{(textOne && showOne) ? textOne : null}
-								</div>
-							</Draggable>
-							{/* )} */}
-							{/* {createObjectURL &&
-									showOne && ( */}
-							<Draggable
-								axis="both"
-								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-								defaultPosition={{ x: 200, y: 300 }}
-							>
-								<div className="display-logo-div">
-									{(createObjectURL && showOne) ?
-										(
-											<Image
-												alt={createObjectURL}
-												id="display-logo-one"
-												src={createObjectURL}
-												layout="fill"
-												objectFit="contain"
-											/>
-
-										) : null}
-								</div>
-							</Draggable>
-							{/* )} */}
+				<div className="custom-group-mobile">
+					{/* <div className="custom-img"> */}
+					<div
+						ref={screenRef}
+						id="myCanvas"
+						style={{
+							border: '1px solid transparent',
+							zIndex: '10',
+							position: 'absolute',
+							maxWidth: '600px',
+							maxHeight: '800px',
+							width: '100%',
+							height: '600px'
+						}}
+					>
+						{/* <div> */}
+						<div id="one" style={{ display: num === 1 ? 'block' : 'none' }}>
+							<CustomImages
+								name={props.productID}
+								category={props.productCate}
+								folder={props.productFolder}
+								images={props.productImages[props.productColors.filter((color) => color === prodColor)][0]}
+							/>
 						</div>
-						{/* {textThree &&
+						<div id="two" style={{ display: num === 2 ? 'block' : 'none' }}>
+							<CustomImages
+								name={props.productID}
+								category={props.productCate}
+								folder={props.productFolder}
+								images={props.productImages[props.productColors.filter((color) => color === prodColor)][1]}
+							/>
+						</div>
+						<div id="three" style={{ display: num === 3 ? 'block' : 'none' }}>
+							<CustomImages
+								name={props.productID}
+								category={props.productCate}
+								folder={props.productFolder}
+								images={props.productImages[props.productColors.filter((color) => color === prodColor)][2]}
+							/>
+						</div>
+						<div id="four" style={{ display: num === 4 ? 'block' : 'none' }}>
+							<CustomImages
+								name={props.productID}
+								category={props.productCate}
+								folder={props.productFolder}
+								images={props.productImages[props.productColors.filter((color) => color === prodColor)][3]}
+							/>
+						</div>
+						<div id="five" style={{ display: num === 5 ? 'block' : 'none' }}>
+							<CustomImages
+								name={props.productID}
+								category={props.productCate}
+								folder={props.productFolder}
+								images={props.productImages[props.productColors.filter((color) => color === prodColor)][4]}
+							/>
+						</div>
+						<div id="six" style={{ display: num === 6 ? 'block' : 'none' }}>
+							<CustomImages
+								name={props.productID}
+								category={props.productCate}
+								folder={props.productFolder}
+								images={props.productImages[props.productColors.filter((color) => color === prodColor)][5]}
+							/>
+						</div>
+						<div id="seven" style={{ display: num === 7 ? 'block' : 'none' }}>
+							<CustomImages
+								name={props.productID}
+								category={props.productCate}
+								folder={props.productFolder}
+								images={props.productImages[props.productColors.filter((color) => color === prodColor)][6]}
+							/>
+						</div>
+						<div id="eight" style={{ display: num === 8 ? 'block' : 'none' }}>
+							<CustomImages
+								name={props.productID}
+								category={props.productCate}
+								folder={props.productFolder}
+								images={props.productImages[props.productColors.filter((color) => color === prodColor)][7]}
+							/>
+						</div>
+						<div id="nine" style={{ display: num === 9 ? 'block' : 'none' }}>
+							<CustomImages
+								name={props.productID}
+								category={props.productCate}
+								folder={props.productFolder}
+								images={props.productImages[props.productColors.filter((color) => color === prodColor)][8]}
+							/>
+						</div>
+						<div id="ten" style={{ display: num === 10 ? 'block' : 'none' }}>
+							<CustomImages
+								name={props.productID}
+								category={props.productCate}
+								folder={props.productFolder}
+								images={props.productImages[props.productColors.filter((color) => color === prodColor)][9]}
+							/>
+						</div>
+						{/* </div> */}
+						<div className="text-logo">
+							<div className={'display-one-div ' + angleClass}>
+								{/* {textOne &&
+									showOne && ( */}
+								<Draggable
+									axis="both"
+									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+									defaultPosition={{ x: 100, y: 100 }}
+								// style={{display: (textOne && showOne) ? 'block' : 'none'}}
+								// top={100}
+								// left={100}
+								// width={150}
+								// height={30}
+								// rotateAngle={0}
+								>
+									<div id="display-text-one" style={changeColor}>
+										{(textOne && showOne) ? textOne : null}
+									</div>
+								</Draggable>
+								{/* )} */}
+								{/* {createObjectURL &&
+									showOne && ( */}
+								<Draggable
+									axis="both"
+									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+									defaultPosition={{ x: 100, y: 100 }}
+								>
+									<div className="display-logo-div" style={customLogoSize}>
+										{(createObjectURL && showOne) ?
+											(
+												<Image
+													alt={createObjectURL}
+													id="display-logo-one"
+													src={createObjectURL}
+													layout="fill"
+													// objectFit="contain"
+												/>
+											) : null}
+									</div>
+								</Draggable>
+								{/* )} */}
+							</div>
+							{/* {textThree &&
 								showThree && ( */}
-						<div className="display-three-div">
-							<Draggable
-								axis="both"
-								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-								defaultPosition={{ x: 200, y: 300 }}
-							>
-								<div id="display-text-three" style={changeColor}>
-									{(textThree && showThree) ? textThree : null}
-								</div>
-							</Draggable>
-						</div>
-						{/* )} */}
-						{/* {textFive &&
+							<div className="display-three-div">
+								<Draggable
+									axis="both"
+									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+									defaultPosition={{ x: 100, y: 100 }}
+								>
+									<div id="display-text-three" style={changeColor}>
+										{(textThree && showThree) ? textThree : null}
+									</div>
+								</Draggable>
+							</div>
+							{/* )} */}
+							{/* {textFive &&
 								showFive && ( */}
-						<div className={'display-five-div ' + angleMClass}>
-							<Draggable
-								axis="both"
-								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-								defaultPosition={{ x: 200, y: 300 }}
-							>
-								<div id="display-text-five" style={changeColor}>
-									{(textFive && showFive) ? textFive : null}
-								</div>
-							</Draggable>
-						</div>
-						{/* )} */}
-						{/* {textSeven &&
+							<div className={'display-five-div ' + angleMClass}>
+								<Draggable
+									axis="both"
+									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+									defaultPosition={{ x: 100, y: 100 }}
+								>
+									<div id="display-text-five" style={changeColor}>
+										{(textFive && showFive) ? textFive : null}
+									</div>
+								</Draggable>
+							</div>
+							{/* )} */}
+							{/* {textSeven &&
 								showSeven && ( */}
-						<div className="display-seven-div">
-							<Draggable
-								axis="both"
-								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-								defaultPosition={{ x: 200, y: 300 }}
-							>
-								<div id="display-text-seven" style={changeColor}>
-									{(textSeven && showSeven) ? textSeven : null}
-								</div>
-							</Draggable>
+							<div className="display-seven-div">
+								<Draggable
+									axis="both"
+									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+									defaultPosition={{ x: 100, y: 100 }}
+								>
+									<div id="display-text-seven" style={changeColor}>
+										{(textSeven && showSeven) ? textSeven : null}
+									</div>
+								</Draggable>
+							</div>
+							{/* )} */}
 						</div>
-						{/* )} */}
 					</div>
 					{/* </div> */}
 				</div>
-				<div className="input-group">
+				<div className="input-group-mobile">
 					<table>
 						<tbody>
 							<tr>
 								<th>Select a Color:</th>
 								<td>
-									<Box sx={{ width: 300 }}>
+									<Box sx={{ width: 200 }}>
 										<FormControl fullWidth style={{ fontSize: '16px' }}>
 											<InputLabel id="color-select-label" style={{ fontSize: '16px' }}>
 												Color
@@ -874,9 +909,28 @@ export default function VapeWidget(props) {
 												Upload
 											</Button>
 										</label>
-										<p style={{ fontSize: '12px', maxWidth: '280px' }}>
-											Click the button above to select a logo file from your computer or other file
-											storage. We accept PNG FILE and FILE SIZE not more than 1 MB only.
+										<p>Width: {logoWidth}px</p>
+										<Slider
+											defaultValue={200}
+											step={10}
+											marks
+											min={10}
+											max={400}
+											valueLabelDisplay="on"
+											getAriaValueText={setLogoWidth}
+										/>
+										<p>Height: {logoHeight}px</p>
+										<Slider
+											defaultValue={200}
+											step={10}
+											marks
+											min={10}
+											max={400}
+											valueLabelDisplay="on"
+											getAriaValueText={setLogoHeight}
+										/>
+										<p style={{ fontSize: '12px', maxWidth: '200px' }}>
+											Click the UPLOAD button above to select a logo file from your phone. We accept PNG FILE and FILE SIZE not more than 1 MB only.
 										</p>
 									</td>
 								)}
@@ -886,22 +940,22 @@ export default function VapeWidget(props) {
 								<td>
 									{showOne && (
 										<div className="custom-text-div" id="input-text-one">
-											<Input type="text" id="custom-text-one" onChange={onTextInputOne} />
+											<Input type="text" id="custom-text-one" onChange={onTextInputOne} sx={{ width: '120px' }} />
 										</div>
 									)}
 									{showThree && (
 										<div className="custom-text-div" id="input-text-three">
-											<Input type="text" id="custom-text-three" onChange={onTextInputThree} />
+											<Input type="text" id="custom-text-three" onChange={onTextInputThree} sx={{ width: '120px' }} />
 										</div>
 									)}
 									{showFive && (
 										<div className="custom-text-div" id="input-text-five">
-											<Input type="text" id="custom-text-five" onChange={onTextInputFive} />
+											<Input type="text" id="custom-text-five" onChange={onTextInputFive} sx={{ width: '120px' }} />
 										</div>
 									)}
 									{showSeven && (
 										<div className="custom-text-div" id="input-text-seven">
-											<Input type="text" id="custom-text-seven" onChange={onTextInputSeven} />
+											<Input type="text" id="custom-text-seven" onChange={onTextInputSeven} sx={{ width: '120px' }} />
 										</div>
 									)}
 									{(showOne || showThree || showFive || showSeven)
@@ -912,6 +966,17 @@ export default function VapeWidget(props) {
 												color={customColor}
 												onChange={setCustomColor}
 											/>
+											<p style={{margin: '0'}}>
+												<Slider
+													defaultValue={14}
+													step={1}
+													marks
+													min={10}
+													max={30}
+													valueLabelDisplay="on"
+													getAriaValueText={setFontSize}
+												/>
+											</p>
 										</>)
 										: null}
 									{/* <Input type="color" id="picker" name="picker" value="#808080" onChange={e => console.log(e.target.value)} /> */}
@@ -978,7 +1043,7 @@ export default function VapeWidget(props) {
 										multiline
 										rows={2}
 										placeholder="Your Message"
-										sx={{ width: '280px' }}
+										sx={{ width: '200px' }}
 										className="messageInput"
 										onChange={onMessageField}
 									/>
@@ -1002,9 +1067,9 @@ export default function VapeWidget(props) {
 									</Button>
 									<ImageList
 										style={{ display: designArray[0] ? 'flex' : 'none' }}
-										sx={{ width: 500, height: 450 }}
+										sx={{ width: 200, height: 150 }}
 										cols={3}
-										rowHeight={164}
+										rowHeight={120}
 									>
 										{designArray[0] &&
 											designArray.map((url) => (
@@ -1018,11 +1083,6 @@ export default function VapeWidget(props) {
 						</tr> */}
 						</tbody>
 					</table>
-					{/* {screenshot && (
-					<a href={screenshot} download ref={downloadRef} style={{ display: 'none' }}>
-						<Image src={screenshot} alt="screenshot" width="600" height="800" style={{ display: 'none' }} />
-					</a>
-				)} */}
 					<Button
 						onClick={onSubmitCustom}
 						className={styles.funcBtn}
@@ -1030,9 +1090,14 @@ export default function VapeWidget(props) {
 					>
 						Submit
 					</Button>
-					<p style={{textAlign: 'center'}}>We will contact you once receiving your submisson.</p>
+					<p style={{ textAlign: 'center' }}>We will contact you once receiving your submisson.</p>
+					{/* {screenshot && (
+					<a href={screenshot} download ref={downloadRef} style={{ display: 'none' }}>
+					<img ref={screenshotRef} src={screenshot} alt="screenshot" width="600" height="800" style={{ display: 'none' }} />
+					</a>
+				)} */}
 				</div>
 			</div>
-		</React.Fragment >
+		</React.Fragment>
 	);
 }

@@ -15,6 +15,30 @@ a {
 	box-sizing: border-box;
 }
 
+.CSHAV  {
+	opacity: 0;
+}
+
+.CSHAV:hover {
+	opacity: 1;
+}
+
+.MuiSlider-valueLabelOpen.MuiSlider-valueLabel::before {
+	display: none !important;
+}
+
+.MuiSlider-valueLabelOpen.MuiSlider-valueLabel {
+	top: 40px !important;
+}
+
+.MuiSlider-valueLabelLabel:after {
+	content: "px";
+}
+
+.MuiSlider-valueLabelLabel {
+	font-size: 10px !important;
+}
+
 .column.main.col-lg-12.col-md-12.col-sm-12.col-xs-12, section#maincontent {
 	padding: 0 !important;
 }

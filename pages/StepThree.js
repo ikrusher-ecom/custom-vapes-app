@@ -6,8 +6,7 @@
  * @FilePath: /custom-vapes-app/components/StepThree.js
  */
 import * as React from 'react';
-import { useState, useEffect } from 'react';
-import styles from '../styles/Component.module.css';
+import { useState } from 'react';
 import ProductDescription from './ProductDescription';
 import ProductDescriptionMobile from './ProductDescriptionMobile';
 import VapeWidget from './VapeWidget';
