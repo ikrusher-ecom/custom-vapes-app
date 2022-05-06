@@ -944,7 +944,8 @@ export default function VapeWidget(props) {
 												min={10}
 												max={30}
 												valueLabelDisplay="on"
-												getAriaValueText={setFontSize}
+												// getAriaValueText={setFontSize}
+												onChange={(event, newValue) => { setFontSize(newValue) }}
 											/></p>
 										</>)
 										: null}

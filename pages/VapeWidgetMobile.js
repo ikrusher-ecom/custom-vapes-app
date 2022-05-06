@@ -664,7 +664,7 @@ export default function VapeWidgetMobile(props) {
 													id="display-logo-one"
 													src={createObjectURL}
 													layout="fill"
-													// objectFit="contain"
+												// objectFit="contain"
 												/>
 											) : null}
 									</div>
@@ -917,7 +917,8 @@ export default function VapeWidgetMobile(props) {
 											min={10}
 											max={400}
 											valueLabelDisplay="on"
-											getAriaValueText={setLogoWidth}
+											// getAriaValueText={setLogoWidth}
+											onChange={(event, newValue) => { setLogoWidth(newValue) }}
 										/>
 										<p>Height: {logoHeight}px</p>
 										<Slider
@@ -927,7 +928,8 @@ export default function VapeWidgetMobile(props) {
 											min={10}
 											max={400}
 											valueLabelDisplay="on"
-											getAriaValueText={setLogoHeight}
+											// getAriaValueText={setLogoHeight}
+											onChange={(event, newValue) => { setLogoHeight(newValue) }}
 										/>
 										<p style={{ fontSize: '12px', maxWidth: '200px' }}>
 											Click the UPLOAD button above to select a logo file from your phone. We accept PNG FILE and FILE SIZE not more than 1 MB only.
@@ -966,7 +968,7 @@ export default function VapeWidgetMobile(props) {
 												color={customColor}
 												onChange={setCustomColor}
 											/>
-											<p style={{margin: '0'}}>
+											<p style={{ margin: '0' }}>
 												<Slider
 													defaultValue={14}
 													step={1}
@@ -974,7 +976,8 @@ export default function VapeWidgetMobile(props) {
 													min={10}
 													max={30}
 													valueLabelDisplay="on"
-													getAriaValueText={setFontSize}
+													// getAriaValueText={setFontSize}
+													onChange={(event, newValue) => { setFontSize(newValue) }}
 												/>
 											</p>
 										</>)
