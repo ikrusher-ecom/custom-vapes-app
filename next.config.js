@@ -18,7 +18,7 @@ module.exports = {
 		prodDir: 'https://custom-vapes-app.vercel.app',
 		mongodbURI: 'mongodb+srv://ikrusher-custom:wpyLX5LxPbgukfTB@cluster0.nscjp.mongodb.net/customDB?retryWrites=true&w=majority',
 		mongodbID: 'customDB',
-		mode: 'dev'
+		mode: 'prod'
 	},
 	images: {
 		domains: ['custom-vapes-app.vercel.app']

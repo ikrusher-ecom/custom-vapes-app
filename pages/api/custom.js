@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         case "GET":
             const customs = await db.collection("customDBCollection").find({}).toArray();
             res.json({ status: 200, data: customs });
-            console.log(customs)
+            console.log(customs);
             break;
         default:
             break;
