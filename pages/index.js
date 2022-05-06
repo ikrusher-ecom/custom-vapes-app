@@ -9,9 +9,9 @@ import * as React from 'react';
 import Head from 'next/head';
 import { useState } from 'react';
 import styles from '../styles/Home.module.css';
-import StepOne from './StepOne';
-import StepThree from './StepThree';
-import StepTwo from './StepTwo';
+import StepOne from '../components/StepOne';
+import StepThree from '../components/StepThree';
+import StepTwo from '../components/StepTwo';
 import { ikrusherTheme } from '../lib/theme';
 import { ThemeProvider } from '@mui/material/styles';
 
