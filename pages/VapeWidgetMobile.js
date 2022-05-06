@@ -373,8 +373,8 @@ export default function VapeWidgetMobile(props) {
 		uploadToServer();
 	}, [image])
 
-	const onSubmitCustom = (e) => {
-		e.preventDefault();
+	const onSubmitCustom = () => {
+		// e.preventDefault();
 		angleOne();
 		setNum(1);
 		takeScreenshot(newRef);

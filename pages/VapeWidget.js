@@ -374,8 +374,8 @@ export default function VapeWidget(props) {
 		uploadToServer();
 	}, [image])
 
-	const onSubmitCustom = (e) => {
-		e.preventDefault();
+	const onSubmitCustom = () => {
+		// e.preventDefault();
 		angleOne();
 		setNum(1);
 		takeScreenshot(newRef);
