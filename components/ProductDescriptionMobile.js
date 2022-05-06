@@ -49,6 +49,10 @@ export default function ProductDescriptionMobile(props) {
 							<td>Custom User Manual, Custom Packaging or Shipping Carton</td>
 						</tr>
 						<tr>
+							<th>Minimum Order Quantity:</th>
+							<td>5,000 Pieces</td>
+						</tr>
+						<tr>
 							<td colSpan="2" style={{ textAlign: 'center', paddingTop: '1em' }}>
 								<Button
 									variant="contained"

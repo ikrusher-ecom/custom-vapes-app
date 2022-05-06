@@ -15,11 +15,11 @@ a {
 	box-sizing: border-box;
 }
 
-.CSHAV  {
+.text-logo .single-resizer  {
 	opacity: 0;
 }
 
-.CSHAV:hover {
+.text-logo .single-resizer:hover {
 	opacity: 1;
 }
 
