@@ -9,9 +9,9 @@ export default function DataBase({ customs }) {
 
     return (
         <div style={{ padding: '0 20px' }}>
-            {currentData && currentData.map((custom, index) =>
+            {currentData && currentData.slice(0).reverse().map((custom, index) =>
                 <div key={custom._id}>
-                    <h3 style={{ margin: '20px 0 10px' }}>Submission {index + 1}</h3>
+                    <h3 style={{ margin: '20px 0 10px' }}>Submission {currentData.length - index}</h3>
                     <ul style={{ listStyle: 'none', margin: '0' }}>
                         <li><b>Device: </b>{custom.device}</li>
                         <li><b>Product: </b>{custom.product}</li>
