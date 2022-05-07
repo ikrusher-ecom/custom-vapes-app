@@ -266,7 +266,7 @@ export default function DataBase({ customs }) {
     };
 
     const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
+        setRowsPerPage(parseInt(event.target.value, 5));
         setPage(0);
     };
 
@@ -328,18 +328,18 @@ export default function DataBase({ customs }) {
                                                 scope="row"
                                                 padding="none"
                                             >
-                                                {index+1}
+                                                {index + 1}
                                             </TableCell>
                                             <TableCell align="left">{row.product}</TableCell>
                                             <TableCell align="left">{row.color}</TableCell>
-                                            <TableCell align="left">{row.custom_text.map((text, i) => text && <p key={i}>Side {i+1}: {text}</p>)}</TableCell>
+                                            <TableCell align="left">{row.custom_text.map((text, i) => text && <p key={i}>Side {i + 1}: {text}</p>)}</TableCell>
                                             <TableCell align="left">{row.custom_user_manual}</TableCell>
                                             <TableCell align="left">{row.custom_package}</TableCell>
                                             <TableCell align="left">{row.customer_name}</TableCell>
                                             <TableCell align="left">{row.phone_number}</TableCell>
                                             <TableCell align="left">{row.email}</TableCell>
                                             <TableCell align="left">{row.message}</TableCell>
-                                            <TableCell align="left">{row.custom_designs.filter(link => link !== null).map((link, i) => <p key={i}><a href={link} target='_blank'>Link {i+1}</a></p>)}</TableCell>
+                                            <TableCell align="left">{row.custom_designs.filter(link => link !== null).map((link, i) => <p key={i}><a href={link} target='_blank'>Link {i + 1}</a></p>)}</TableCell>
                                             <TableCell align="left">{row.device}</TableCell>
                                         </TableRow>
                                     );
