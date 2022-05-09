@@ -29,6 +29,7 @@ import Slider from '@mui/material/Slider';
 import Draggable from 'react-draggable';
 import { useScreenshot } from 'use-react-screenshot';
 import { HexColorPicker } from 'react-colorful';
+import { formatInTimeZone } from 'date-fns-tz'
 
 export default function VapeWidgetMobile(props) {
 	// console.log(props);
@@ -409,7 +410,7 @@ export default function VapeWidgetMobile(props) {
 		// }
 
 		setFormInfo({
-			time: format(new Date(), 'PPpp'),
+			time: formatInTimeZone(new Date(), 'America/Los_Angeles', 'PPpp'),
 			product: props.productCate + ' ' + props.productID,
 			color: prodColor,
 			custom_text: [textOne, textThree, textFive, textSeven],

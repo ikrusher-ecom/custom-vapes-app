@@ -30,7 +30,7 @@ import Draggable from 'react-draggable';
 import { useScreenshot } from 'use-react-screenshot';
 import { HexColorPicker } from 'react-colorful';
 import ResizableContent from './ResizableContent';
-import { format } from 'date-fns';
+import { formatInTimeZone } from 'date-fns-tz';
 
 export default function VapeWidget(props) {
 	// console.log(customs);
@@ -334,7 +334,7 @@ export default function VapeWidget(props) {
 
 	const [screenfile, setScreenfile] = useState(null);
 	const [timeStamp, setTimeStamp] = useState(Date.now());
-	// console.log(format(new Date(), 'PPpp'));
+	// console.log(formatInTimeZone(new Date(), 'America/Los_Angeles', 'PPpp'));
 
 	const urlToObject = (dataurl, filename) => {
 		let arr = dataurl.split(','),
@@ -412,7 +412,7 @@ export default function VapeWidget(props) {
 		// }
 
 		setFormInfo({
-			time: format(new Date(), 'PPpp'),
+			time: formatInTimeZone(new Date(), 'America/Los_Angeles', 'PPpp'),
 			product: props.productCate + ' ' + props.productID,
 			color: prodColor,
 			custom_text: [textOne, textThree, textFive, textSeven],
