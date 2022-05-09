@@ -29,6 +29,10 @@ const headCells = [
         label: 'No.'
     },
     {
+        id: 'time',
+        label: 'Submission Time'
+    },
+    {
         id: 'product',
         label: 'Product'
     },
@@ -330,6 +334,7 @@ export default function DataBase({ customs }) {
                                             >
                                                 {index + 1}
                                             </TableCell>
+                                            <TableCell align='left'>{row.time && row.time}</TableCell>
                                             <TableCell align="left">{row.product}</TableCell>
                                             <TableCell align="left">{row.color}</TableCell>
                                             <TableCell align="left">{row.custom_text.map((text, i) => text && <p key={i}>Side {i + 1}: {text}</p>)}</TableCell>

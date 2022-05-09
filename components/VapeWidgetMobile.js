@@ -409,6 +409,7 @@ export default function VapeWidgetMobile(props) {
 		// }
 
 		setFormInfo({
+			time: format(new Date(), 'PPpp'),
 			product: props.productCate + ' ' + props.productID,
 			color: prodColor,
 			custom_text: [textOne, textThree, textFive, textSeven],
