@@ -511,7 +511,6 @@ export default function VapeWidgetMobile(props) {
 		height: `${logoHeight}px`
 	}
 
-	console.log(customLogoSize)
 	return (
 		<React.Fragment>
 			<h5 style={{ padding: '0 16px' }}>Step 4: Customize Your Device Now!</h5>
