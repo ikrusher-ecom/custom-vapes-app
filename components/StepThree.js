@@ -451,9 +451,9 @@ export default function StepThree(props) {
 			);
 		} else {
 			return (
-				<div id="custom-step3" style={{ padding: '0 16px' }}>
-					<h5>Step 3: Review the Selected Product & Start Customization </h5>
-					<p>
+				<div id="custom-step3" style={{ padding: '0' }}>
+					<h5 style={{ padding: '0 16px' }}>Step 3: Review the Selected Product & Start Customization </h5>
+					<p style={{ padding: '0 16px' }}>
 						Once you review the selected product's details and confirm that it is the right product to customize, click the "Start Customization" button to proceed.
 					</p>
 					<div id="product-description" style={{ padding: '0 16px 16px', margin: '16px' }}>

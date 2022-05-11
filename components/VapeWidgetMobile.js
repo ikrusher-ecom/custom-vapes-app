@@ -511,6 +511,10 @@ export default function VapeWidgetMobile(props) {
 		height: `${logoHeight}px`
 	}
 
+	const logoOneStyle = {
+		// transform: 'rotate(45deg)'
+	}
+
 	return (
 		<React.Fragment>
 			<h5 style={{ padding: '0 16px' }}>Step 4: Customize Your Device Now!</h5>
@@ -661,11 +665,12 @@ export default function VapeWidgetMobile(props) {
 										{(createObjectURL && showOne) ?
 											(
 												<Image
+													style={logoOneStyle}
 													alt={createObjectURL}
 													id="display-logo-one"
 													src={createObjectURL}
 													layout="fill"
-												// objectFit="contain"
+													objectFit="contain"
 												/>
 											) : null}
 									</div>
