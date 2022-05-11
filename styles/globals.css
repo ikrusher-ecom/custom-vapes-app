@@ -31,8 +31,11 @@ a {
 	top: 40px !important;
 }
 
-.MuiSlider-valueLabelLabel:after {
-	content: "px";
+.addPx .MuiSlider-valueLabelLabel:after {
+	content: " px";
+}
+.addDeg .MuiSlider-valueLabelLabel:after {
+	content: " deg";
 }
 
 .MuiSlider-valueLabelLabel {

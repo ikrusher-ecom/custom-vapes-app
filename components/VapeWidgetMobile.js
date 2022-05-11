@@ -511,8 +511,9 @@ export default function VapeWidgetMobile(props) {
 		height: `${logoHeight}px`
 	}
 
+	const [logoOneDeg, setLogoOneDeg] = useState(0);
 	const logoOneStyle = {
-		// transform: 'rotate(45deg)'
+		transform: `rotate(${logoOneDeg}deg)`
 	}
 
 	return (
@@ -915,7 +916,7 @@ export default function VapeWidgetMobile(props) {
 												Upload
 											</Button>
 										</label>
-										<p>Width: {logoWidth}px</p>
+										<p>Width: {logoWidth} px</p>
 										<Slider
 											defaultValue={200}
 											step={10}
@@ -925,8 +926,9 @@ export default function VapeWidgetMobile(props) {
 											valueLabelDisplay="on"
 											// getAriaValueText={setLogoWidth}
 											onChange={(event, newValue) => { setLogoWidth(newValue) }}
+											className='addPx'
 										/>
-										<p>Height: {logoHeight}px</p>
+										<p>Height: {logoHeight} px</p>
 										<Slider
 											defaultValue={200}
 											step={10}
@@ -936,6 +938,19 @@ export default function VapeWidgetMobile(props) {
 											valueLabelDisplay="on"
 											// getAriaValueText={setLogoHeight}
 											onChange={(event, newValue) => { setLogoHeight(newValue) }}
+											className='addPx'
+										/>
+										<p>Rotate: {logoOneDeg} deg</p>
+										<Slider
+											defaultValue={0}
+											step={5}
+											marks
+											min={0}
+											max={180}
+											valueLabelDisplay="on"
+											// getAriaValueText={setLogoOneDeg}
+											onChange={(event, newValue) => { setLogoOneDeg(newValue) }}
+											className='addDeg'
 										/>
 										<p style={{ fontSize: '12px', maxWidth: '200px' }}>
 											Click the UPLOAD button above to select a logo file from your phone. We accept PNG FILE and FILE SIZE not more than 1 MB only.
