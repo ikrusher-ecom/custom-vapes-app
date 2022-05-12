@@ -332,7 +332,7 @@ export default function DataBase({ customs }) {
                                                 scope="row"
                                                 padding="none"
                                             >
-                                                {index + 1}
+                                                {(page * 10) + (index + 1)}
                                             </TableCell>
                                             <TableCell align='left'>{row.time && row.time}</TableCell>
                                             <TableCell align="left">{row.product}</TableCell>
