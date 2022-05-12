@@ -626,112 +626,94 @@ export default function VapeWidget(props) {
 						<div className={'display-one-div ' + angleClass}>
 							{/* {textOne &&
 									showOne && ( */}
-							<Draggable
+							{/* <Draggable
 								axis="both"
 								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-								defaultPosition={{ x: 200, y: 300 }}
-							// style={{display: (textOne && showOne) ? 'block' : 'none'}}
-							// top={100}
-							// left={100}
-							// width={150}
-							// height={30}
-							// rotateAngle={0}
-							>
-								<div id="display-text-one" style={changeColor}>
-									{(textOne && showOne) ? textOne : null}
-								</div>
-							</Draggable>
+								defaultPosition={{ x: 200, y: 300 }} */}
+							{/* > */}
+							{(textOne && showOne) && (
+								<ResizableContent
+									top={200}
+									left={200}
+									width={150}
+									height={30}
+									rotateAngle={0}
+								>
+									<div id="display-text-one" style={changeColor}>
+										{textOne}
+									</div>
+								</ResizableContent>
+							)
+							}
+							{/* </Draggable> */}
 							{/* )} */}
-							{/* {createObjectURL &&
-									showOne && ( */}
-							<ResizableContent
-								top={100}
-								left={100}
-								width={200}
-								height={200}
-								rotateAngle={0}
-							>
-								{(createObjectURL && showOne) ?
-									(
-										<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
-											<Image
-												alt={createObjectURL}
-												id="display-logo-one"
-												src={createObjectURL}
-												layout="fill"
-												objectFit="contain"
-											/>
+							{(createObjectURL && showOne) && (
+								<ResizableContent
+									top={100}
+									left={100}
+									width={200}
+									height={200}
+									rotateAngle={0}
+								>
+									<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
+										<Image
+											alt={createObjectURL}
+											id="display-logo-one"
+											src={createObjectURL}
+											layout="fill"
+											objectFit="contain"
+										/>
 
-										</div>
-									) : null}
-							</ResizableContent>
-							{/* )} */}
+									</div>
+								</ResizableContent>
+							)}
 						</div>
-						{/* {textThree &&
-								showThree && ( */}
 						<div className="display-three-div">
-							<Draggable
-								axis="both"
-								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-								defaultPosition={{ x: 200, y: 300 }}
-							>
-								<div id="display-text-three" style={changeColor}>
-									{(textThree && showThree) ? textThree : null}
-								</div>
-							</Draggable>
-							{/* <ResizableContent
-								top={100}
-								left={100}
-								width={200}
-								height={200}
-								rotateAngle={0}
-							>
-								{(createObjectURLThree && showThree) ?
-									(
-										<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
-											<Image
-												alt={createObjectURLThree}
-												id="display-logo-three"
-												src={createObjectURLThree}
-												layout="fill"
-												objectFit="contain"
-											/>
-
-										</div>
-									) : null}
-							</ResizableContent> */}
+							{(textThree && showThree) && (
+								<ResizableContent
+									top={200}
+									left={200}
+									width={150}
+									height={30}
+									rotateAngle={0}
+								>
+									<div id="display-text-three" style={changeColor}>
+										{textThree}
+									</div>
+								</ResizableContent>
+							)}
 						</div>
-						{/* )} */}
-						{/* {textFive &&
-								showFive && ( */}
 						<div className={'display-five-div ' + angleMClass}>
-							<Draggable
-								axis="both"
-								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-								defaultPosition={{ x: 200, y: 300 }}
-							>
-								<div id="display-text-five" style={changeColor}>
-									{(textFive && showFive) ? textFive : null}
-								</div>
-							</Draggable>
+							{(textFive && showFive) && (
+								<ResizableContent
+									top={200}
+									left={200}
+									width={150}
+									height={30}
+									rotateAngle={0}
+								>
+									<div id="display-text-five" style={changeColor}>
+										{textFive}
+									</div>
+								</ResizableContent>
+							)}
 						</div>
-						{/* )} */}
-						{/* {textSeven &&
-								showSeven && ( */}
 						<div className="display-seven-div">
-							<Draggable
-								axis="both"
-								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-								defaultPosition={{ x: 200, y: 300 }}
-							>
-								<div id="display-text-seven" style={changeColor}>
-									{(textSeven && showSeven) ? textSeven : null}
-								</div>
-							</Draggable>
+							{(textSeven && showSeven) && (
+								<ResizableContent
+									top={200}
+									left={200}
+									width={150}
+									height={30}
+									rotateAngle={0}
+								>
+									<div id="display-text-seven" style={changeColor}>
+										{textSeven}
+									</div>
+								</ResizableContent>
+							)}
 						</div>
-						{/* )} */}
 					</div>
-					{/* </div> */}
 				</div>
 				<div className="input-group">
 					<table>
