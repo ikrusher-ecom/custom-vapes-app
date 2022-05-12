@@ -679,6 +679,27 @@ export default function VapeWidget(props) {
 									{(textThree && showThree) ? textThree : null}
 								</div>
 							</Draggable>
+							{/* <ResizableContent
+								top={100}
+								left={100}
+								width={200}
+								height={200}
+								rotateAngle={0}
+							>
+								{(createObjectURLThree && showThree) ?
+									(
+										<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
+											<Image
+												alt={createObjectURLThree}
+												id="display-logo-three"
+												src={createObjectURLThree}
+												layout="fill"
+												objectFit="contain"
+											/>
+
+										</div>
+									) : null}
+							</ResizableContent> */}
 						</div>
 						{/* )} */}
 						{/* {textFive &&
@@ -951,6 +972,7 @@ export default function VapeWidget(props) {
 												valueLabelDisplay="on"
 												// getAriaValueText={setFontSize}
 												onChange={(event, newValue) => { setFontSize(newValue) }}
+												className='addPx'
 											/></p>
 										</>)
 										: null}

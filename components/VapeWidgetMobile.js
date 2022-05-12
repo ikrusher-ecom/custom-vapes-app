@@ -517,6 +517,22 @@ export default function VapeWidgetMobile(props) {
 	const logoOneStyle = {
 		transform: `rotate(${logoOneDeg}deg)`
 	}
+	const [textOneDeg, setTextOneDeg] = useState(0);
+	const textOneStyle = {
+		transform: `rotate(${textOneDeg}deg)`
+	}
+	const [textThreeDeg, setTextThreeDeg] = useState(0);
+	const textThreeStyle = {
+		transform: `rotate(${textThreeDeg}deg)`
+	}
+	const [textFiveDeg, setTextFiveDeg] = useState(0);
+	const textFiveStyle = {
+		transform: `rotate(${textFiveDeg}deg)`
+	}
+	const [textSevenDeg, setTextSevenDeg] = useState(0);
+	const textSevenStyle = {
+		transform: `rotate(${textSevenDeg}deg)`
+	}
 
 	return (
 		<React.Fragment>
@@ -653,7 +669,7 @@ export default function VapeWidgetMobile(props) {
 								// rotateAngle={0}
 								>
 									<div id="display-text-one" style={changeColor}>
-										{(textOne && showOne) ? textOne : null}
+										{(textOne && showOne) ? <p style={textOneStyle}>{textOne}</p> : null}
 									</div>
 								</Draggable>
 								{/* )} */}
@@ -689,7 +705,7 @@ export default function VapeWidgetMobile(props) {
 									defaultPosition={{ x: 100, y: 100 }}
 								>
 									<div id="display-text-three" style={changeColor}>
-										{(textThree && showThree) ? textThree : null}
+										{(textThree && showThree) ? <p style={textThreeStyle}>{textThree}</p> : null}
 									</div>
 								</Draggable>
 							</div>
@@ -703,7 +719,7 @@ export default function VapeWidgetMobile(props) {
 									defaultPosition={{ x: 100, y: 100 }}
 								>
 									<div id="display-text-five" style={changeColor}>
-										{(textFive && showFive) ? textFive : null}
+										{(textFive && showFive) ? <p style={textFiveStyle}>{textFive}</p> : null}
 									</div>
 								</Draggable>
 							</div>
@@ -717,7 +733,7 @@ export default function VapeWidgetMobile(props) {
 									defaultPosition={{ x: 100, y: 100 }}
 								>
 									<div id="display-text-seven" style={changeColor}>
-										{(textSeven && showSeven) ? textSeven : null}
+										{(textSeven && showSeven) ? <p style={textSevenStyle}>{textSeven}</p> : null}
 									</div>
 								</Draggable>
 							</div>
@@ -992,6 +1008,7 @@ export default function VapeWidgetMobile(props) {
 												onChange={setCustomColor}
 											/>
 											<p style={{ margin: '0' }}>
+												<p>Font Size: {customFont} px</p>
 												<Slider
 													defaultValue={14}
 													step={1}
@@ -1001,10 +1018,67 @@ export default function VapeWidgetMobile(props) {
 													valueLabelDisplay="on"
 													// getAriaValueText={setFontSize}
 													onChange={(event, newValue) => { setFontSize(newValue) }}
+													className='addPx'
 												/>
 											</p>
 										</>)
 										: null}
+									{showOne && (<>
+										<p>Rotate: {textOneDeg} deg</p>
+										<Slider
+											defaultValue={0}
+											step={5}
+											marks
+											min={0}
+											max={180}
+											valueLabelDisplay="on"
+											onChange={(event, newValue) => { setTextOneDeg(newValue) }}
+											className='addDeg'
+										/>
+									</>
+									)}
+									{showThree && (<>
+										<p>Rotate: {textThreeDeg} deg</p>
+										<Slider
+											defaultValue={0}
+											step={5}
+											marks
+											min={0}
+											max={180}
+											valueLabelDisplay="on"
+											onChange={(event, newValue) => { setTextThreeDeg(newValue) }}
+											className='addDeg'
+										/>
+									</>
+									)}
+									{showFive && (<>
+										<p>Rotate: {textFiveDeg} deg</p>
+										<Slider
+											defaultValue={0}
+											step={5}
+											marks
+											min={0}
+											max={180}
+											valueLabelDisplay="on"
+											onChange={(event, newValue) => { setTextFiveDeg(newValue) }}
+											className='addDeg'
+										/>
+									</>
+									)}
+									{showSeven && (<>
+										<p>Rotate: {textSevenDeg} deg</p>
+										<Slider
+											defaultValue={0}
+											step={5}
+											marks
+											min={0}
+											max={180}
+											valueLabelDisplay="on"
+											onChange={(event, newValue) => { setTextSevenDeg(newValue) }}
+											className='addDeg'
+										/>
+									</>
+									)}
 									{/* <Input type="color" id="picker" name="picker" value="#808080" onChange={e => console.log(e.target.value)} /> */}
 								</td>
 							</tr>
