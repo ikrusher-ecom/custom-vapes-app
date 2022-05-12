@@ -378,8 +378,10 @@ export default function VapeWidgetMobile(props) {
 		// e.preventDefault();
 		angleOne();
 		setNum(1);
-		takeScreenshot(newRef);
-		setUploaded(false);
+		setTimeout(() => {
+			takeScreenshot(newRef);
+			setUploaded(false);
+		}, 500);
 	};
 
 	const submitNext = () => {

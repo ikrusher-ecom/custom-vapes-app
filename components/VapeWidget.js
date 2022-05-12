@@ -380,8 +380,10 @@ export default function VapeWidget(props) {
 		// e.preventDefault();
 		angleOne();
 		setNum(1);
-		takeScreenshot(newRef);
-		setUploaded(false);
+		setTimeout(() => {
+			takeScreenshot(newRef);
+			setUploaded(false);
+		}, 500);
 	};
 
 	const submitNext = () => {
