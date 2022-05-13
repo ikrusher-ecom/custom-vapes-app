@@ -2,7 +2,7 @@
  * @Author: Jinqi Li
  * @Date: 2022-04-13 17:37:17
  * @LastEditors: Jinqi Li
- * @LastEditTime: 2022-04-20 02:48:25
+ * @LastEditTime: 2022-05-13 00:01:40
  * @FilePath: /custom-vapes-app/components/VapeWidget.js
  */
 import * as React from 'react';
@@ -33,14 +33,14 @@ import ResizableContent from './ResizableContent';
 import { formatInTimeZone } from 'date-fns-tz';
 
 export default function VapeWidget(props) {
-	const [num, setNum] = useState(1);
-	const [showOne, setShowOne] = useState(true);
-	const [showThree, setShowThree] = useState(false);
-	const [showFive, setShowFive] = useState(false);
-	const [showSeven, setShowSeven] = useState(false);
-	const [angleClass, setAngleClass] = useState('');
-	const [angleMClass, setAngleMClass] = useState('');
-	const [preview, setPreview] = useState(false);
+	const [ num, setNum ] = useState(1);
+	const [ showOne, setShowOne ] = useState(true);
+	const [ showThree, setShowThree ] = useState(false);
+	const [ showFive, setShowFive ] = useState(false);
+	const [ showSeven, setShowSeven ] = useState(false);
+	const [ angleClass, setAngleClass ] = useState('');
+	const [ angleMClass, setAngleMClass ] = useState('');
+	const [ preview, setPreview ] = useState(false);
 
 	const angleOne = () => {
 		setShowOne(true);
@@ -124,51 +124,53 @@ export default function VapeWidget(props) {
 	};
 
 	const lastAngle = () => {
-		if (num === 2) {
-			angleOne();
-		} else if (num === 3) {
-			angleTwo();
-		} else if (num === 4) {
-			angleThree();
-		} else if (num === 5) {
-			angleFour();
-		} else if (num === 6) {
-			angleFive();
-		} else if (num === 7) {
-			angleSix();
-		} else if (num === 8) {
-			angleSeven();
-		} else if (num === 9) {
-			angleEight();
-		} else {
-			angleNineTen();
-		}
-
 		setNum(num - 1);
+		setTimeout(() => {
+			if (num === 2) {
+				angleOne();
+			} else if (num === 3) {
+				angleTwo();
+			} else if (num === 4) {
+				angleThree();
+			} else if (num === 5) {
+				angleFour();
+			} else if (num === 6) {
+				angleFive();
+			} else if (num === 7) {
+				angleSix();
+			} else if (num === 8) {
+				angleSeven();
+			} else if (num === 9) {
+				angleEight();
+			} else {
+				angleNineTen();
+			}
+		}, 100);
 	};
 
 	const nextAngle = () => {
-		if (num === 0) {
-			angleOne();
-		} else if (num === 1) {
-			angleTwo();
-		} else if (num === 2) {
-			angleThree();
-		} else if (num === 3) {
-			angleFour();
-		} else if (num === 4) {
-			angleFive();
-		} else if (num === 5) {
-			angleSix();
-		} else if (num === 6) {
-			angleSeven();
-		} else if (num === 7) {
-			angleEight();
-		} else {
-			angleNineTen();
-		}
-
 		setNum(num + 1);
+		setTimeout(() => {
+			if (num === 0) {
+				angleOne();
+			} else if (num === 1) {
+				angleTwo();
+			} else if (num === 2) {
+				angleThree();
+			} else if (num === 3) {
+				angleFour();
+			} else if (num === 4) {
+				angleFive();
+			} else if (num === 5) {
+				angleSix();
+			} else if (num === 6) {
+				angleSeven();
+			} else if (num === 7) {
+				angleEight();
+			} else {
+				angleNineTen();
+			}
+		}, 100);
 	};
 
 	const onPreview = () => {
@@ -225,19 +227,19 @@ export default function VapeWidget(props) {
 			}
 			return () => clearInterval(interval);
 		},
-		[preview, num]
+		[ preview, num ]
 	);
 
-	const [prodColor, setProdColor] = useState(props.productColors[0]);
+	const [ prodColor, setProdColor ] = useState(props.productColors[0]);
 
 	const handleChangeColor = (event) => {
 		setProdColor(event.target.value);
 	};
 
-	const [image, setImage] = useState(null);
-	const [createObjectURL, setCreateObjectURL] = useState(null);
-	const [prodURL, setProdURL] = useState(null);
-	const [imageSaved, setImageSaved] = useState([]);
+	const [ image, setImage ] = useState(null);
+	const [ createObjectURL, setCreateObjectURL ] = useState(null);
+	const [ logoOneURL, setLogoOneURL ] = useState('');
+	const [ imageSaved, setImageSaved ] = useState([]);
 
 	const uploadToClient = (event) => {
 		if (event.target.files && event.target.files[0]) {
@@ -257,7 +259,7 @@ export default function VapeWidget(props) {
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				return setProdURL(res.secure_url);
+				setLogoOneURL(res.secure_url);
 			});
 	};
 
@@ -297,10 +299,11 @@ export default function VapeWidget(props) {
 	// 		})
 	// }
 
-	const [createObjectURLFive, setCreateObjectURLFive] = useState(null);
-	const [logoFive, setLogoFive] = useState(null);
+	const [ createObjectURLFive, setCreateObjectURLFive ] = useState(null);
+	const [ logoFive, setLogoFive ] = useState(null);
+	const [ logoFiveURL, setLogoFiveURL ] = useState('');
 	const handleLogoFive = async (event) => {
-		if (num === 3) {
+		if (num === 5) {
 			setShowFive(true);
 		} else {
 			setShowFive(false);
@@ -319,14 +322,14 @@ export default function VapeWidget(props) {
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				return imageSaved.push(res.secure_url);
-			})
-	}
+				setLogoFiveURL(res.secure_url);
+			});
+	};
 
-	const [textOne, setTextOne] = useState('');
-	const [textThree, setTextThree] = useState('');
-	const [textFive, setTextFive] = useState('');
-	const [textSeven, setTextSeven] = useState('');
+	const [ textOne, setTextOne ] = useState('');
+	const [ textThree, setTextThree ] = useState('');
+	const [ textFive, setTextFive ] = useState('');
+	const [ textSeven, setTextSeven ] = useState('');
 
 	const onTextInputOne = (event) => {
 		setTextOne(event.target.value);
@@ -344,22 +347,22 @@ export default function VapeWidget(props) {
 		setTextSeven(event.target.value);
 	};
 
-	const [emailInput, setEmailInput] = useState('');
-	const [manual, setManual] = useState('');
-	const [packaging, setPackaging] = useState('');
-	const [messageField, setMessageField] = useState('');
-	const [customerName, setCustomerName] = useState('');
-	const [customerPhone, setCustomerPhone] = useState('');
+	const [ emailInput, setEmailInput ] = useState('');
+	const [ manual, setManual ] = useState('');
+	const [ packaging, setPackaging ] = useState('');
+	const [ messageField, setMessageField ] = useState('');
+	const [ customerName, setCustomerName ] = useState('');
+	const [ customerPhone, setCustomerPhone ] = useState('');
 
 	const onEmailInput = (event) => {
 		setEmailInput(event.target.value);
 	};
 	const onNameInput = (event) => {
 		setCustomerName(event.target.value);
-	}
+	};
 	const onPhoneInput = (event) => {
 		setCustomerPhone(event.target.value);
-	}
+	};
 	const onCustomManual = (event) => {
 		setManual(event.target.value);
 	};
@@ -370,20 +373,25 @@ export default function VapeWidget(props) {
 		setMessageField(event.target.value);
 	};
 
-	const [formInfo, setFormInfo] = useState('');
+	const [ formInfo, setFormInfo ] = useState('');
 
-	const [screenshot, takeScreenshot] = useScreenshot({
+	const [ screenshot, takeScreenshot ] = useScreenshot({
+		type: 'image/png',
+		quality: 1.0
+	});
+	const [ screenshotFive, takeScreenshotFive ] = useScreenshot({
 		type: 'image/png',
 		quality: 1.0
 	});
 
-	const [newRef, setNewRef] = useState(null);
+	const [ newRef, setNewRef ] = useState(null);
 	const screenRef = (ref) => {
 		setNewRef(ref);
 	};
 
-	const [screenfile, setScreenfile] = useState(null);
-	const [timeStamp, setTimeStamp] = useState(Date.now());
+	const [ screenfile, setScreenfile ] = useState(null);
+	const [ screenfileFive, setScreenfileFive ] = useState(null);
+	const [ timeStamp, setTimeStamp ] = useState(Date.now());
 
 	const urlToObject = (dataurl, filename) => {
 		let arr = dataurl.split(','),
@@ -394,36 +402,70 @@ export default function VapeWidget(props) {
 		while (n--) {
 			u8arr[n] = bstr.charCodeAt(n);
 		}
-		return new File([u8arr], filename, {
+		return new File([ u8arr ], filename, {
 			type: mime
 		});
-	}
+	};
 
-	useEffect(() => {
-		submitNext();
-	}, [screenshot])
+	useEffect(
+		() => {
+			submitNext();
+		},
+		[ screenshot, screenshotFive ]
+	);
 
-	useEffect(() => {
-		uploadScreenNext();
-	}, [screenfile])
+	useEffect(
+		() => {
+			if (screenfile) {
+				uploadScreenNext();
+			}
+		},
+		[ screenfile ]
+	);
 
-	useEffect(() => {
-		screenshotNext();
-	}, [imageSaved, uploaded])
+	useEffect(
+		() => {
+			if (screenfileFive) {
+				uploadScreenNextBack();
+			}
+		},
+		[ screenfileFive ]
+	);
 
-	useEffect(() => {
-		if (uploaded) {
-			sendEmail();
-		}
-	}, [formInfo, uploaded])
+	useEffect(
+		() => {
+			if (screenURL && screenBackURL) {
+				setImageSaved([ logoOneURL, logoFiveURL, screenURL, screenBackURL ]);
+				setUploaded(true);
+			}
+		},
+		[ logoOneURL, logoFiveURL, screenURL, screenBackURL ]
+	);
 
-	useEffect(() => {
-		setImageSaved([...imageSaved, prodURL]);
-	}, [prodURL, screenshot])
+	useEffect(
+		() => {
+			if (uploaded) {
+				screenshotNext();
+			}
+		},
+		[ imageSaved, uploaded ]
+	);
 
-	useEffect(() => {
-		uploadToServer();
-	}, [image])
+	useEffect(
+		() => {
+			if (uploaded) {
+				sendEmail();
+			}
+		},
+		[ formInfo, uploaded ]
+	);
+
+	useEffect(
+		() => {
+			uploadToServer();
+		},
+		[ image ]
+	);
 
 	const onSubmitCustom = () => {
 		// e.preventDefault();
@@ -432,14 +474,19 @@ export default function VapeWidget(props) {
 		setTimeout(() => {
 			takeScreenshot(newRef);
 			setUploaded(false);
-		}, 500);
+			angleFive();
+			setNum(5);
+		}, 200);
+		setTimeout(() => {
+			takeScreenshotFive(newRef);
+		}, 400);
 	};
 
 	const submitNext = () => {
-		if (screenshot) {
+		if (screenshot && screenshotFive) {
 			uploadScreenToServer();
 		}
-	}
+	};
 
 	const screenshotNext = () => {
 		// if (imageSaved[0]) {
@@ -466,7 +513,7 @@ export default function VapeWidget(props) {
 			time: formatInTimeZone(new Date(), 'America/Los_Angeles', 'PPpp'),
 			product: props.productCate + ' ' + props.productID,
 			color: prodColor,
-			custom_text: [textOne, textThree, textFive, textSeven],
+			custom_text: [ textOne, textThree, textFive, textSeven ],
 			custom_user_manual: manual,
 			custom_package: packaging,
 			customer_name: customerName,
@@ -474,17 +521,20 @@ export default function VapeWidget(props) {
 			email: emailInput,
 			message: messageField,
 			custom_designs: imageSaved,
-			device: "desktop"
+			device: 'desktop'
 		});
-	}
+	};
 
-	const [sentEmail, setSentEmail] = useState(false);
-	useEffect(() => {
-		if (sentEmail) {
-			alert("Email sent successfully!");
-			setSentEmail(false);
-		}
-	}, [sentEmail])
+	const [ sentEmail, setSentEmail ] = useState(false);
+	useEffect(
+		() => {
+			if (sentEmail) {
+				alert('Email sent successfully!');
+				setSentEmail(false);
+			}
+		},
+		[ sentEmail ]
+	);
 
 	const sendEmail = async () => {
 		console.log(formInfo);
@@ -505,21 +555,24 @@ export default function VapeWidget(props) {
 		// })
 
 		let res = await fetch('/api/custom', {
-			method: "POST",
+			method: 'POST',
 			body: JSON.stringify(formInfo)
 		});
 		res = await res.json();
 		console.log('Response succeeded!');
 		setFormInfo('');
 		setSentEmail(true);
-	}
+	};
 
 	const uploadScreenToServer = () => {
 		setTimeStamp(Date.now());
-		setScreenfile(urlToObject(screenshot, `screenshot${timeStamp}.png`));
+		setScreenfile(urlToObject(screenshot, `screenshot-front-${timeStamp}.png`));
+		setScreenfileFive(urlToObject(screenshotFive, `screenshot-back-${timeStamp}.png`));
 	};
 
-	const [uploaded, setUploaded] = useState(false);
+	const [ uploaded, setUploaded ] = useState(false);
+	const [ screenURL, setScreenURL ] = useState('');
+	const [ screenBackURL, setScreenBackURL ] = useState('');
 	const uploadScreenNext = async () => {
 		if (screenfile) {
 			const body = new FormData();
@@ -531,15 +584,29 @@ export default function VapeWidget(props) {
 			})
 				.then((res) => res.json())
 				.then((res) => {
-					setImageSaved([...imageSaved, res.secure_url]);
-					setUploaded(true);
+					setScreenURL(res.secure_url);
 				});
 		}
-	}
-	const [customFont, setFontSize] = useState(14);
+	};
+	const uploadScreenNextBack = async () => {
+		if (screenfileFive) {
+			const bodyBack = new FormData();
+			bodyBack.append('file', screenfileFive);
+			bodyBack.append('upload_preset', 'custom-uploads');
+			const responseBack = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+				method: 'POST',
+				body: bodyBack
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					setScreenBackURL(res.secure_url);
+				});
+		}
+	};
 
-	const [customColor, setCustomColor] = useState('#878787');
-	const [isColorPicker, setColorPicker] = useState(false);
+	const [ customFont, setFontSize ] = useState(14);
+	const [ customColor, setCustomColor ] = useState('#878787');
+	const [ isColorPicker, setColorPicker ] = useState(false);
 	const changeColor = {
 		color: customColor,
 		fontSize: `${customFont}px`
@@ -560,10 +627,20 @@ export default function VapeWidget(props) {
 			<h5 style={{ padding: '0 16px' }}>Step 4: Customize Your Device Now!</h5>
 			<div className="custom-vape" id="custom-step4">
 				<div className={'next-btn ' + styles.angleBtns}>
-					<Button onClick={lastAngle} disabled={num <= 1} className={styles.roundBtn} style={{ float: 'left' }}>
+					<Button
+						onClick={lastAngle}
+						disabled={num <= 1}
+						className={styles.roundBtn}
+						style={{ float: 'left' }}
+					>
 						<ArrowBackIosIcon fontSize="large" />
 					</Button>
-					<Button onClick={nextAngle} disabled={num >= 10} className={styles.roundBtn} style={{ float: 'right' }}>
+					<Button
+						onClick={nextAngle}
+						disabled={num >= 10}
+						className={styles.roundBtn}
+						style={{ float: 'right' }}
+					>
 						<ArrowForwardIosIcon fontSize="large" />
 					</Button>
 					{/* <Button
@@ -672,7 +749,10 @@ export default function VapeWidget(props) {
 					</div>
 					{/* </div> */}
 					<div className="text-logo">
-						<div className={'display-one-div ' + angleClass} style={{display: showOne ? 'block' : 'none'}}>
+						<div
+							className={'display-one-div ' + angleClass}
+							style={{ display: showOne ? 'block' : 'none' }}
+						>
 							{/* {textOne &&
 									showOne && ( */}
 							{/* <Draggable
@@ -680,14 +760,9 @@ export default function VapeWidget(props) {
 								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
 								defaultPosition={{ x: 200, y: 300 }} */}
 							{/* > */}
-							<ResizableContent
-								top={200}
-								left={200}
-								width={150}
-								height={30}
-								rotateAngle={0}
-							>
-								{(textOne && showOne) && (
+							<ResizableContent top={200} left={200} width={150} height={30} rotateAngle={0}>
+								{textOne &&
+								showOne && (
 									<div id="display-text-one" style={changeColor}>
 										{textOne}
 									</div>
@@ -695,14 +770,9 @@ export default function VapeWidget(props) {
 							</ResizableContent>
 							{/* </Draggable> */}
 							{/* )} */}
-							<ResizableContent
-								top={100}
-								left={100}
-								width={200}
-								height={200}
-								rotateAngle={0}
-							>
-								{(createObjectURL && showOne) && (
+							<ResizableContent top={100} left={100} width={200} height={200} rotateAngle={0}>
+								{createObjectURL &&
+								showOne && (
 									<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
 										<Image
 											alt={createObjectURL}
@@ -711,20 +781,14 @@ export default function VapeWidget(props) {
 											layout="fill"
 											objectFit="contain"
 										/>
-
 									</div>
 								)}
 							</ResizableContent>
 						</div>
-						<div className="display-three-div" style={{display: showThree ? 'block' : 'none'}}>
-							<ResizableContent
-								top={200}
-								left={200}
-								width={150}
-								height={30}
-								rotateAngle={0}
-							>
-								{(textThree && showThree) && (
+						<div className="display-three-div" style={{ display: showThree ? 'block' : 'none' }}>
+							<ResizableContent top={200} left={200} width={150} height={30} rotateAngle={0}>
+								{textThree &&
+								showThree && (
 									<div id="display-text-three" style={changeColor}>
 										{textThree}
 									</div>
@@ -751,28 +815,21 @@ export default function VapeWidget(props) {
 								)}
 							</ResizableContent> */}
 						</div>
-						<div className={'display-five-div ' + angleMClass} style={{display: showFive ? 'block' : 'none'}}>
-							<ResizableContent
-								top={200}
-								left={200}
-								width={150}
-								height={30}
-								rotateAngle={0}
-							>
-								{(textFive && showFive) && (
+						<div
+							className={'display-five-div ' + angleMClass}
+							style={{ display: showFive ? 'block' : 'none' }}
+						>
+							<ResizableContent top={200} left={200} width={150} height={30} rotateAngle={0}>
+								{textFive &&
+								showFive && (
 									<div id="display-text-five" style={changeColor}>
 										{textFive}
 									</div>
 								)}
 							</ResizableContent>
-							<ResizableContent
-								top={100}
-								left={100}
-								width={200}
-								height={200}
-								rotateAngle={0}
-							>
-								{(createObjectURLFive && showFive) && (
+							<ResizableContent top={100} left={100} width={200} height={200} rotateAngle={0}>
+								{createObjectURLFive &&
+								showFive && (
 									<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
 										<Image
 											alt={createObjectURLFive}
@@ -781,21 +838,21 @@ export default function VapeWidget(props) {
 											layout="fill"
 											objectFit="contain"
 										/>
-
 									</div>
 								)}
 							</ResizableContent>
 						</div>
-						<div className="display-seven-div" style={{display: showSeven ? 'block' : 'none'}}>
+						<div className="display-seven-div" style={{ display: showSeven ? 'block' : 'none' }}>
 							<ResizableContent
 								top={200}
 								left={200}
 								width={150}
 								height={30}
 								rotateAngle={0}
-								style={{display: (textSeven && showSeven) ? 'block' : 'none'}}
+								style={{ display: textSeven && showSeven ? 'block' : 'none' }}
 							>
-								{(textSeven && showSeven) && (
+								{textSeven &&
+								showSeven && (
 									<div id="display-text-seven" style={changeColor}>
 										{textSeven}
 									</div>
@@ -839,7 +896,9 @@ export default function VapeWidget(props) {
 													style={{
 														fontSize: '16px',
 														padding: '20px 10px 10px',
-														display: props.productColors.includes('rosegold') ? 'flex' : 'none'
+														display: props.productColors.includes('rosegold')
+															? 'flex'
+															: 'none'
 													}}
 													value={'rosegold'}
 												>
@@ -859,7 +918,9 @@ export default function VapeWidget(props) {
 													style={{
 														fontSize: '16px',
 														padding: '20px 10px 10px',
-														display: props.productColors.includes('metablue') ? 'flex' : 'none'
+														display: props.productColors.includes('metablue')
+															? 'flex'
+															: 'none'
 													}}
 													value={'metablue'}
 												>
@@ -876,8 +937,8 @@ export default function VapeWidget(props) {
 													value={'metasilver'}
 													selected={
 														!props.productColors.includes('black') &&
-															!props.productColors.includes('gunmetal') &&
-															props.productColors.includes('metasilver') ? (
+														!props.productColors.includes('gunmetal') &&
+														props.productColors.includes('metasilver') ? (
 															true
 														) : (
 															false
@@ -900,12 +961,14 @@ export default function VapeWidget(props) {
 													style={{
 														fontSize: '16px',
 														padding: '20px 10px 10px',
-														display: props.productColors.includes('gunmetal') ? 'flex' : 'none'
+														display: props.productColors.includes('gunmetal')
+															? 'flex'
+															: 'none'
 													}}
 													value={'gunmetal'}
 													selected={
 														!props.productColors.includes('black') &&
-															props.productColors.includes('gunmetal') ? (
+														props.productColors.includes('gunmetal') ? (
 															true
 														) : (
 															false
@@ -938,7 +1001,9 @@ export default function VapeWidget(props) {
 													style={{
 														fontSize: '16px',
 														padding: '20px 10px 10px',
-														display: props.productColors.includes('yellow') ? 'flex' : 'none'
+														display: props.productColors.includes('yellow')
+															? 'flex'
+															: 'none'
 													}}
 													value={'yellow'}
 												>
@@ -948,7 +1013,9 @@ export default function VapeWidget(props) {
 													style={{
 														fontSize: '16px',
 														padding: '20px 10px 10px',
-														display: props.productColors.includes('royalblue') ? 'flex' : 'none'
+														display: props.productColors.includes('royalblue')
+															? 'flex'
+															: 'none'
 													}}
 													value={'royalblue'}
 												>
@@ -968,7 +1035,9 @@ export default function VapeWidget(props) {
 													style={{
 														fontSize: '16px',
 														padding: '20px 10px 10px',
-														display: props.productColors.includes('hotpink') ? 'flex' : 'none'
+														display: props.productColors.includes('hotpink')
+															? 'flex'
+															: 'none'
 													}}
 													value={'hotpink'}
 												>
@@ -997,8 +1066,8 @@ export default function VapeWidget(props) {
 											</Button>
 										</label>
 										<p style={{ fontSize: '12px', maxWidth: '280px' }}>
-											Click the button above to select a logo file from your computer or other file
-											storage. We accept PNG FILE and FILE SIZE not more than 1 MB only.
+											Click the button above to select a logo file from your computer or other
+											file storage. We accept PNG FILE and FILE SIZE not more than 1 MB only.
 										</p>
 									</td>
 								)}
@@ -1039,8 +1108,8 @@ export default function VapeWidget(props) {
 											</Button>
 										</label>
 										<p style={{ fontSize: '12px', maxWidth: '280px' }}>
-											Click the button above to select a logo file from your computer or other file
-											storage. We accept PNG FILE and FILE SIZE not more than 1 MB only.
+											Click the button above to select a logo file from your computer or other
+											file storage. We accept PNG FILE and FILE SIZE not more than 1 MB only.
 										</p>
 									</td>
 								)}
@@ -1068,27 +1137,31 @@ export default function VapeWidget(props) {
 											<Input type="text" id="custom-text-seven" onChange={onTextInputSeven} />
 										</div>
 									)}
-									{(showOne || showThree || showFive || showSeven)
-										? (<>
+									{showOne || showThree || showFive || showSeven ? (
+										<React.Fragment>
 											<Button style={colorButton} onClick={setColorPicker} />
 											<HexColorPicker
 												style={{ display: isColorPicker ? 'flex' : 'none', marginTop: '10px' }}
 												color={customColor}
 												onChange={setCustomColor}
 											/>
-											<p><Slider
-												defaultValue={14}
-												step={1}
-												marks
-												min={10}
-												max={30}
-												valueLabelDisplay="on"
-												// getAriaValueText={setFontSize}
-												onChange={(event, newValue) => { setFontSize(newValue) }}
-												className='addPx'
-											/></p>
-										</>)
-										: null}
+											<p>
+												<Slider
+													defaultValue={14}
+													step={1}
+													marks
+													min={10}
+													max={30}
+													valueLabelDisplay="on"
+													// getAriaValueText={setFontSize}
+													onChange={(event, newValue) => {
+														setFontSize(newValue);
+													}}
+													className="addPx"
+												/>
+											</p>
+										</React.Fragment>
+									) : null}
 									{/* <Input type="color" id="picker" name="picker" value="#808080" onChange={e => console.log(e.target.value)} /> */}
 								</td>
 							</tr>
@@ -1129,19 +1202,34 @@ export default function VapeWidget(props) {
 							<tr>
 								<th style={{ paddingTop: '1em' }}>Your Name:</th>
 								<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
-									<Input type="text" id="customerName" onChange={onNameInput} sx={{ width: '200px' }} />
+									<Input
+										type="text"
+										id="customerName"
+										onChange={onNameInput}
+										sx={{ width: '200px' }}
+									/>
 								</td>
 							</tr>
 							<tr>
 								<th style={{ paddingTop: '1em' }}>Your Phone Number:</th>
 								<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
-									<Input type="tel" id="customerPhone" onChange={onPhoneInput} sx={{ width: '200px' }} />
+									<Input
+										type="tel"
+										id="customerPhone"
+										onChange={onPhoneInput}
+										sx={{ width: '200px' }}
+									/>
 								</td>
 							</tr>
 							<tr>
 								<th style={{ paddingTop: '1em' }}>Your Email Address:</th>
 								<td style={{ verticalAlign: 'bottom', paddingTop: '1em' }}>
-									<Input type="email" id="customerEmail" onChange={onEmailInput} sx={{ width: '200px' }} />
+									<Input
+										type="email"
+										id="customerEmail"
+										onChange={onEmailInput}
+										sx={{ width: '200px' }}
+									/>
 								</td>
 							</tr>
 							<tr>
@@ -1208,7 +1296,7 @@ export default function VapeWidget(props) {
 					<p style={{ textAlign: 'center' }}>We will contact you once receiving your submisson.</p>
 				</div>
 			</div>
-		</React.Fragment >
+		</React.Fragment>
 	);
 }
 
