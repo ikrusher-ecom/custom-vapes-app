@@ -26,7 +26,11 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StopIcon from '@mui/icons-material/Stop';
 import Slider from '@mui/material/Slider';
-import Draggable from 'react-draggable';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import { useScreenshot } from 'use-react-screenshot';
 import { HexColorPicker } from 'react-colorful';
 import ResizableContent from './ResizableContent';
@@ -531,12 +535,17 @@ export default function VapeWidget(props) {
 	};
 
 	const [sentEmail, setSentEmail] = useState(false);
+	const [sendAlert, setSendAlert] = useState(false);
 	useEffect(
 		() => {
 			if (sentEmail) {
-				alert('Email sent successfully!');
+				// alert('Thank you for submitting your vape customization request. Our support will contact you if we have further questions.');
+				setSendAlert(true);
 				setFormReady(false);
 				setSentEmail(false);
+				setTimeout(() => {
+					setSendAlert(false);
+				}, 6000);
 			}
 		},
 		[sentEmail]
@@ -1289,6 +1298,26 @@ export default function VapeWidget(props) {
 						<Image src={screenshot} alt="screenshot" width="600" height="800" style={{ display: 'none' }} />
 					</a>
 				)} */}
+				<Dialog
+						open={sendAlert}
+						onClose={() => setSendAlert(false)}
+						aria-labelledby="alert-dialog-title"
+						aria-describedby="alert-dialog-description"
+					>
+						<DialogTitle id="alert-dialog-title" style={{ fontSize: '18px' }}>
+							{"iKrusher Custom Vape App"}
+						</DialogTitle>
+						<DialogContent>
+							<DialogContentText id="alert-dialog-description" style={{ fontSize: '16px' }}>
+								Thank you for submitting your vape customization request. Our support will contact you if we have further questions.
+							</DialogContentText>
+						</DialogContent>
+						<DialogActions>
+							<Button onClick={() => setSendAlert(false)} autoFocus style={{fontSize: '16px'}}>
+								OK
+							</Button>
+						</DialogActions>
+					</Dialog>
 					<Button
 						onClick={onSubmitCustom}
 						className={styles.funcBtn}

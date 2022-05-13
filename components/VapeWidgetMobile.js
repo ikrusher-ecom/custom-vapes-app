@@ -26,6 +26,11 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StopIcon from '@mui/icons-material/Stop';
 import Slider from '@mui/material/Slider';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import Draggable from 'react-draggable';
 import { useScreenshot } from 'use-react-screenshot';
 import { HexColorPicker } from 'react-colorful';
@@ -532,12 +537,17 @@ export default function VapeWidgetMobile(props) {
 	};
 
 	const [sentEmail, setSentEmail] = useState(false);
+	const [sendAlert, setSendAlert] = useState(false);
 	useEffect(
 		() => {
 			if (sentEmail) {
-				alert('Email sent successfully!');
+				// alert('Thank you for submitting your vape customization request. Our support will contact you if we have further questions.');
+				setSendAlert(true);
 				setFormReady(false);
 				setSentEmail(false);
+				setTimeout(() => {
+					setSendAlert(false);
+				}, 6000);
 			}
 		},
 		[sentEmail]
@@ -1388,6 +1398,26 @@ export default function VapeWidgetMobile(props) {
 						</tr> */}
 						</tbody>
 					</table>
+					<Dialog
+						open={sendAlert}
+						onClose={() => setSendAlert(false)}
+						aria-labelledby="alert-dialog-title"
+						aria-describedby="alert-dialog-description"
+					>
+						<DialogTitle id="alert-dialog-title" style={{ fontSize: '18px' }}>
+							{"iKrusher Custom Vape App"}
+						</DialogTitle>
+						<DialogContent>
+							<DialogContentText id="alert-dialog-description" style={{ fontSize: '16px' }}>
+								Thank you for submitting your vape customization request. Our support will contact you if we have further questions.
+							</DialogContentText>
+						</DialogContent>
+						<DialogActions>
+							<Button onClick={() => setSendAlert(false)} autoFocus style={{fontSize: '16px'}}>
+								OK
+							</Button>
+						</DialogActions>
+					</Dialog>
 					<Button
 						onClick={onSubmitCustom}
 						className={styles.funcBtn}
@@ -1395,7 +1425,7 @@ export default function VapeWidgetMobile(props) {
 					>
 						Submit
 					</Button>
-					<p style={{ textAlign: 'center' }}>We will contact you once receiving your submisson.</p>
+
 					{/* {screenshot && (
 					<a href={screenshot} download ref={downloadRef} style={{ display: 'none' }}>
 					<img ref={screenshotRef} src={screenshot} alt="screenshot" width="600" height="800" style={{ display: 'none' }} />
