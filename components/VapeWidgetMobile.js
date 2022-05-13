@@ -237,10 +237,10 @@ export default function VapeWidgetMobile(props) {
 		setProdColor(event.target.value);
 	};
 
-	const [ image, setImage ] = useState(null);
-	const [ createObjectURL, setCreateObjectURL ] = useState(null);
-	const [ logoOneURL, setLogoOneURL ] = useState('');
-	const [ imageSaved, setImageSaved ] = useState([]);
+	const [image, setImage] = useState(null);
+	const [createObjectURL, setCreateObjectURL] = useState(null);
+	const [logoOneURL, setLogoOneURL] = useState('');
+	const [imageSaved, setImageSaved] = useState([]);
 
 	const uploadToClient = (event) => {
 		if (event.target.files && event.target.files[0]) {
@@ -300,9 +300,9 @@ export default function VapeWidgetMobile(props) {
 	// 		})
 	// }
 
-	const [ createObjectURLFive, setCreateObjectURLFive ] = useState(null);
-	const [ logoFive, setLogoFive ] = useState(null);
-	const [ logoFiveURL, setLogoFiveURL ] = useState('');
+	const [createObjectURLFive, setCreateObjectURLFive] = useState(null);
+	const [logoFive, setLogoFive] = useState(null);
+	const [logoFiveURL, setLogoFiveURL] = useState('');
 	const handleLogoFive = async (event) => {
 		if (num === 5) {
 			setShowFive(true);
@@ -327,10 +327,10 @@ export default function VapeWidgetMobile(props) {
 			});
 	};
 
-	const [ textOne, setTextOne ] = useState('');
-	const [ textThree, setTextThree ] = useState('');
-	const [ textFive, setTextFive ] = useState('');
-	const [ textSeven, setTextSeven ] = useState('');
+	const [textOne, setTextOne] = useState('');
+	const [textThree, setTextThree] = useState('');
+	const [textFive, setTextFive] = useState('');
+	const [textSeven, setTextSeven] = useState('');
 
 	const onTextInputOne = (event) => {
 		setTextOne(event.target.value);
@@ -348,12 +348,12 @@ export default function VapeWidgetMobile(props) {
 		setTextSeven(event.target.value);
 	};
 
-	const [ emailInput, setEmailInput ] = useState('');
-	const [ manual, setManual ] = useState('');
-	const [ packaging, setPackaging ] = useState('');
-	const [ messageField, setMessageField ] = useState('');
-	const [ customerName, setCustomerName ] = useState('');
-	const [ customerPhone, setCustomerPhone ] = useState('');
+	const [emailInput, setEmailInput] = useState('');
+	const [manual, setManual] = useState('');
+	const [packaging, setPackaging] = useState('');
+	const [messageField, setMessageField] = useState('');
+	const [customerName, setCustomerName] = useState('');
+	const [customerPhone, setCustomerPhone] = useState('');
 
 	const onEmailInput = (event) => {
 		setEmailInput(event.target.value);
@@ -374,25 +374,29 @@ export default function VapeWidgetMobile(props) {
 		setMessageField(event.target.value);
 	};
 
-	const [ formInfo, setFormInfo ] = useState('');
+	const [formInfo, setFormInfo] = useState('');
+	const [uploaded, setUploaded] = useState(false);
+	const [formReady, setFormReady] = useState(false);
+	const [screenURL, setScreenURL] = useState('');
+	const [screenBackURL, setScreenBackURL] = useState('');
 
-	const [ screenshot, takeScreenshot ] = useScreenshot({
+	const [screenshot, takeScreenshot] = useScreenshot({
 		type: 'image/png',
 		quality: 1.0
 	});
-	const [ screenshotFive, takeScreenshotFive ] = useScreenshot({
+	const [screenshotFive, takeScreenshotFive] = useScreenshot({
 		type: 'image/png',
 		quality: 1.0
 	});
 
-	const [ newRef, setNewRef ] = useState(null);
+	const [newRef, setNewRef] = useState(null);
 	const screenRef = (ref) => {
 		setNewRef(ref);
 	};
 
-	const [ screenfile, setScreenfile ] = useState(null);
-	const [ screenfileFive, setScreenfileFive ] = useState(null);
-	const [ timeStamp, setTimeStamp ] = useState(Date.now());
+	const [screenfile, setScreenfile] = useState(null);
+	const [screenfileFive, setScreenfileFive] = useState(null);
+	const [timeStamp, setTimeStamp] = useState(Date.now());
 
 	const urlToObject = (dataurl, filename) => {
 		let arr = dataurl.split(','),
@@ -403,7 +407,7 @@ export default function VapeWidgetMobile(props) {
 		while (n--) {
 			u8arr[n] = bstr.charCodeAt(n);
 		}
-		return new File([ u8arr ], filename, {
+		return new File([u8arr], filename, {
 			type: mime
 		});
 	};
@@ -412,7 +416,7 @@ export default function VapeWidgetMobile(props) {
 		() => {
 			submitNext();
 		},
-		[ screenshot, screenshotFive ]
+		[screenshot, screenshotFive]
 	);
 
 	useEffect(
@@ -421,7 +425,7 @@ export default function VapeWidgetMobile(props) {
 				uploadScreenNext();
 			}
 		},
-		[ screenfile ]
+		[screenfile]
 	);
 
 	useEffect(
@@ -430,17 +434,17 @@ export default function VapeWidgetMobile(props) {
 				uploadScreenNextBack();
 			}
 		},
-		[ screenfileFive ]
+		[screenfileFive]
 	);
 
 	useEffect(
 		() => {
 			if (screenURL && screenBackURL) {
-				setImageSaved([ logoOneURL, logoFiveURL, screenURL, screenBackURL ]);
+				setImageSaved([logoOneURL, logoFiveURL, screenURL, screenBackURL]);
 				setUploaded(true);
 			}
 		},
-		[ logoOneURL, logoFiveURL, screenURL, screenBackURL ]
+		[logoOneURL, logoFiveURL, screenURL, screenBackURL]
 	);
 
 	useEffect(
@@ -449,23 +453,23 @@ export default function VapeWidgetMobile(props) {
 				screenshotNext();
 			}
 		},
-		[ imageSaved, uploaded ]
+		[imageSaved, uploaded]
 	);
 
 	useEffect(
 		() => {
-			if (uploaded) {
+			if (formReady) {
 				sendEmail();
 			}
 		},
-		[ formInfo, uploaded ]
+		[formInfo, uploaded]
 	);
 
 	useEffect(
 		() => {
 			uploadToServer();
 		},
-		[ image ]
+		[image]
 	);
 
 	const onSubmitCustom = () => {
@@ -514,7 +518,7 @@ export default function VapeWidgetMobile(props) {
 			time: formatInTimeZone(new Date(), 'America/Los_Angeles', 'PPpp'),
 			product: props.productCate + ' ' + props.productID,
 			color: prodColor,
-			custom_text: [ textOne, textThree, textFive, textSeven ],
+			custom_text: [textOne, textThree, textFive, textSeven],
 			custom_user_manual: manual,
 			custom_package: packaging,
 			customer_name: customerName,
@@ -524,17 +528,19 @@ export default function VapeWidgetMobile(props) {
 			custom_designs: imageSaved,
 			device: 'desktop'
 		});
+		setFormReady(true);
 	};
 
-	const [ sentEmail, setSentEmail ] = useState(false);
+	const [sentEmail, setSentEmail] = useState(false);
 	useEffect(
 		() => {
 			if (sentEmail) {
 				alert('Email sent successfully!');
+				setFormReady(false);
 				setSentEmail(false);
 			}
 		},
-		[ sentEmail ]
+		[sentEmail]
 	);
 
 	const sendEmail = async () => {
@@ -571,9 +577,6 @@ export default function VapeWidgetMobile(props) {
 		setScreenfileFive(urlToObject(screenshotFive, `screenshot-back-${timeStamp}.png`));
 	};
 
-	const [ uploaded, setUploaded ] = useState(false);
-	const [ screenURL, setScreenURL ] = useState('');
-	const [ screenBackURL, setScreenBackURL ] = useState('');
 	const uploadScreenNext = async () => {
 		if (screenfile) {
 			const body = new FormData();
