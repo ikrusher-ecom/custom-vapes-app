@@ -33,8 +33,6 @@ import ResizableContent from './ResizableContent';
 import { formatInTimeZone } from 'date-fns-tz';
 
 export default function VapeWidget(props) {
-	// console.log(customs);
-
 	const [num, setNum] = useState(1);
 	const [showOne, setShowOne] = useState(true);
 	const [showThree, setShowThree] = useState(false);
@@ -273,6 +271,58 @@ export default function VapeWidget(props) {
 		uploadToServer(event);
 	};
 
+	// const [createObjectURLThree, setCreateObjectURLThree] = useState(null);
+	// const [logoThree, setLogoThree] = useState(null);
+	// const handleLogoThree = async (event) => {
+	// 	if (num === 3) {
+	// 		setShowThree(true);
+	// 	} else {
+	// 		setShowThree(false);
+	// 	}
+	// 	if (event.target.files && event.target.files[0]) {
+	// 		const i = event.target.files[0];
+	// 		setLogoThree(i);
+	// 		setCreateObjectURLThree(URL.createObjectURL(i));
+	// 	}
+	// 	const body = new FormData();
+	// 	body.append('file', logoThree);
+	// 	body.append('upload_preset', 'custom-uploads');
+	// 	const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+	// 		method: 'POST',
+	// 		body
+	// 	})
+	// 		.then((res) => res.json())
+	// 		.then((res) => {
+	// 			return imageSaved.push(res.secure_url);
+	// 		})
+	// }
+
+	const [createObjectURLFive, setCreateObjectURLFive] = useState(null);
+	const [logoFive, setLogoFive] = useState(null);
+	const handleLogoFive = async (event) => {
+		if (num === 3) {
+			setShowFive(true);
+		} else {
+			setShowFive(false);
+		}
+		if (event.target.files && event.target.files[0]) {
+			const i = event.target.files[0];
+			setLogoFive(i);
+			setCreateObjectURLFive(URL.createObjectURL(i));
+		}
+		const body = new FormData();
+		body.append('file', logoFive);
+		body.append('upload_preset', 'custom-uploads');
+		const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+			method: 'POST',
+			body
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				return imageSaved.push(res.secure_url);
+			})
+	}
+
 	const [textOne, setTextOne] = useState('');
 	const [textThree, setTextThree] = useState('');
 	const [textFive, setTextFive] = useState('');
@@ -334,7 +384,6 @@ export default function VapeWidget(props) {
 
 	const [screenfile, setScreenfile] = useState(null);
 	const [timeStamp, setTimeStamp] = useState(Date.now());
-	// console.log(formatInTimeZone(new Date(), 'America/Los_Angeles', 'PPpp'));
 
 	const urlToObject = (dataurl, filename) => {
 		let arr = dataurl.split(','),
@@ -623,7 +672,7 @@ export default function VapeWidget(props) {
 					</div>
 					{/* </div> */}
 					<div className="text-logo">
-						<div className={'display-one-div ' + angleClass}>
+						<div className={'display-one-div ' + angleClass} style={{display: showOne ? 'block' : 'none'}}>
 							{/* {textOne &&
 									showOne && ( */}
 							{/* <Draggable
@@ -631,30 +680,29 @@ export default function VapeWidget(props) {
 								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
 								defaultPosition={{ x: 200, y: 300 }} */}
 							{/* > */}
-							{(textOne && showOne) && (
-								<ResizableContent
-									top={200}
-									left={200}
-									width={150}
-									height={30}
-									rotateAngle={0}
-								>
+							<ResizableContent
+								top={200}
+								left={200}
+								width={150}
+								height={30}
+								rotateAngle={0}
+							>
+								{(textOne && showOne) && (
 									<div id="display-text-one" style={changeColor}>
 										{textOne}
 									</div>
-								</ResizableContent>
-							)
-							}
+								)}
+							</ResizableContent>
 							{/* </Draggable> */}
 							{/* )} */}
-							{(createObjectURL && showOne) && (
-								<ResizableContent
-									top={100}
-									left={100}
-									width={200}
-									height={200}
-									rotateAngle={0}
-								>
+							<ResizableContent
+								top={100}
+								left={100}
+								width={200}
+								height={200}
+								rotateAngle={0}
+							>
+								{(createObjectURL && showOne) && (
 									<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
 										<Image
 											alt={createObjectURL}
@@ -665,53 +713,94 @@ export default function VapeWidget(props) {
 										/>
 
 									</div>
-								</ResizableContent>
-							)}
+								)}
+							</ResizableContent>
 						</div>
-						<div className="display-three-div">
-							{(textThree && showThree) && (
-								<ResizableContent
-									top={200}
-									left={200}
-									width={150}
-									height={30}
-									rotateAngle={0}
-								>
+						<div className="display-three-div" style={{display: showThree ? 'block' : 'none'}}>
+							<ResizableContent
+								top={200}
+								left={200}
+								width={150}
+								height={30}
+								rotateAngle={0}
+							>
+								{(textThree && showThree) && (
 									<div id="display-text-three" style={changeColor}>
 										{textThree}
 									</div>
-								</ResizableContent>
-							)}
+								)}
+							</ResizableContent>
+							{/* <ResizableContent
+								top={100}
+								left={100}
+								width={200}
+								height={200}
+								rotateAngle={0}
+							>
+								{(createObjectURLThree && showThree) && (
+									<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
+										<Image
+											alt={createObjectURLThree}
+											id="display-logo-one"
+											src={createObjectURLThree}
+											layout="fill"
+											objectFit="contain"
+										/>
+
+									</div>
+								)}
+							</ResizableContent> */}
 						</div>
-						<div className={'display-five-div ' + angleMClass}>
-							{(textFive && showFive) && (
-								<ResizableContent
-									top={200}
-									left={200}
-									width={150}
-									height={30}
-									rotateAngle={0}
-								>
+						<div className={'display-five-div ' + angleMClass} style={{display: showFive ? 'block' : 'none'}}>
+							<ResizableContent
+								top={200}
+								left={200}
+								width={150}
+								height={30}
+								rotateAngle={0}
+							>
+								{(textFive && showFive) && (
 									<div id="display-text-five" style={changeColor}>
 										{textFive}
 									</div>
-								</ResizableContent>
-							)}
+								)}
+							</ResizableContent>
+							<ResizableContent
+								top={100}
+								left={100}
+								width={200}
+								height={200}
+								rotateAngle={0}
+							>
+								{(createObjectURLFive && showFive) && (
+									<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
+										<Image
+											alt={createObjectURLFive}
+											id="display-logo-one"
+											src={createObjectURLFive}
+											layout="fill"
+											objectFit="contain"
+										/>
+
+									</div>
+								)}
+							</ResizableContent>
 						</div>
-						<div className="display-seven-div">
-							{(textSeven && showSeven) && (
-								<ResizableContent
-									top={200}
-									left={200}
-									width={150}
-									height={30}
-									rotateAngle={0}
-								>
+						<div className="display-seven-div" style={{display: showSeven ? 'block' : 'none'}}>
+							<ResizableContent
+								top={200}
+								left={200}
+								width={150}
+								height={30}
+								rotateAngle={0}
+								style={{display: (textSeven && showSeven) ? 'block' : 'none'}}
+							>
+								{(textSeven && showSeven) && (
 									<div id="display-text-seven" style={changeColor}>
 										{textSeven}
 									</div>
-								</ResizableContent>
-							)}
+								)}
+							</ResizableContent>
 						</div>
 					</div>
 				</div>
@@ -902,6 +991,48 @@ export default function VapeWidget(props) {
 												type="file"
 												style={{ display: 'none' }}
 												onChange={handleChangeLogo}
+											/>
+											<Button variant="contained" component="span" className={styles.funcBtn}>
+												Upload
+											</Button>
+										</label>
+										<p style={{ fontSize: '12px', maxWidth: '280px' }}>
+											Click the button above to select a logo file from your computer or other file
+											storage. We accept PNG FILE and FILE SIZE not more than 1 MB only.
+										</p>
+									</td>
+								)}
+								{/* {showThree && (
+									<td>
+										<label htmlFor="contained-button-file">
+											<Input
+												accept="image/png"
+												id="contained-button-file"
+												multiple={false}
+												type="file"
+												style={{ display: 'none' }}
+												onChange={handleLogoThree}
+											/>
+											<Button variant="contained" component="span" className={styles.funcBtn}>
+												Upload
+											</Button>
+										</label>
+										<p style={{ fontSize: '12px', maxWidth: '280px' }}>
+											Click the button above to select a logo file from your computer or other file
+											storage. We accept PNG FILE and FILE SIZE not more than 1 MB only.
+										</p>
+									</td>
+								)} */}
+								{showFive && (
+									<td>
+										<label htmlFor="contained-button-file">
+											<Input
+												accept="image/png"
+												id="contained-button-file"
+												multiple={false}
+												type="file"
+												style={{ display: 'none' }}
+												onChange={handleLogoFive}
 											/>
 											<Button variant="contained" component="span" className={styles.funcBtn}>
 												Upload

@@ -272,6 +272,32 @@ export default function VapeWidgetMobile(props) {
 		uploadToServer(event);
 	};
 
+	const [createObjectURLFive, setCreateObjectURLFive] = useState(null);
+	const [logoFive, setLogoFive] = useState(null);
+	const handleLogoFive = async (event) => {
+		if (num === 3) {
+			setShowFive(true);
+		} else {
+			setShowFive(false);
+		}
+		if (event.target.files && event.target.files[0]) {
+			const i = event.target.files[0];
+			setLogoFive(i);
+			setCreateObjectURLFive(URL.createObjectURL(i));
+		}
+		const body = new FormData();
+		body.append('file', logoFive);
+		body.append('upload_preset', 'custom-uploads');
+		const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+			method: 'POST',
+			body
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				return imageSaved.push(res.secure_url);
+			})
+	}
+
 	const [textOne, setTextOne] = useState('');
 	const [textThree, setTextThree] = useState('');
 	const [textFive, setTextFive] = useState('');
@@ -513,9 +539,21 @@ export default function VapeWidgetMobile(props) {
 		height: `${logoHeight}px`
 	}
 
+	const [logoFiveWidth, setLogoFiveWidth] = useState(200);
+	const [logoFiveHeight, setLogoFiveHeight] = useState(200);
+	const customLogoFiveSize = {
+		// objectFit: 'fill',
+		width: `${logoFiveWidth}px`,
+		height: `${logoFiveHeight}px`
+	}
+
 	const [logoOneDeg, setLogoOneDeg] = useState(0);
 	const logoOneStyle = {
 		transform: `rotate(${logoOneDeg}deg)`
+	}
+	const [logoFiveDeg, setLogoFiveDeg] = useState(0);
+	const logoFiveStyle = {
+		transform: `rotate(${logoFiveDeg}deg)`
 	}
 	const [textOneDeg, setTextOneDeg] = useState(0);
 	const textOneStyle = {
@@ -720,6 +758,25 @@ export default function VapeWidgetMobile(props) {
 								>
 									<div id="display-text-five" style={changeColor}>
 										{(textFive && showFive) ? <p style={textFiveStyle}>{textFive}</p> : null}
+									</div>
+								</Draggable>
+								<Draggable
+									axis="both"
+									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+									defaultPosition={{ x: 100, y: 100 }}
+								>
+									<div className="display-logo-div" style={customLogoFiveSize}>
+										{(createObjectURLFive && showFive) ?
+											(
+												<Image
+													style={logoFiveStyle}
+													alt={createObjectURLFive}
+													id="display-logo-five"
+													src={createObjectURLFive}
+													layout="fill"
+													objectFit="contain"
+												/>
+											) : null}
 									</div>
 								</Draggable>
 							</div>
@@ -968,6 +1025,59 @@ export default function VapeWidgetMobile(props) {
 											valueLabelDisplay="on"
 											// getAriaValueText={setLogoOneDeg}
 											onChange={(event, newValue) => { setLogoOneDeg(newValue) }}
+											className='addDeg'
+										/>
+										<p style={{ fontSize: '12px', maxWidth: '200px' }}>
+											Click the UPLOAD button above to select a logo file from your phone. We accept PNG FILE and FILE SIZE not more than 1 MB only.
+										</p>
+									</td>
+								)}
+								{showFive && (
+									<td>
+										<label htmlFor="contained-button-file">
+											<Input
+												accept="image/png"
+												id="contained-button-file"
+												multiple={false}
+												type="file"
+												style={{ display: 'none' }}
+												onChange={handleLogoFive}
+											/>
+											<Button variant="contained" component="span" className={styles.funcBtn}>
+												Upload
+											</Button>
+										</label>
+										<p>Width: {logoWidth} px</p>
+										<Slider
+											defaultValue={200}
+											step={10}
+											marks
+											min={10}
+											max={400}
+											valueLabelDisplay="on"
+											onChange={(event, newValue) => { setLogoFiveWidth(newValue) }}
+											className='addPx'
+										/>
+										<p>Height: {logoHeight} px</p>
+										<Slider
+											defaultValue={200}
+											step={10}
+											marks
+											min={10}
+											max={400}
+											valueLabelDisplay="on"
+											onChange={(event, newValue) => { setLogoFiveHeight(newValue) }}
+											className='addPx'
+										/>
+										<p>Rotate: {logoFiveDeg} deg</p>
+										<Slider
+											defaultValue={0}
+											step={5}
+											marks
+											min={0}
+											max={180}
+											valueLabelDisplay="on"
+											onChange={(event, newValue) => { setLogoFiveDeg(newValue) }}
 											className='addDeg'
 										/>
 										<p style={{ fontSize: '12px', maxWidth: '200px' }}>
