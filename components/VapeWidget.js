@@ -49,6 +49,7 @@ export default function VapeWidget(props) {
 	const [logoSevenClass, setLogoSevenClass] = useState('');
 
 	const angleOne = () => {
+		setNum(1);
 		setShowOne(true);
 		setShowThree(false);
 		setShowFive(false);
@@ -60,6 +61,7 @@ export default function VapeWidget(props) {
 	};
 
 	const angleTwo = () => {
+		setNum(2);
 		setShowOne(true);
 		setShowThree(true);
 		setShowFive(false);
@@ -71,6 +73,7 @@ export default function VapeWidget(props) {
 	};
 
 	const angleThree = () => {
+		setNum(3);
 		setShowOne(false);
 		setShowThree(true);
 		setShowFive(false);
@@ -82,6 +85,7 @@ export default function VapeWidget(props) {
 	};
 
 	const angleFour = () => {
+		setNum(4);
 		setShowOne(false);
 		setShowThree(true);
 		setShowFive(true);
@@ -93,6 +97,7 @@ export default function VapeWidget(props) {
 	};
 
 	const angleFive = () => {
+		setNum(5);
 		setShowOne(false);
 		setShowThree(false);
 		setShowFive(true);
@@ -104,6 +109,7 @@ export default function VapeWidget(props) {
 	};
 
 	const angleSix = () => {
+		setNum(6);
 		setShowOne(false);
 		setShowThree(false);
 		setShowFive(true);
@@ -115,6 +121,7 @@ export default function VapeWidget(props) {
 	};
 
 	const angleSeven = () => {
+		setNum(7);
 		setShowOne(false);
 		setShowThree(false);
 		setShowFive(false);
@@ -126,6 +133,7 @@ export default function VapeWidget(props) {
 	};
 
 	const angleEight = () => {
+		setNum(8);
 		setShowOne(true);
 		setShowThree(false);
 		setShowFive(false);
