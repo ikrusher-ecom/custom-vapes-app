@@ -594,22 +594,28 @@ export default function VapeWidget(props) {
 		setUploaded(false);
 		setTimeout(() => {
 			takeScreenshot(newRef);
-			angleThree();
-			setNum(3);
 		}, 100);
 		setTimeout(() => {
-			takeScreenshotThree(newRef);
-			angleFive();
-			setNum(5);
+			angleThree();
+			setNum(3);
 		}, 200);
 		setTimeout(() => {
-			takeScreenshotFive(newRef);
-			angleSeven();
-			setNum(7);
+			takeScreenshotThree(newRef);
 		}, 300);
 		setTimeout(() => {
-			takeScreenshotSeven(newRef);
+			angleFive();
+			setNum(5);
 		}, 400);
+		setTimeout(() => {
+			takeScreenshotFive(newRef);
+		}, 500);
+		setTimeout(() => {
+			angleSeven();
+			setNum(7);
+		}, 600);
+		setTimeout(() => {
+			takeScreenshotSeven(newRef);
+		}, 700);
 	};
 
 	const submitNext = () => {
