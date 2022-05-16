@@ -522,7 +522,7 @@ export default function VapeWidget(props) {
 				uploadScreenNext();
 			}
 		},
-		[screenfile]
+		[screenfile, screenfileThree, screenfileFive, screenfileSeven]
 	);
 
 	useEffect(
@@ -932,7 +932,7 @@ export default function VapeWidget(props) {
 								bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
 								defaultPosition={{ x: 200, y: 300 }} */}
 							{/* > */}
-							<ResizableContent top={200} left={200} width={150} height={30} rotateAngle={0}>
+							<ResizableContent top={220} left={220} width={100} height={30} rotateAngle={0}>
 								{((textOne && showOne) || (textOne && num === 1)) ? (
 									<div id="display-text-one" style={changeColor}>
 										{textOne}
@@ -941,7 +941,7 @@ export default function VapeWidget(props) {
 							</ResizableContent>
 							{/* </Draggable> */}
 							{/* )} */}
-							<ResizableContent top={100} left={100} width={200} height={200} rotateAngle={0}>
+							<ResizableContent top={0} left={0} width={200} height={200} rotateAngle={0}>
 								{((createObjectURL && showOne) || (createObjectURL && num === 1)) ? (
 									<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
 										<Image
@@ -956,7 +956,7 @@ export default function VapeWidget(props) {
 							</ResizableContent>
 						</div>
 						<div className={"display-three-div " + logoThreeClass} style={{ display: showThree ? 'block' : 'none' }}>
-							<ResizableContent top={200} left={200} width={150} height={30} rotateAngle={0}>
+							<ResizableContent top={220} left={220} width={100} height={30} rotateAngle={0}>
 								{((textThree && showThree) || (textThree && num === 3)) ? (
 									<div id="display-text-three" style={changeColor}>
 										{textThree}
@@ -988,14 +988,14 @@ export default function VapeWidget(props) {
 							className={'display-five-div ' + logoFiveClass}
 							style={{ display: showFive ? 'block' : 'none' }}
 						>
-							<ResizableContent top={200} left={200} width={150} height={30} rotateAngle={0}>
+							<ResizableContent top={220} left={220} width={100} height={30} rotateAngle={0}>
 								{((textFive && showFive) || (textFive && num === 5)) ? (
 									<div id="display-text-five" style={changeColor}>
 										{textFive}
 									</div>
 								) : null}
 							</ResizableContent>
-							<ResizableContent top={100} left={100} width={200} height={200} rotateAngle={0}>
+							<ResizableContent top={0} left={0} width={200} height={200} rotateAngle={0}>
 								{((createObjectURLFive && showFive) || (createObjectURLFive && num === 5)) ? (
 									<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
 										<Image
@@ -1010,14 +1010,14 @@ export default function VapeWidget(props) {
 							</ResizableContent>
 						</div>
 						<div className={"display-seven-div " + logoSevenClass} style={{ display: showSeven ? 'block' : 'none' }}>
-							<ResizableContent top={200} left={200} width={150} height={30} rotateAngle={0}>
+							<ResizableContent top={220} left={220} width={100} height={30} rotateAngle={0}>
 								{((textSeven && showSeven) || (textSeven && num === 7)) ? (
 									<div id="display-text-seven" style={changeColor}>
 										{textSeven}
 									</div>
 								) : null}
 							</ResizableContent>
-							<ResizableContent top={100} left={100} width={200} height={200} rotateAngle={0}>
+							<ResizableContent top={0} left={0} width={200} height={200} rotateAngle={0}>
 								{((createObjectURLSeven && showSeven) || (createObjectURLSeven && num === 7)) ? (
 									<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
 										<Image

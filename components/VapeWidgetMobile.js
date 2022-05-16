@@ -985,7 +985,7 @@ export default function VapeWidgetMobile(props) {
 								<Draggable
 									axis="both"
 									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 100, y: 100 }}
+									defaultPosition={{ x: 220, y: 220 }}
 								// style={{display: (textOne && showOne) ? 'block' : 'none'}}
 								// top={100}
 								// left={100}
@@ -1003,7 +1003,7 @@ export default function VapeWidgetMobile(props) {
 								<Draggable
 									axis="both"
 									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 100, y: 100 }}
+									defaultPosition={{ x: 0, y: 0 }}
 								>
 									<div className="display-logo-div" style={customLogoSize}>
 										{((createObjectURL && showOne) || (createObjectURL && num === 1)) ?
@@ -1027,7 +1027,7 @@ export default function VapeWidgetMobile(props) {
 								<Draggable
 									axis="both"
 									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 100, y: 100 }}
+									defaultPosition={{ x: 220, y: 220 }}
 								>
 									<div id="display-text-three" style={changeColor}>
 										{((textThree && showThree) || (textThree && num === 3)) ? <p style={textThreeStyle}>{textThree}</p> : null}
@@ -1036,7 +1036,7 @@ export default function VapeWidgetMobile(props) {
 								<Draggable
 									axis="both"
 									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 100, y: 100 }}
+									defaultPosition={{ x: 0, y: 0 }}
 								>
 									<div className="display-logo-div" style={customLogoThreeSize}>
 										{((createObjectURLThree && showThree) || (createObjectURLThree && num === 3)) ?
@@ -1060,7 +1060,7 @@ export default function VapeWidgetMobile(props) {
 								<Draggable
 									axis="both"
 									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 100, y: 100 }}
+									defaultPosition={{ x: 220, y: 220 }}
 								>
 									<div id="display-text-five" style={changeColor}>
 										{((textFive && showFive) || (textFive && num === 5)) ? <p style={textFiveStyle}>{textFive}</p> : null}
@@ -1069,7 +1069,7 @@ export default function VapeWidgetMobile(props) {
 								<Draggable
 									axis="both"
 									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 100, y: 100 }}
+									defaultPosition={{ x: 0, y: 0 }}
 								>
 									<div className="display-logo-div" style={customLogoFiveSize}>
 										{((createObjectURLFive && showFive) || (createObjectURLFive && num === 5)) ?
@@ -1093,7 +1093,7 @@ export default function VapeWidgetMobile(props) {
 								<Draggable
 									axis="both"
 									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 100, y: 100 }}
+									defaultPosition={{ x: 220, y: 220 }}
 								>
 									<div id="display-text-seven" style={changeColor}>
 										{((textSeven && showSeven) || (textSeven && num === 7)) ? <p style={textSevenStyle}>{textSeven}</p> : null}
@@ -1102,7 +1102,7 @@ export default function VapeWidgetMobile(props) {
 								<Draggable
 									axis="both"
 									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
-									defaultPosition={{ x: 100, y: 100 }}
+									defaultPosition={{ x: 0, y: 0 }}
 								>
 									<div className="display-logo-div" style={customLogoSevenSize}>
 										{((createObjectURLSeven && showSeven) || (createObjectURLSeven && num === 7)) ?
