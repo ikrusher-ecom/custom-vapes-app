@@ -142,13 +142,14 @@ function EnhancedTableHead(props) {
                         >
                             {headCell.label}
                             {orderBy === headCell.id ? (
-                                <Box component="span" sx={visuallyHidden}>
+                                <Box component="span">
                                     {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                                 </Box>
                             ) : null}
                         </TableSortLabel>
                     </TableCell>
-                ))}
+                )
+                )}
             </TableRow>
         </TableHead>
     );
@@ -164,7 +165,7 @@ EnhancedTableHead.propTypes = {
 };
 
 const EnhancedTableToolbar = (props) => {
-    const { numSelected } = props;
+    const { numSelected, selectedId } = props;
 
     return (
         <Toolbar
@@ -197,9 +198,16 @@ const EnhancedTableToolbar = (props) => {
                 </Typography>
             )}
 
-            {/* {numSelected > 0 ? (
+            {numSelected > 0 ? (
                 <Tooltip title="Delete">
-                    <IconButton>
+                    <IconButton onClick={() => {
+                        if (selectedId) {
+                            selectedId.forEach((id) => {
+                                handleDelete(id);
+                                console.log(id);
+                            })
+                        }
+                    }}>
                         <DeleteIcon />
                     </IconButton>
                 </Tooltip>
@@ -209,7 +217,7 @@ const EnhancedTableToolbar = (props) => {
                         <FilterListIcon />
                     </IconButton>
                 </Tooltip>
-            )} */}
+            )}
         </Toolbar>
     );
 };
@@ -217,6 +225,24 @@ const EnhancedTableToolbar = (props) => {
 EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
+
+const handleDelete = async (_id) => {
+    const response = await fetch('/api/custom', {
+        method: "DELETE",
+        headers: {
+            Accept: 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            _id,
+        })
+    }).then(res => {
+        if (res.status === 200) {
+            console.log("deleted: " + _id);
+        }
+    })
+
+}
 
 export default function DataBase({ customs }) {
     const [currentData, setCurrentData] = useState([]);
@@ -229,6 +255,7 @@ export default function DataBase({ customs }) {
     const [selected, setSelected] = useState([]);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [selectedId, setSelectedId] = useState([]);
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === "asc";
@@ -246,6 +273,7 @@ export default function DataBase({ customs }) {
     };
 
     const handleClick = (event, name) => {
+        setSelectedId([...selectedId, name]);
         const selectedIndex = selected.indexOf(name);
         let newSelected = [];
 
@@ -283,7 +311,7 @@ export default function DataBase({ customs }) {
     return (
         <Box sx={{ width: "100%" }}>
             <Paper sx={{ width: "100%", mb: 2 }}>
-                <EnhancedTableToolbar numSelected={selected.length} />
+                <EnhancedTableToolbar numSelected={selected.length} selectedId={selectedId} />
                 <TableContainer>
                     <Table
                         sx={{ minWidth: 750 }}
