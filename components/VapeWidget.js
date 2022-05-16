@@ -42,26 +42,32 @@ export default function VapeWidget(props) {
 	const [showThree, setShowThree] = useState(false);
 	const [showFive, setShowFive] = useState(false);
 	const [showSeven, setShowSeven] = useState(false);
-	const [angleClass, setAngleClass] = useState('');
-	const [angleMClass, setAngleMClass] = useState('');
 	const [preview, setPreview] = useState(false);
+	const [logoOneClass, setLogoOneClass] = useState('');
+	const [logoThreeClass, setLogoThreeClass] = useState('');
+	const [logoFiveClass, setLogoFiveClass] = useState('');
+	const [logoSevenClass, setLogoSevenClass] = useState('');
 
 	const angleOne = () => {
 		setShowOne(true);
 		setShowThree(false);
 		setShowFive(false);
 		setShowSeven(false);
-		setAngleClass('');
-		setAngleMClass('');
+		setLogoOneClass('');
+		setLogoThreeClass('');
+		setLogoFiveClass('');
+		setLogoSevenClass('');
 	};
 
 	const angleTwo = () => {
 		setShowOne(true);
-		setShowThree(false);
+		setShowThree(true);
 		setShowFive(false);
 		setShowSeven(false);
-		setAngleClass('angle45');
-		setAngleMClass('');
+		setLogoOneClass('angleRight45');
+		setLogoThreeClass('angleLeft45');
+		setLogoFiveClass('');
+		setLogoSevenClass('');
 	};
 
 	const angleThree = () => {
@@ -69,17 +75,21 @@ export default function VapeWidget(props) {
 		setShowThree(true);
 		setShowFive(false);
 		setShowSeven(false);
-		setAngleClass('');
-		setAngleMClass('');
+		setLogoOneClass('');
+		setLogoThreeClass('');
+		setLogoFiveClass('');
+		setLogoSevenClass('');
 	};
 
 	const angleFour = () => {
 		setShowOne(false);
-		setShowThree(false);
+		setShowThree(true);
 		setShowFive(true);
 		setShowSeven(false);
-		setAngleMClass('angleM45');
-		setAngleClass('');
+		setLogoOneClass('');
+		setLogoThreeClass('angleRight45');
+		setLogoFiveClass('angleLeft45');
+		setLogoSevenClass('');
 	};
 
 	const angleFive = () => {
@@ -87,17 +97,21 @@ export default function VapeWidget(props) {
 		setShowThree(false);
 		setShowFive(true);
 		setShowSeven(false);
-		setAngleClass('');
-		setAngleMClass('');
+		setLogoOneClass('');
+		setLogoThreeClass('');
+		setLogoFiveClass('');
+		setLogoSevenClass('');
 	};
 
 	const angleSix = () => {
 		setShowOne(false);
 		setShowThree(false);
 		setShowFive(true);
-		setShowSeven(false);
-		setAngleMClass('angle45');
-		setAngleClass('');
+		setShowSeven(true);
+		setLogoOneClass('');
+		setLogoThreeClass('');
+		setLogoFiveClass('angleRight45');
+		setLogoSevenClass('angleLeft45');
 	};
 
 	const angleSeven = () => {
@@ -105,17 +119,21 @@ export default function VapeWidget(props) {
 		setShowThree(false);
 		setShowFive(false);
 		setShowSeven(true);
-		setAngleClass('');
-		setAngleMClass('');
+		setLogoOneClass('');
+		setLogoThreeClass('');
+		setLogoFiveClass('');
+		setLogoSevenClass('');
 	};
 
 	const angleEight = () => {
 		setShowOne(true);
 		setShowThree(false);
 		setShowFive(false);
-		setShowSeven(false);
-		setAngleMClass('');
-		setAngleClass('angleM45');
+		setShowSeven(true);
+		setLogoOneClass('angleLeft45');
+		setLogoThreeClass('');
+		setLogoFiveClass('');
+		setLogoSevenClass('angleRight45');
 	};
 
 	const angleNineTen = () => {
@@ -123,8 +141,10 @@ export default function VapeWidget(props) {
 		setShowThree(false);
 		setShowFive(false);
 		setShowSeven(false);
-		setAngleClass('');
-		setAngleMClass('');
+		setLogoOneClass('');
+		setLogoThreeClass('');
+		setLogoFiveClass('');
+		setLogoSevenClass('');
 	};
 
 	const lastAngle = () => {
@@ -240,58 +260,22 @@ export default function VapeWidget(props) {
 		setProdColor(event.target.value);
 	};
 
-	const [image, setImage] = useState(null);
+	const [logoOne, setLogoOne] = useState(null);
 	const [createObjectURL, setCreateObjectURL] = useState(null);
 	const [logoOneURL, setLogoOneURL] = useState('');
 	const [imageSaved, setImageSaved] = useState([]);
 
-	const uploadToClient = (event) => {
-		if (event.target.files && event.target.files[0]) {
-			const i = event.target.files[0];
-			setImage(i);
-			setCreateObjectURL(URL.createObjectURL(i));
-		}
-	};
-
-	const uploadToServer = async () => {
-		const body = new FormData();
-		body.append('file', image);
-		body.append('upload_preset', 'custom-uploads');
-		const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
-			method: 'POST',
-			body
-		})
-			.then((res) => res.json())
-			.then((res) => {
-				setLogoOneURL(res.secure_url);
-			});
-	};
-
-	const handleChangeLogo = (event) => {
-		if (num === 1) {
-			setShowOne(true);
-		} else {
-			setShowOne(false);
-		}
-		uploadToClient(event);
-		uploadToServer(event);
-	};
-
-	// const [createObjectURLThree, setCreateObjectURLThree] = useState(null);
-	// const [logoThree, setLogoThree] = useState(null);
-	// const handleLogoThree = async (event) => {
-	// 	if (num === 3) {
-	// 		setShowThree(true);
-	// 	} else {
-	// 		setShowThree(false);
-	// 	}
+	// const uploadToClient = (event) => {
 	// 	if (event.target.files && event.target.files[0]) {
 	// 		const i = event.target.files[0];
-	// 		setLogoThree(i);
-	// 		setCreateObjectURLThree(URL.createObjectURL(i));
+	// 		setImage(i);
+	// 		setCreateObjectURL(URL.createObjectURL(i));
 	// 	}
+	// };
+
+	// const uploadToServer = async (theImage) => {
 	// 	const body = new FormData();
-	// 	body.append('file', logoThree);
+	// 	body.append('file', theImage);
 	// 	body.append('upload_preset', 'custom-uploads');
 	// 	const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
 	// 		method: 'POST',
@@ -299,9 +283,70 @@ export default function VapeWidget(props) {
 	// 	})
 	// 		.then((res) => res.json())
 	// 		.then((res) => {
-	// 			return imageSaved.push(res.secure_url);
-	// 		})
-	// }
+	// 			setImageSaved([...imageSaved, res.secure_url]);
+	// 		});
+	// };
+
+	const handleChangeLogo = async (event) => {
+		if (num === 1) {
+			setShowOne(true);
+		} else {
+			setShowOne(false);
+		}
+		if (event.target.files && event.target.files[0]) {
+			const i = event.target.files[0];
+			setLogoOne(i);
+			setCreateObjectURL(URL.createObjectURL(i));
+		}
+	};
+	useEffect(() => {
+		async function uploadLogo() {
+			const body = new FormData();
+			body.append('file', logoOne);
+			body.append('upload_preset', 'custom-uploads');
+			const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+				method: 'POST',
+				body
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					setLogoOneURL(res.secure_url);
+				});
+		}
+		uploadLogo();
+	}, [logoOne])
+
+	const [createObjectURLThree, setCreateObjectURLThree] = useState(null);
+	const [logoThree, setLogoThree] = useState(null);
+	const [logoThreeURL, setLogoThreeURL] = useState('');
+	const handleLogoThree = async (event) => {
+		if (num === 3) {
+			setShowThree(true);
+		} else {
+			setShowThree(false);
+		}
+		if (event.target.files && event.target.files[0]) {
+			const i = event.target.files[0];
+			setLogoThree(i);
+			setCreateObjectURLThree(URL.createObjectURL(i));
+		}
+	};
+	useEffect(() => {
+		async function uploadLogo() {
+			const body = new FormData();
+			body.append('file', logoThree);
+			body.append('upload_preset', 'custom-uploads');
+			const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+				method: 'POST',
+				body
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					setLogoThreeURL(res.secure_url);
+				});
+		}
+		uploadLogo();
+	}, [logoThree])
 
 	const [createObjectURLFive, setCreateObjectURLFive] = useState(null);
 	const [logoFive, setLogoFive] = useState(null);
@@ -317,18 +362,55 @@ export default function VapeWidget(props) {
 			setLogoFive(i);
 			setCreateObjectURLFive(URL.createObjectURL(i));
 		}
-		const body = new FormData();
-		body.append('file', logoFive);
-		body.append('upload_preset', 'custom-uploads');
-		const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
-			method: 'POST',
-			body
-		})
-			.then((res) => res.json())
-			.then((res) => {
-				setLogoFiveURL(res.secure_url);
-			});
 	};
+	useEffect(() => {
+		async function uploadLogo() {
+			const body = new FormData();
+			body.append('file', logoFive);
+			body.append('upload_preset', 'custom-uploads');
+			const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+				method: 'POST',
+				body
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					setLogoFiveURL(res.secure_url);
+				});
+		}
+		uploadLogo();
+	}, [logoFive])
+
+	const [createObjectURLSeven, setCreateObjectURLSeven] = useState(null);
+	const [logoSeven, setLogoSeven] = useState(null);
+	const [logoSevenURL, setLogoSevenURL] = useState('');
+	const handleLogoSeven = async (event) => {
+		if (num === 5) {
+			setShowSeven(true);
+		} else {
+			setShowSeven(false);
+		}
+		if (event.target.files && event.target.files[0]) {
+			const i = event.target.files[0];
+			setLogoSeven(i);
+			setCreateObjectURLSeven(URL.createObjectURL(i));
+		}
+	};
+	useEffect(() => {
+		async function uploadLogo() {
+			const body = new FormData();
+			body.append('file', logoSeven);
+			body.append('upload_preset', 'custom-uploads');
+			const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+				method: 'POST',
+				body
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					setLogoSevenURL(res.secure_url);
+				});
+		}
+		uploadLogo();
+	}, [logoSeven])
 
 	const [textOne, setTextOne] = useState('');
 	const [textThree, setTextThree] = useState('');
@@ -381,13 +463,23 @@ export default function VapeWidget(props) {
 	const [uploaded, setUploaded] = useState(false);
 	const [formReady, setFormReady] = useState(false);
 	const [screenURL, setScreenURL] = useState('');
+	const [screenLeftURL, setScreenLeftURL] = useState('');
 	const [screenBackURL, setScreenBackURL] = useState('');
+	const [screenRightURL, setScreenRightURL] = useState('');
 
 	const [screenshot, takeScreenshot] = useScreenshot({
 		type: 'image/png',
 		quality: 1.0
 	});
+	const [screenshotThree, takeScreenshotThree] = useScreenshot({
+		type: 'image/png',
+		quality: 1.0
+	});
 	const [screenshotFive, takeScreenshotFive] = useScreenshot({
+		type: 'image/png',
+		quality: 1.0
+	});
+	const [screenshotSeven, takeScreenshotSeven] = useScreenshot({
 		type: 'image/png',
 		quality: 1.0
 	});
@@ -398,7 +490,9 @@ export default function VapeWidget(props) {
 	};
 
 	const [screenfile, setScreenfile] = useState(null);
+	const [screenfileThree, setScreenfileThree] = useState(null);
 	const [screenfileFive, setScreenfileFive] = useState(null);
+	const [screenfileSeven, setScreenfileSeven] = useState(null);
 	const [timeStamp, setTimeStamp] = useState(Date.now());
 
 	const urlToObject = (dataurl, filename) => {
@@ -419,7 +513,7 @@ export default function VapeWidget(props) {
 		() => {
 			submitNext();
 		},
-		[screenshot, screenshotFive]
+		[screenshot, screenshotThree, screenshotFive, screenshotSeven]
 	);
 
 	useEffect(
@@ -433,6 +527,15 @@ export default function VapeWidget(props) {
 
 	useEffect(
 		() => {
+			if (screenfileThree) {
+				uploadScreenNextLeft();
+			}
+		},
+		[screenfileThree]
+	);
+
+	useEffect(
+		() => {
 			if (screenfileFive) {
 				uploadScreenNextBack();
 			}
@@ -442,12 +545,21 @@ export default function VapeWidget(props) {
 
 	useEffect(
 		() => {
-			if (screenURL && screenBackURL) {
-				setImageSaved([logoOneURL, logoFiveURL, screenURL, screenBackURL]);
+			if (screenfileSeven) {
+				uploadScreenNextRight();
+			}
+		},
+		[screenfileSeven]
+	);
+
+	useEffect(
+		() => {
+			if (screenURL && screenLeftURL && screenBackURL && screenRightURL) {
+				setImageSaved([logoOneURL, logoThreeURL, logoFiveURL, logoSevenURL, screenURL, screenLeftURL, screenBackURL, screenRightURL]);
 				setUploaded(true);
 			}
 		},
-		[logoOneURL, logoFiveURL, screenURL, screenBackURL]
+		[logoOneURL, logoThreeURL, logoFiveURL, logoSevenURL, screenURL, screenLeftURL, screenBackURL, screenRightURL]
 	);
 
 	useEffect(
@@ -465,33 +577,43 @@ export default function VapeWidget(props) {
 				sendEmail();
 			}
 		},
-		[formInfo, uploaded]
+		[formInfo, formReady]
 	);
 
-	useEffect(
-		() => {
-			uploadToServer();
-		},
-		[image]
-	);
+	// useEffect(
+	// 	() => {
+	// 		uploadToServer();
+	// 	},
+	// 	[image]
+	// );
 
 	const onSubmitCustom = () => {
 		// e.preventDefault();
 		angleOne();
 		setNum(1);
+		setUploaded(false);
 		setTimeout(() => {
 			takeScreenshot(newRef);
-			setUploaded(false);
+			angleThree();
+			setNum(3);
+		}, 100);
+		setTimeout(() => {
+			takeScreenshotThree(newRef);
 			angleFive();
 			setNum(5);
 		}, 200);
 		setTimeout(() => {
 			takeScreenshotFive(newRef);
+			angleSeven();
+			setNum(7);
+		}, 300);
+		setTimeout(() => {
+			takeScreenshotSeven(newRef);
 		}, 400);
 	};
 
 	const submitNext = () => {
-		if (screenshot && screenshotFive) {
+		if (screenshot && screenshotThree && screenshotFive && screenshotSeven) {
 			uploadScreenToServer();
 		}
 	};
@@ -582,7 +704,9 @@ export default function VapeWidget(props) {
 	const uploadScreenToServer = () => {
 		setTimeStamp(Date.now());
 		setScreenfile(urlToObject(screenshot, `screenshot-front-${timeStamp}.png`));
+		setScreenfileThree(urlToObject(screenshotThree, `screenshot-left-${timeStamp}.png`));
 		setScreenfileFive(urlToObject(screenshotFive, `screenshot-back-${timeStamp}.png`));
+		setScreenfileSeven(urlToObject(screenshotSeven, `screenshot-right-${timeStamp}.png`));
 	};
 
 	const uploadScreenNext = async () => {
@@ -600,18 +724,48 @@ export default function VapeWidget(props) {
 				});
 		}
 	};
+	const uploadScreenNextLeft = async () => {
+		if (screenfileThree) {
+			const body = new FormData();
+			body.append('file', screenfileThree);
+			body.append('upload_preset', 'custom-uploads');
+			const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+				method: 'POST',
+				body
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					setScreenLeftURL(res.secure_url);
+				});
+		}
+	};
 	const uploadScreenNextBack = async () => {
 		if (screenfileFive) {
-			const bodyBack = new FormData();
-			bodyBack.append('file', screenfileFive);
-			bodyBack.append('upload_preset', 'custom-uploads');
-			const responseBack = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+			const body = new FormData();
+			body.append('file', screenfileFive);
+			body.append('upload_preset', 'custom-uploads');
+			const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
 				method: 'POST',
-				body: bodyBack
+				body
 			})
 				.then((res) => res.json())
 				.then((res) => {
 					setScreenBackURL(res.secure_url);
+				});
+		}
+	};
+	const uploadScreenNextRight = async () => {
+		if (screenfileSeven) {
+			const body = new FormData();
+			body.append('file', screenfileSeven);
+			body.append('upload_preset', 'custom-uploads');
+			const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+				method: 'POST',
+				body
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					setScreenRightURL(res.secure_url);
 				});
 		}
 	};
@@ -762,8 +916,8 @@ export default function VapeWidget(props) {
 					{/* </div> */}
 					<div className="text-logo">
 						<div
-							className={'display-one-div ' + angleClass}
-							style={{ display: showOne ? 'block' : 'none' }}
+							className={'display-one-div ' + logoOneClass}
+							style={{ display: showOne || num === 1 ? 'block' : 'none' }}
 						>
 							{/* {textOne &&
 									showOne && ( */}
@@ -773,47 +927,44 @@ export default function VapeWidget(props) {
 								defaultPosition={{ x: 200, y: 300 }} */}
 							{/* > */}
 							<ResizableContent top={200} left={200} width={150} height={30} rotateAngle={0}>
-								{textOne &&
-									showOne && (
-										<div id="display-text-one" style={changeColor}>
-											{textOne}
-										</div>
-									)}
+								{((textOne && showOne) || (textOne && num === 1)) ? (
+									<div id="display-text-one" style={changeColor}>
+										{textOne}
+									</div>
+								) : null}
 							</ResizableContent>
 							{/* </Draggable> */}
 							{/* )} */}
 							<ResizableContent top={100} left={100} width={200} height={200} rotateAngle={0}>
-								{createObjectURL &&
-									showOne && (
-										<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
-											<Image
-												alt={createObjectURL}
-												id="display-logo-one"
-												src={createObjectURL}
-												layout="fill"
-												objectFit="contain"
-											/>
-										</div>
-									)}
+								{((createObjectURL && showOne) || (createObjectURL && num === 1)) ? (
+									<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
+										<Image
+											alt={createObjectURL}
+											id="display-logo-one"
+											src={createObjectURL}
+											layout="fill"
+											objectFit="contain"
+										/>
+									</div>
+								) : null}
 							</ResizableContent>
 						</div>
-						<div className="display-three-div" style={{ display: showThree ? 'block' : 'none' }}>
+						<div className={"display-three-div " + logoThreeClass} style={{ display: showThree ? 'block' : 'none' }}>
 							<ResizableContent top={200} left={200} width={150} height={30} rotateAngle={0}>
-								{textThree &&
-									showThree && (
-										<div id="display-text-three" style={changeColor}>
-											{textThree}
-										</div>
-									)}
+								{((textThree && showThree) || (textThree && num === 3)) ? (
+									<div id="display-text-three" style={changeColor}>
+										{textThree}
+									</div>
+								) : null}
 							</ResizableContent>
-							{/* <ResizableContent
+							<ResizableContent
 								top={100}
 								left={100}
 								width={200}
 								height={200}
 								rotateAngle={0}
 							>
-								{(createObjectURLThree && showThree) && (
+								{((createObjectURLThree && showThree) || (createObjectURLThree && num === 3)) ? (
 									<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
 										<Image
 											alt={createObjectURLThree}
@@ -824,51 +975,54 @@ export default function VapeWidget(props) {
 										/>
 
 									</div>
-								)}
-							</ResizableContent> */}
+								) : null}
+							</ResizableContent>
 						</div>
 						<div
-							className={'display-five-div ' + angleMClass}
+							className={'display-five-div ' + logoFiveClass}
 							style={{ display: showFive ? 'block' : 'none' }}
 						>
 							<ResizableContent top={200} left={200} width={150} height={30} rotateAngle={0}>
-								{textFive &&
-									showFive && (
-										<div id="display-text-five" style={changeColor}>
-											{textFive}
-										</div>
-									)}
+								{((textFive && showFive) || (textFive && num === 5)) ? (
+									<div id="display-text-five" style={changeColor}>
+										{textFive}
+									</div>
+								) : null}
 							</ResizableContent>
 							<ResizableContent top={100} left={100} width={200} height={200} rotateAngle={0}>
-								{createObjectURLFive &&
-									showFive && (
-										<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
-											<Image
-												alt={createObjectURLFive}
-												id="display-logo-one"
-												src={createObjectURLFive}
-												layout="fill"
-												objectFit="contain"
-											/>
-										</div>
-									)}
+								{((createObjectURLFive && showFive) || (createObjectURLFive && num === 5)) ? (
+									<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
+										<Image
+											alt={createObjectURLFive}
+											id="display-logo-one"
+											src={createObjectURLFive}
+											layout="fill"
+											objectFit="contain"
+										/>
+									</div>
+								) : null}
 							</ResizableContent>
 						</div>
-						<div className="display-seven-div" style={{ display: showSeven ? 'block' : 'none' }}>
-							<ResizableContent
-								top={200}
-								left={200}
-								width={150}
-								height={30}
-								rotateAngle={0}
-								style={{ display: textSeven && showSeven ? 'block' : 'none' }}
-							>
-								{textSeven &&
-									showSeven && (
-										<div id="display-text-seven" style={changeColor}>
-											{textSeven}
-										</div>
-									)}
+						<div className={"display-seven-div " + logoSevenClass} style={{ display: showSeven ? 'block' : 'none' }}>
+							<ResizableContent top={200} left={200} width={150} height={30} rotateAngle={0}>
+								{((textSeven && showSeven) || (textSeven && num === 7)) ? (
+									<div id="display-text-seven" style={changeColor}>
+										{textSeven}
+									</div>
+								) : null}
+							</ResizableContent>
+							<ResizableContent top={100} left={100} width={200} height={200} rotateAngle={0}>
+								{((createObjectURLSeven && showSeven) || (createObjectURLSeven && num === 7)) ? (
+									<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
+										<Image
+											alt={createObjectURLSeven}
+											id="display-logo-one"
+											src={createObjectURLSeven}
+											layout="fill"
+											objectFit="contain"
+										/>
+									</div>
+								) : null}
 							</ResizableContent>
 						</div>
 					</div>
@@ -1062,7 +1216,7 @@ export default function VapeWidget(props) {
 							</tr>
 							<tr className="custom-logo-div" id="upload-logo-one" style={{ height: '150px' }}>
 								<th>Upload Logo:</th>
-								{showOne && (
+								{num === 1 && (
 									<td>
 										<label htmlFor="contained-button-file">
 											<Input
@@ -1083,7 +1237,7 @@ export default function VapeWidget(props) {
 										</p>
 									</td>
 								)}
-								{/* {showThree && (
+								{num === 3 && (
 									<td>
 										<label htmlFor="contained-button-file">
 											<Input
@@ -1103,8 +1257,8 @@ export default function VapeWidget(props) {
 											storage. We accept PNG FILE and FILE SIZE not more than 1 MB only.
 										</p>
 									</td>
-								)} */}
-								{showFive && (
+								)}
+								{num === 5 && (
 									<td>
 										<label htmlFor="contained-button-file">
 											<Input
@@ -1125,31 +1279,52 @@ export default function VapeWidget(props) {
 										</p>
 									</td>
 								)}
+								{num === 7 && (
+									<td>
+										<label htmlFor="contained-button-file">
+											<Input
+												accept="image/png"
+												id="contained-button-file"
+												multiple={false}
+												type="file"
+												style={{ display: 'none' }}
+												onChange={handleLogoSeven}
+											/>
+											<Button variant="contained" component="span" className={styles.funcBtn}>
+												Upload
+											</Button>
+										</label>
+										<p style={{ fontSize: '12px', maxWidth: '280px' }}>
+											Click the button above to select a logo file from your computer or other
+											file storage. We accept PNG FILE and FILE SIZE not more than 1 MB only.
+										</p>
+									</td>
+								)}
 							</tr>
 							<tr style={{ height: '50px' }}>
 								<th>Customize Text:</th>
 								<td>
-									{showOne && (
+									{num === 1 && (
 										<div className="custom-text-div" id="input-text-one">
 											<Input type="text" id="custom-text-one" onChange={onTextInputOne} />
 										</div>
 									)}
-									{showThree && (
+									{num === 3 && (
 										<div className="custom-text-div" id="input-text-three">
 											<Input type="text" id="custom-text-three" onChange={onTextInputThree} />
 										</div>
 									)}
-									{showFive && (
+									{num === 5 && (
 										<div className="custom-text-div" id="input-text-five">
 											<Input type="text" id="custom-text-five" onChange={onTextInputFive} />
 										</div>
 									)}
-									{showSeven && (
+									{num === 7 && (
 										<div className="custom-text-div" id="input-text-seven">
 											<Input type="text" id="custom-text-seven" onChange={onTextInputSeven} />
 										</div>
 									)}
-									{showOne || showThree || showFive || showSeven ? (
+									{num === 1 || num === 3 || num === 5 || num === 7 ? (
 										<React.Fragment>
 											<Button style={colorButton} onClick={setColorPicker} />
 											<HexColorPicker
@@ -1298,7 +1473,7 @@ export default function VapeWidget(props) {
 						<Image src={screenshot} alt="screenshot" width="600" height="800" style={{ display: 'none' }} />
 					</a>
 				)} */}
-				<Dialog
+					<Dialog
 						open={sendAlert}
 						onClose={() => setSendAlert(false)}
 						aria-labelledby="alert-dialog-title"
@@ -1313,7 +1488,7 @@ export default function VapeWidget(props) {
 							</DialogContentText>
 						</DialogContent>
 						<DialogActions>
-							<Button onClick={() => setSendAlert(false)} autoFocus style={{fontSize: '16px'}}>
+							<Button onClick={() => { setSendAlert(false); window.location.reload(false); }} autoFocus style={{ fontSize: '16px' }}>
 								OK
 							</Button>
 						</DialogActions>

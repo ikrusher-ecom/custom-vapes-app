@@ -44,26 +44,32 @@ export default function VapeWidgetMobile(props) {
 	const [showThree, setShowThree] = useState(false);
 	const [showFive, setShowFive] = useState(false);
 	const [showSeven, setShowSeven] = useState(false);
-	const [angleClass, setAngleClass] = useState('');
-	const [angleMClass, setAngleMClass] = useState('');
 	const [preview, setPreview] = useState(false);
+	const [logoOneClass, setLogoOneClass] = useState('');
+	const [logoThreeClass, setLogoThreeClass] = useState('');
+	const [logoFiveClass, setLogoFiveClass] = useState('');
+	const [logoSevenClass, setLogoSevenClass] = useState('');
 
 	const angleOne = () => {
 		setShowOne(true);
 		setShowThree(false);
 		setShowFive(false);
 		setShowSeven(false);
-		setAngleClass('');
-		setAngleMClass('');
+		setLogoOneClass('');
+		setLogoThreeClass('');
+		setLogoFiveClass('');
+		setLogoSevenClass('');
 	};
 
 	const angleTwo = () => {
 		setShowOne(true);
-		setShowThree(false);
+		setShowThree(true);
 		setShowFive(false);
 		setShowSeven(false);
-		setAngleClass('angle45');
-		setAngleMClass('');
+		setLogoOneClass('angleRight45');
+		setLogoThreeClass('angleLeft45');
+		setLogoFiveClass('');
+		setLogoSevenClass('');
 	};
 
 	const angleThree = () => {
@@ -71,17 +77,21 @@ export default function VapeWidgetMobile(props) {
 		setShowThree(true);
 		setShowFive(false);
 		setShowSeven(false);
-		setAngleClass('');
-		setAngleMClass('');
+		setLogoOneClass('');
+		setLogoThreeClass('');
+		setLogoFiveClass('');
+		setLogoSevenClass('');
 	};
 
 	const angleFour = () => {
 		setShowOne(false);
-		setShowThree(false);
+		setShowThree(true);
 		setShowFive(true);
 		setShowSeven(false);
-		setAngleMClass('angleM45');
-		setAngleClass('');
+		setLogoOneClass('');
+		setLogoThreeClass('angleRight45');
+		setLogoFiveClass('angleLeft45');
+		setLogoSevenClass('');
 	};
 
 	const angleFive = () => {
@@ -89,17 +99,21 @@ export default function VapeWidgetMobile(props) {
 		setShowThree(false);
 		setShowFive(true);
 		setShowSeven(false);
-		setAngleClass('');
-		setAngleMClass('');
+		setLogoOneClass('');
+		setLogoThreeClass('');
+		setLogoFiveClass('');
+		setLogoSevenClass('');
 	};
 
 	const angleSix = () => {
 		setShowOne(false);
 		setShowThree(false);
 		setShowFive(true);
-		setShowSeven(false);
-		setAngleMClass('angle45');
-		setAngleClass('');
+		setShowSeven(true);
+		setLogoOneClass('');
+		setLogoThreeClass('');
+		setLogoFiveClass('angleRight45');
+		setLogoSevenClass('angleLeft45');
 	};
 
 	const angleSeven = () => {
@@ -107,17 +121,21 @@ export default function VapeWidgetMobile(props) {
 		setShowThree(false);
 		setShowFive(false);
 		setShowSeven(true);
-		setAngleClass('');
-		setAngleMClass('');
+		setLogoOneClass('');
+		setLogoThreeClass('');
+		setLogoFiveClass('');
+		setLogoSevenClass('');
 	};
 
 	const angleEight = () => {
 		setShowOne(true);
 		setShowThree(false);
 		setShowFive(false);
-		setShowSeven(false);
-		setAngleMClass('');
-		setAngleClass('angleM45');
+		setShowSeven(true);
+		setLogoOneClass('angleLeft45');
+		setLogoThreeClass('');
+		setLogoFiveClass('');
+		setLogoSevenClass('angleRight45');
 	};
 
 	const angleNineTen = () => {
@@ -125,9 +143,12 @@ export default function VapeWidgetMobile(props) {
 		setShowThree(false);
 		setShowFive(false);
 		setShowSeven(false);
-		setAngleClass('');
-		setAngleMClass('');
+		setLogoOneClass('');
+		setLogoThreeClass('');
+		setLogoFiveClass('');
+		setLogoSevenClass('');
 	};
+
 
 	const lastAngle = () => {
 		setNum(num - 1);
@@ -241,59 +262,22 @@ export default function VapeWidgetMobile(props) {
 	const handleChangeColor = (event) => {
 		setProdColor(event.target.value);
 	};
-
-	const [image, setImage] = useState(null);
+	const [logoOne, setLogoOne] = useState(null);
 	const [createObjectURL, setCreateObjectURL] = useState(null);
 	const [logoOneURL, setLogoOneURL] = useState('');
 	const [imageSaved, setImageSaved] = useState([]);
 
-	const uploadToClient = (event) => {
-		if (event.target.files && event.target.files[0]) {
-			const i = event.target.files[0];
-			setImage(i);
-			setCreateObjectURL(URL.createObjectURL(i));
-		}
-	};
-
-	const uploadToServer = async () => {
-		const body = new FormData();
-		body.append('file', image);
-		body.append('upload_preset', 'custom-uploads');
-		const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
-			method: 'POST',
-			body
-		})
-			.then((res) => res.json())
-			.then((res) => {
-				setLogoOneURL(res.secure_url);
-			});
-	};
-
-	const handleChangeLogo = (event) => {
-		if (num === 1) {
-			setShowOne(true);
-		} else {
-			setShowOne(false);
-		}
-		uploadToClient(event);
-		uploadToServer(event);
-	};
-
-	// const [createObjectURLThree, setCreateObjectURLThree] = useState(null);
-	// const [logoThree, setLogoThree] = useState(null);
-	// const handleLogoThree = async (event) => {
-	// 	if (num === 3) {
-	// 		setShowThree(true);
-	// 	} else {
-	// 		setShowThree(false);
-	// 	}
+	// const uploadToClient = (event) => {
 	// 	if (event.target.files && event.target.files[0]) {
 	// 		const i = event.target.files[0];
-	// 		setLogoThree(i);
-	// 		setCreateObjectURLThree(URL.createObjectURL(i));
+	// 		setImage(i);
+	// 		setCreateObjectURL(URL.createObjectURL(i));
 	// 	}
+	// };
+
+	// const uploadToServer = async (theImage) => {
 	// 	const body = new FormData();
-	// 	body.append('file', logoThree);
+	// 	body.append('file', theImage);
 	// 	body.append('upload_preset', 'custom-uploads');
 	// 	const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
 	// 		method: 'POST',
@@ -301,9 +285,70 @@ export default function VapeWidgetMobile(props) {
 	// 	})
 	// 		.then((res) => res.json())
 	// 		.then((res) => {
-	// 			return imageSaved.push(res.secure_url);
-	// 		})
-	// }
+	// 			setImageSaved([...imageSaved, res.secure_url]);
+	// 		});
+	// };
+
+	const handleChangeLogo = async (event) => {
+		if (num === 1) {
+			setShowOne(true);
+		} else {
+			setShowOne(false);
+		}
+		if (event.target.files && event.target.files[0]) {
+			const i = event.target.files[0];
+			setLogoOne(i);
+			setCreateObjectURL(URL.createObjectURL(i));
+		}
+	};
+	useEffect(() => {
+		async function uploadLogo() {
+			const body = new FormData();
+			body.append('file', logoOne);
+			body.append('upload_preset', 'custom-uploads');
+			const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+				method: 'POST',
+				body
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					setLogoOneURL(res.secure_url);
+				});
+		}
+		uploadLogo();
+	}, [logoOne])
+
+	const [createObjectURLThree, setCreateObjectURLThree] = useState(null);
+	const [logoThree, setLogoThree] = useState(null);
+	const [logoThreeURL, setLogoThreeURL] = useState('');
+	const handleLogoThree = async (event) => {
+		if (num === 3) {
+			setShowThree(true);
+		} else {
+			setShowThree(false);
+		}
+		if (event.target.files && event.target.files[0]) {
+			const i = event.target.files[0];
+			setLogoThree(i);
+			setCreateObjectURLThree(URL.createObjectURL(i));
+		}
+	};
+	useEffect(() => {
+		async function uploadLogo() {
+			const body = new FormData();
+			body.append('file', logoThree);
+			body.append('upload_preset', 'custom-uploads');
+			const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+				method: 'POST',
+				body
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					setLogoThreeURL(res.secure_url);
+				});
+		}
+		uploadLogo();
+	}, [logoThree])
 
 	const [createObjectURLFive, setCreateObjectURLFive] = useState(null);
 	const [logoFive, setLogoFive] = useState(null);
@@ -319,18 +364,55 @@ export default function VapeWidgetMobile(props) {
 			setLogoFive(i);
 			setCreateObjectURLFive(URL.createObjectURL(i));
 		}
-		const body = new FormData();
-		body.append('file', logoFive);
-		body.append('upload_preset', 'custom-uploads');
-		const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
-			method: 'POST',
-			body
-		})
-			.then((res) => res.json())
-			.then((res) => {
-				setLogoFiveURL(res.secure_url);
-			});
 	};
+	useEffect(() => {
+		async function uploadLogo() {
+			const body = new FormData();
+			body.append('file', logoFive);
+			body.append('upload_preset', 'custom-uploads');
+			const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+				method: 'POST',
+				body
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					setLogoFiveURL(res.secure_url);
+				});
+		}
+		uploadLogo();
+	}, [logoFive])
+
+	const [createObjectURLSeven, setCreateObjectURLSeven] = useState(null);
+	const [logoSeven, setLogoSeven] = useState(null);
+	const [logoSevenURL, setLogoSevenURL] = useState('');
+	const handleLogoSeven = async (event) => {
+		if (num === 5) {
+			setShowSeven(true);
+		} else {
+			setShowSeven(false);
+		}
+		if (event.target.files && event.target.files[0]) {
+			const i = event.target.files[0];
+			setLogoSeven(i);
+			setCreateObjectURLSeven(URL.createObjectURL(i));
+		}
+	};
+	useEffect(() => {
+		async function uploadLogo() {
+			const body = new FormData();
+			body.append('file', logoSeven);
+			body.append('upload_preset', 'custom-uploads');
+			const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+				method: 'POST',
+				body
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					setLogoSevenURL(res.secure_url);
+				});
+		}
+		uploadLogo();
+	}, [logoSeven])
 
 	const [textOne, setTextOne] = useState('');
 	const [textThree, setTextThree] = useState('');
@@ -383,13 +465,23 @@ export default function VapeWidgetMobile(props) {
 	const [uploaded, setUploaded] = useState(false);
 	const [formReady, setFormReady] = useState(false);
 	const [screenURL, setScreenURL] = useState('');
+	const [screenLeftURL, setScreenLeftURL] = useState('');
 	const [screenBackURL, setScreenBackURL] = useState('');
+	const [screenRightURL, setScreenRightURL] = useState('');
 
 	const [screenshot, takeScreenshot] = useScreenshot({
 		type: 'image/png',
 		quality: 1.0
 	});
+	const [screenshotThree, takeScreenshotThree] = useScreenshot({
+		type: 'image/png',
+		quality: 1.0
+	});
 	const [screenshotFive, takeScreenshotFive] = useScreenshot({
+		type: 'image/png',
+		quality: 1.0
+	});
+	const [screenshotSeven, takeScreenshotSeven] = useScreenshot({
 		type: 'image/png',
 		quality: 1.0
 	});
@@ -400,7 +492,9 @@ export default function VapeWidgetMobile(props) {
 	};
 
 	const [screenfile, setScreenfile] = useState(null);
+	const [screenfileThree, setScreenfileThree] = useState(null);
 	const [screenfileFive, setScreenfileFive] = useState(null);
+	const [screenfileSeven, setScreenfileSeven] = useState(null);
 	const [timeStamp, setTimeStamp] = useState(Date.now());
 
 	const urlToObject = (dataurl, filename) => {
@@ -421,7 +515,7 @@ export default function VapeWidgetMobile(props) {
 		() => {
 			submitNext();
 		},
-		[screenshot, screenshotFive]
+		[screenshot, screenshotThree, screenshotFive, screenshotSeven]
 	);
 
 	useEffect(
@@ -435,6 +529,15 @@ export default function VapeWidgetMobile(props) {
 
 	useEffect(
 		() => {
+			if (screenfileThree) {
+				uploadScreenNextLeft();
+			}
+		},
+		[screenfileThree]
+	);
+
+	useEffect(
+		() => {
 			if (screenfileFive) {
 				uploadScreenNextBack();
 			}
@@ -444,12 +547,21 @@ export default function VapeWidgetMobile(props) {
 
 	useEffect(
 		() => {
-			if (screenURL && screenBackURL) {
-				setImageSaved([logoOneURL, logoFiveURL, screenURL, screenBackURL]);
+			if (screenfileSeven) {
+				uploadScreenNextRight();
+			}
+		},
+		[screenfileSeven]
+	);
+
+	useEffect(
+		() => {
+			if (screenURL && screenLeftURL && screenBackURL && screenRightURL) {
+				setImageSaved([logoOneURL, logoThreeURL, logoFiveURL, logoSevenURL, screenURL, screenLeftURL, screenBackURL, screenRightURL]);
 				setUploaded(true);
 			}
 		},
-		[logoOneURL, logoFiveURL, screenURL, screenBackURL]
+		[logoOneURL, logoThreeURL, logoFiveURL, logoSevenURL, screenURL, screenLeftURL, screenBackURL, screenRightURL]
 	);
 
 	useEffect(
@@ -467,33 +579,43 @@ export default function VapeWidgetMobile(props) {
 				sendEmail();
 			}
 		},
-		[formInfo, uploaded]
+		[formInfo, formReady]
 	);
 
-	useEffect(
-		() => {
-			uploadToServer();
-		},
-		[image]
-	);
+	// useEffect(
+	// 	() => {
+	// 		uploadToServer();
+	// 	},
+	// 	[image]
+	// );
 
 	const onSubmitCustom = () => {
 		// e.preventDefault();
 		angleOne();
 		setNum(1);
+		setUploaded(false);
 		setTimeout(() => {
 			takeScreenshot(newRef);
-			setUploaded(false);
+			angleThree();
+			setNum(3);
+		}, 100);
+		setTimeout(() => {
+			takeScreenshotThree(newRef);
 			angleFive();
 			setNum(5);
 		}, 200);
 		setTimeout(() => {
 			takeScreenshotFive(newRef);
+			angleSeven();
+			setNum(7);
+		}, 300);
+		setTimeout(() => {
+			takeScreenshotSeven(newRef);
 		}, 400);
 	};
 
 	const submitNext = () => {
-		if (screenshot && screenshotFive) {
+		if (screenshot && screenshotThree && screenshotFive && screenshotSeven) {
 			uploadScreenToServer();
 		}
 	};
@@ -584,7 +706,9 @@ export default function VapeWidgetMobile(props) {
 	const uploadScreenToServer = () => {
 		setTimeStamp(Date.now());
 		setScreenfile(urlToObject(screenshot, `screenshot-front-${timeStamp}.png`));
+		setScreenfileThree(urlToObject(screenshotThree, `screenshot-left-${timeStamp}.png`));
 		setScreenfileFive(urlToObject(screenshotFive, `screenshot-back-${timeStamp}.png`));
+		setScreenfileSeven(urlToObject(screenshotSeven, `screenshot-right-${timeStamp}.png`));
 	};
 
 	const uploadScreenNext = async () => {
@@ -602,18 +726,48 @@ export default function VapeWidgetMobile(props) {
 				});
 		}
 	};
+	const uploadScreenNextLeft = async () => {
+		if (screenfileThree) {
+			const body = new FormData();
+			body.append('file', screenfileThree);
+			body.append('upload_preset', 'custom-uploads');
+			const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+				method: 'POST',
+				body
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					setScreenLeftURL(res.secure_url);
+				});
+		}
+	};
 	const uploadScreenNextBack = async () => {
 		if (screenfileFive) {
-			const bodyBack = new FormData();
-			bodyBack.append('file', screenfileFive);
-			bodyBack.append('upload_preset', 'custom-uploads');
-			const responseBack = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+			const body = new FormData();
+			body.append('file', screenfileFive);
+			body.append('upload_preset', 'custom-uploads');
+			const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
 				method: 'POST',
-				body: bodyBack
+				body
 			})
 				.then((res) => res.json())
 				.then((res) => {
 					setScreenBackURL(res.secure_url);
+				});
+		}
+	};
+	const uploadScreenNextRight = async () => {
+		if (screenfileSeven) {
+			const body = new FormData();
+			body.append('file', screenfileSeven);
+			body.append('upload_preset', 'custom-uploads');
+			const response = await fetch('https://api.cloudinary.com/v1_1/dz2lnwuww/image/upload', {
+				method: 'POST',
+				body
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					setScreenRightURL(res.secure_url);
 				});
 		}
 	};
@@ -643,7 +797,13 @@ export default function VapeWidgetMobile(props) {
 		width: `${logoWidth}px`,
 		height: `${logoHeight}px`
 	}
-
+	const [logoThreeWidth, setLogoThreeWidth] = useState(200);
+	const [logoThreeHeight, setLogoThreeHeight] = useState(200);
+	const customLogoThreeSize = {
+		// objectFit: 'fill',
+		width: `${logoThreeWidth}px`,
+		height: `${logoThreeHeight}px`
+	}
 	const [logoFiveWidth, setLogoFiveWidth] = useState(200);
 	const [logoFiveHeight, setLogoFiveHeight] = useState(200);
 	const customLogoFiveSize = {
@@ -651,15 +811,31 @@ export default function VapeWidgetMobile(props) {
 		width: `${logoFiveWidth}px`,
 		height: `${logoFiveHeight}px`
 	}
+	const [logoSevenWidth, setLogoSevenWidth] = useState(200);
+	const [logoSevenHeight, setLogoSevenHeight] = useState(200);
+	const customLogoSevenSize = {
+		// objectFit: 'fill',
+		width: `${logoSevenWidth}px`,
+		height: `${logoSevenHeight}px`
+	}
 
 	const [logoOneDeg, setLogoOneDeg] = useState(0);
 	const logoOneStyle = {
 		transform: `rotate(${logoOneDeg}deg)`
 	}
+	const [logoThreeDeg, setLogoThreeDeg] = useState(0);
+	const logoThreeStyle = {
+		transform: `rotate(${logoThreeDeg}deg)`
+	}
 	const [logoFiveDeg, setLogoFiveDeg] = useState(0);
 	const logoFiveStyle = {
 		transform: `rotate(${logoFiveDeg}deg)`
 	}
+	const [logoSevenDeg, setLogoSevenDeg] = useState(0);
+	const logoSevenStyle = {
+		transform: `rotate(${logoSevenDeg}deg)`
+	}
+
 	const [textOneDeg, setTextOneDeg] = useState(0);
 	const textOneStyle = {
 		transform: `rotate(${textOneDeg}deg)`
@@ -797,7 +973,7 @@ export default function VapeWidgetMobile(props) {
 						</div>
 						{/* </div> */}
 						<div className="text-logo">
-							<div className={'display-one-div ' + angleClass}>
+							<div className={'display-one-div ' + logoOneClass}>
 								{/* {textOne &&
 									showOne && ( */}
 								<Draggable
@@ -812,7 +988,7 @@ export default function VapeWidgetMobile(props) {
 								// rotateAngle={0}
 								>
 									<div id="display-text-one" style={changeColor}>
-										{(textOne && showOne) ? <p style={textOneStyle}>{textOne}</p> : null}
+										{((textOne && showOne) || (textOne && num === 1)) ? <p style={textOneStyle}>{textOne}</p> : null}
 									</div>
 								</Draggable>
 								{/* )} */}
@@ -824,7 +1000,7 @@ export default function VapeWidgetMobile(props) {
 									defaultPosition={{ x: 100, y: 100 }}
 								>
 									<div className="display-logo-div" style={customLogoSize}>
-										{(createObjectURL && showOne) ?
+										{((createObjectURL && showOne) || (createObjectURL && num === 1)) ?
 											(
 												<Image
 													style={logoOneStyle}
@@ -841,28 +1017,47 @@ export default function VapeWidgetMobile(props) {
 							</div>
 							{/* {textThree &&
 								showThree && ( */}
-							<div className="display-three-div">
+							<div className={'display-three-div ' + logoThreeClass}>
 								<Draggable
 									axis="both"
 									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
 									defaultPosition={{ x: 100, y: 100 }}
 								>
 									<div id="display-text-three" style={changeColor}>
-										{(textThree && showThree) ? <p style={textThreeStyle}>{textThree}</p> : null}
+										{((textThree && showThree) || (textThree && num === 3)) ? <p style={textThreeStyle}>{textThree}</p> : null}
+									</div>
+								</Draggable>
+								<Draggable
+									axis="both"
+									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+									defaultPosition={{ x: 100, y: 100 }}
+								>
+									<div className="display-logo-div" style={customLogoThreeSize}>
+										{((createObjectURLThree && showThree) || (createObjectURLThree && num === 3)) ?
+											(
+												<Image
+													style={logoThreeStyle}
+													alt={createObjectURLThree}
+													id="display-logo-three"
+													src={createObjectURLThree}
+													layout="fill"
+													objectFit="contain"
+												/>
+											) : null}
 									</div>
 								</Draggable>
 							</div>
 							{/* )} */}
 							{/* {textFive &&
 								showFive && ( */}
-							<div className={'display-five-div ' + angleMClass}>
+							<div className={'display-five-div ' + logoFiveClass}>
 								<Draggable
 									axis="both"
 									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
 									defaultPosition={{ x: 100, y: 100 }}
 								>
 									<div id="display-text-five" style={changeColor}>
-										{(textFive && showFive) ? <p style={textFiveStyle}>{textFive}</p> : null}
+										{((textFive && showFive) || (textFive && num === 5)) ? <p style={textFiveStyle}>{textFive}</p> : null}
 									</div>
 								</Draggable>
 								<Draggable
@@ -871,7 +1066,7 @@ export default function VapeWidgetMobile(props) {
 									defaultPosition={{ x: 100, y: 100 }}
 								>
 									<div className="display-logo-div" style={customLogoFiveSize}>
-										{(createObjectURLFive && showFive) ?
+										{((createObjectURLFive && showFive) || (createObjectURLFive && num === 5)) ?
 											(
 												<Image
 													style={logoFiveStyle}
@@ -888,14 +1083,33 @@ export default function VapeWidgetMobile(props) {
 							{/* )} */}
 							{/* {textSeven &&
 								showSeven && ( */}
-							<div className="display-seven-div">
+							<div className={'display-seven-div ' + logoSevenClass}>
 								<Draggable
 									axis="both"
 									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
 									defaultPosition={{ x: 100, y: 100 }}
 								>
 									<div id="display-text-seven" style={changeColor}>
-										{(textSeven && showSeven) ? <p style={textSevenStyle}>{textSeven}</p> : null}
+										{((textSeven && showSeven) || (textSeven && num === 7)) ? <p style={textSevenStyle}>{textSeven}</p> : null}
+									</div>
+								</Draggable>
+								<Draggable
+									axis="both"
+									bounds={{ left: 0, top: 0, right: 500, bottom: 700 }}
+									defaultPosition={{ x: 100, y: 100 }}
+								>
+									<div className="display-logo-div" style={customLogoSevenSize}>
+										{((createObjectURLSeven && showSeven) || (createObjectURLSeven && num === 7)) ?
+											(
+												<Image
+													style={logoSevenStyle}
+													alt={createObjectURLSeven}
+													id="display-logo-seven"
+													src={createObjectURLSeven}
+													layout="fill"
+													objectFit="contain"
+												/>
+											) : null}
 									</div>
 								</Draggable>
 							</div>
@@ -1081,7 +1295,7 @@ export default function VapeWidgetMobile(props) {
 							</tr>
 							<tr className="custom-logo-div" id="upload-logo-one" style={{ height: '150px' }}>
 								<th>Upload Logo:</th>
-								{showOne && (
+								{num === 1 && (
 									<td>
 										<label htmlFor="contained-button-file">
 											<Input
@@ -1137,7 +1351,60 @@ export default function VapeWidgetMobile(props) {
 										</p>
 									</td>
 								)}
-								{showFive && (
+								{num === 3 && (
+									<td>
+										<label htmlFor="contained-button-file">
+											<Input
+												accept="image/png"
+												id="contained-button-file"
+												multiple={false}
+												type="file"
+												style={{ display: 'none' }}
+												onChange={handleLogoThree}
+											/>
+											<Button variant="contained" component="span" className={styles.funcBtn}>
+												Upload
+											</Button>
+										</label>
+										<p>Width: {logoThreeWidth} px</p>
+										<Slider
+											defaultValue={200}
+											step={10}
+											marks
+											min={10}
+											max={400}
+											valueLabelDisplay="on"
+											onChange={(event, newValue) => { setLogoThreeWidth(newValue) }}
+											className='addPx'
+										/>
+										<p>Height: {logoThreeHeight} px</p>
+										<Slider
+											defaultValue={200}
+											step={10}
+											marks
+											min={10}
+											max={400}
+											valueLabelDisplay="on"
+											onChange={(event, newValue) => { setLogoThreeHeight(newValue) }}
+											className='addPx'
+										/>
+										<p>Rotate: {logoThreeDeg} deg</p>
+										<Slider
+											defaultValue={0}
+											step={5}
+											marks
+											min={0}
+											max={180}
+											valueLabelDisplay="on"
+											onChange={(event, newValue) => { setLogoThreeDeg(newValue) }}
+											className='addDeg'
+										/>
+										<p style={{ fontSize: '12px', maxWidth: '200px' }}>
+											Click the UPLOAD button above to select a logo file from your phone. We accept PNG FILE and FILE SIZE not more than 1 MB only.
+										</p>
+									</td>
+								)}
+								{num === 5 && (
 									<td>
 										<label htmlFor="contained-button-file">
 											<Input
@@ -1190,31 +1457,84 @@ export default function VapeWidgetMobile(props) {
 										</p>
 									</td>
 								)}
+								{num === 7 && (
+									<td>
+										<label htmlFor="contained-button-file">
+											<Input
+												accept="image/png"
+												id="contained-button-file"
+												multiple={false}
+												type="file"
+												style={{ display: 'none' }}
+												onChange={handleLogoSeven}
+											/>
+											<Button variant="contained" component="span" className={styles.funcBtn}>
+												Upload
+											</Button>
+										</label>
+										<p>Width: {logoSevenWidth} px</p>
+										<Slider
+											defaultValue={200}
+											step={10}
+											marks
+											min={10}
+											max={400}
+											valueLabelDisplay="on"
+											onChange={(event, newValue) => { setLogoSevenWidth(newValue) }}
+											className='addPx'
+										/>
+										<p>Height: {logoSevenHeight} px</p>
+										<Slider
+											defaultValue={200}
+											step={10}
+											marks
+											min={10}
+											max={400}
+											valueLabelDisplay="on"
+											onChange={(event, newValue) => { setLogoSevenHeight(newValue) }}
+											className='addPx'
+										/>
+										<p>Rotate: {logoSevenDeg} deg</p>
+										<Slider
+											defaultValue={0}
+											step={5}
+											marks
+											min={0}
+											max={180}
+											valueLabelDisplay="on"
+											onChange={(event, newValue) => { setLogoSevenDeg(newValue) }}
+											className='addDeg'
+										/>
+										<p style={{ fontSize: '12px', maxWidth: '200px' }}>
+											Click the UPLOAD button above to select a logo file from your phone. We accept PNG FILE and FILE SIZE not more than 1 MB only.
+										</p>
+									</td>
+								)}
 							</tr>
 							<tr style={{ height: '50px' }}>
 								<th>Customize Text:</th>
 								<td>
-									{showOne && (
+									{num === 1 && (
 										<div className="custom-text-div" id="input-text-one">
 											<Input type="text" id="custom-text-one" onChange={onTextInputOne} sx={{ width: '120px' }} />
 										</div>
 									)}
-									{showThree && (
+									{num === 3 && (
 										<div className="custom-text-div" id="input-text-three">
 											<Input type="text" id="custom-text-three" onChange={onTextInputThree} sx={{ width: '120px' }} />
 										</div>
 									)}
-									{showFive && (
+									{num === 5 && (
 										<div className="custom-text-div" id="input-text-five">
 											<Input type="text" id="custom-text-five" onChange={onTextInputFive} sx={{ width: '120px' }} />
 										</div>
 									)}
-									{showSeven && (
+									{num === 7 && (
 										<div className="custom-text-div" id="input-text-seven">
 											<Input type="text" id="custom-text-seven" onChange={onTextInputSeven} sx={{ width: '120px' }} />
 										</div>
 									)}
-									{(showOne || showThree || showFive || showSeven)
+									{(num === 1 || num === 3 || num === 5 || num === 7)
 										? (<>
 											<Button style={colorButton} onClick={setColorPicker} />
 											<HexColorPicker
@@ -1238,7 +1558,7 @@ export default function VapeWidgetMobile(props) {
 											</div>
 										</>)
 										: null}
-									{showOne && (<>
+									{num === 1 && (<>
 										<p>Rotate: {textOneDeg} deg</p>
 										<Slider
 											defaultValue={0}
@@ -1252,7 +1572,7 @@ export default function VapeWidgetMobile(props) {
 										/>
 									</>
 									)}
-									{showThree && (<>
+									{num === 3 && (<>
 										<p>Rotate: {textThreeDeg} deg</p>
 										<Slider
 											defaultValue={0}
@@ -1266,7 +1586,7 @@ export default function VapeWidgetMobile(props) {
 										/>
 									</>
 									)}
-									{showFive && (<>
+									{num === 5 && (<>
 										<p>Rotate: {textFiveDeg} deg</p>
 										<Slider
 											defaultValue={0}
@@ -1280,7 +1600,7 @@ export default function VapeWidgetMobile(props) {
 										/>
 									</>
 									)}
-									{showSeven && (<>
+									{num === 7 && (<>
 										<p>Rotate: {textSevenDeg} deg</p>
 										<Slider
 											defaultValue={0}
@@ -1413,7 +1733,7 @@ export default function VapeWidgetMobile(props) {
 							</DialogContentText>
 						</DialogContent>
 						<DialogActions>
-							<Button onClick={() => setSendAlert(false)} autoFocus style={{fontSize: '16px'}}>
+							<Button onClick={() => setSendAlert(false)} autoFocus style={{ fontSize: '16px' }}>
 								OK
 							</Button>
 						</DialogActions>

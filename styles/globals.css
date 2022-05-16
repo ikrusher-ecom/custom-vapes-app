@@ -31,6 +31,10 @@ a {
 	top: 40px !important;
 }
 
+.addPx {
+	max-width: 220px;
+}
+
 .addPx .MuiSlider-valueLabelLabel:after {
 	content: " px";
 }
@@ -58,16 +62,18 @@ a {
 	display: inline-block !important;
 }
 
-.angle45 {
+.angleRight45 {
 	transform: rotateY(45deg);
 	width: 55%;
 	left: 10%;
 	position: absolute;
 }
 
-.angleM45 {
+.angleLeft45 {
 	transform: rotateY(-45deg);
 	width: 55%;
+	right: 45%;
+	position: absolute;
 }
 
 .custom-vape {
