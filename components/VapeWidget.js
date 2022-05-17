@@ -971,13 +971,7 @@ export default function VapeWidget(props) {
 									</div>
 								) : null}
 							</ResizableContent>
-							<ResizableContent
-								top={100}
-								left={100}
-								width={200}
-								height={200}
-								rotateAngle={0}
-							>
+							<ResizableContent top={0} left={0} width={200} height={200} rotateAngle={0}>
 								{((createObjectURLThree && showThree) || (createObjectURLThree && num === 3)) ? (
 									<div className="display-logo-div" style={{ width: '100%', height: '100%' }}>
 										<Image

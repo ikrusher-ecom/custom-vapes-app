@@ -37,8 +37,6 @@ import { HexColorPicker } from 'react-colorful';
 import { formatInTimeZone } from 'date-fns-tz'
 
 export default function VapeWidgetMobile(props) {
-	// console.log(props);
-
 	const [num, setNum] = useState(1);
 	const [showOne, setShowOne] = useState(true);
 	const [showThree, setShowThree] = useState(false);
