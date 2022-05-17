@@ -20,8 +20,10 @@ import Tooltip from "@mui/material/Tooltip";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import DeleteIcon from "@mui/icons-material/Delete";
-import FilterListIcon from "@mui/icons-material/FilterList";
-import { visuallyHidden } from "@mui/utils";
+import { useRouter } from 'next/router';
+import Login from '../components/login';
+import consts from '../consts';
+import Cookies from 'universal-cookie';
 
 const headCells = [
     {
@@ -212,11 +214,12 @@ const EnhancedTableToolbar = (props) => {
                     </IconButton>
                 </Tooltip>
             ) : (
-                <Tooltip title="Filter list">
-                    <IconButton>
-                        <FilterListIcon />
-                    </IconButton>
-                </Tooltip>
+                null
+                // <Tooltip title="Filter list">
+                //     <IconButton>
+                //         <FilterListIcon />
+                //     </IconButton>
+                // </Tooltip>
             )}
         </Toolbar>
     );
@@ -244,7 +247,13 @@ const handleDelete = async (_id) => {
 
 }
 
-export default function DataBase({ customs }) {
+export default function DataBase({ customs, hasReadPermission }) {
+    console.log(hasReadPermission)
+    const router = useRouter();
+    if (!hasReadPermission) {
+        return <Login redirectPath={router.asPath} />;
+    }
+
     const [currentData, setCurrentData] = useState([]);
     useEffect(() => {
         setCurrentData(customs.data);
@@ -308,99 +317,115 @@ export default function DataBase({ customs }) {
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - currentData.length) : 0;
 
-    return (
-        <Box sx={{ width: "100%" }}>
-            <Paper sx={{ width: "100%", mb: 2 }}>
-                <EnhancedTableToolbar numSelected={selected.length} selectedId={selectedId} />
-                <TableContainer>
-                    <Table
-                        sx={{ minWidth: 750 }}
-                        aria-labelledby="tableTitle"
-                        size={"medium"}
+    if (hasReadPermission)
+        return (
+            <>
+                <div className="max-w-sm" style={{ float: 'right' }}>
+                    <button
+                        className="mt-3 bg-green-400 text-white p-2 font-bold rounded hover:bg-green-600"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            const cookies = new Cookies();
+                            cookies.remove(consts.SiteReadCookie, { path: '/' });
+                            window.location.href = '/login';
+                        }}
                     >
-                        <EnhancedTableHead
-                            numSelected={selected.length}
-                            order={order}
-                            orderBy={orderBy}
-                            onSelectAllClick={handleSelectAllClick}
-                            onRequestSort={handleRequestSort}
-                            rowCount={currentData.length}
-                        />
-                        <TableBody>
-                            {/* if you don't need to support IE11, you can replace the `stableSort` call with:
+                        Logout
+                    </button>
+                </div>
+                <Box sx={{ width: "100%" }}>
+                    <Paper sx={{ width: "100%", mb: 2 }}>
+                        <EnhancedTableToolbar numSelected={selected.length} selectedId={selectedId} />
+                        <TableContainer>
+                            <Table
+                                sx={{ minWidth: 750 }}
+                                aria-labelledby="tableTitle"
+                                size={"medium"}
+                            >
+                                <EnhancedTableHead
+                                    numSelected={selected.length}
+                                    order={order}
+                                    orderBy={orderBy}
+                                    onSelectAllClick={handleSelectAllClick}
+                                    onRequestSort={handleRequestSort}
+                                    rowCount={currentData.length}
+                                />
+                                <TableBody>
+                                    {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
-                            {stableSort(currentData, getComparator(order, orderBy))
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map((row, index) => {
-                                    const isItemSelected = isSelected(row._id);
-                                    const labelId = `enhanced-table-checkbox-${index}`;
+                                    {stableSort(currentData, getComparator(order, orderBy))
+                                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                        .map((row, index) => {
+                                            const isItemSelected = isSelected(row._id);
+                                            const labelId = `enhanced-table-checkbox-${index}`;
 
-                                    return (
+                                            return (
+                                                <TableRow
+                                                    hover
+                                                    onClick={(event) => handleClick(event, row._id)}
+                                                    role="checkbox"
+                                                    aria-checked={isItemSelected}
+                                                    tabIndex={-1}
+                                                    key={row._id}
+                                                    selected={isItemSelected}
+                                                >
+                                                    <TableCell padding="checkbox">
+                                                        <Checkbox
+                                                            color="primary"
+                                                            checked={isItemSelected}
+                                                            inputProps={{
+                                                                "aria-labelledby": labelId
+                                                            }}
+                                                        />
+                                                    </TableCell>
+                                                    <TableCell
+                                                        component="th"
+                                                        id={labelId}
+                                                        scope="row"
+                                                        padding="none"
+                                                    >
+                                                        {(page * 10) + (index + 1)}
+                                                    </TableCell>
+                                                    <TableCell align='left'>{row.time && row.time}</TableCell>
+                                                    <TableCell align="left">{row.product}</TableCell>
+                                                    <TableCell align="left">{row.color}</TableCell>
+                                                    <TableCell align="left">{row.custom_text.map((text, i) => text && <p key={i}>Side {i + 1}: {text}</p>)}</TableCell>
+                                                    <TableCell align="left">{row.custom_user_manual}</TableCell>
+                                                    <TableCell align="left">{row.custom_package}</TableCell>
+                                                    <TableCell align="left">{row.customer_name}</TableCell>
+                                                    <TableCell align="left">{row.phone_number}</TableCell>
+                                                    <TableCell align="left">{row.email}</TableCell>
+                                                    <TableCell align="left">{row.message}</TableCell>
+                                                    <TableCell align="left">{row.custom_designs.filter(link => link !== null).map((link, i) => <p key={i}><a href={link} target='_blank'>Link {i + 1}</a></p>)}</TableCell>
+                                                    <TableCell align="left">{row.device}</TableCell>
+                                                </TableRow>
+                                            );
+                                        })}
+                                    {emptyRows > 0 && (
                                         <TableRow
-                                            hover
-                                            onClick={(event) => handleClick(event, row._id)}
-                                            role="checkbox"
-                                            aria-checked={isItemSelected}
-                                            tabIndex={-1}
-                                            key={row._id}
-                                            selected={isItemSelected}
+                                            style={{
+                                                height: 53 * emptyRows
+                                            }}
                                         >
-                                            <TableCell padding="checkbox">
-                                                <Checkbox
-                                                    color="primary"
-                                                    checked={isItemSelected}
-                                                    inputProps={{
-                                                        "aria-labelledby": labelId
-                                                    }}
-                                                />
-                                            </TableCell>
-                                            <TableCell
-                                                component="th"
-                                                id={labelId}
-                                                scope="row"
-                                                padding="none"
-                                            >
-                                                {(page * 10) + (index + 1)}
-                                            </TableCell>
-                                            <TableCell align='left'>{row.time && row.time}</TableCell>
-                                            <TableCell align="left">{row.product}</TableCell>
-                                            <TableCell align="left">{row.color}</TableCell>
-                                            <TableCell align="left">{row.custom_text.map((text, i) => text && <p key={i}>Side {i + 1}: {text}</p>)}</TableCell>
-                                            <TableCell align="left">{row.custom_user_manual}</TableCell>
-                                            <TableCell align="left">{row.custom_package}</TableCell>
-                                            <TableCell align="left">{row.customer_name}</TableCell>
-                                            <TableCell align="left">{row.phone_number}</TableCell>
-                                            <TableCell align="left">{row.email}</TableCell>
-                                            <TableCell align="left">{row.message}</TableCell>
-                                            <TableCell align="left">{row.custom_designs.filter(link => link !== null).map((link, i) => <p key={i}><a href={link} target='_blank'>Link {i + 1}</a></p>)}</TableCell>
-                                            <TableCell align="left">{row.device}</TableCell>
+                                            <TableCell colSpan={6} />
                                         </TableRow>
-                                    );
-                                })}
-                            {emptyRows > 0 && (
-                                <TableRow
-                                    style={{
-                                        height: 53 * emptyRows
-                                    }}
-                                >
-                                    <TableCell colSpan={6} />
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
-                    component="div"
-                    count={currentData.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-            </Paper>
-        </Box>
-    )
+                                    )}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                        <TablePagination
+                            rowsPerPageOptions={[5, 10, 25]}
+                            component="div"
+                            count={currentData.length}
+                            rowsPerPage={rowsPerPage}
+                            page={page}
+                            onPageChange={handleChangePage}
+                            onRowsPerPageChange={handleChangeRowsPerPage}
+                        />
+                    </Paper>
+                </Box>
+            </>
+        )
 }
 
 export async function getServerSideProps(context) {
