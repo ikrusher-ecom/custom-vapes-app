@@ -15,13 +15,13 @@ module.exports = nextConfig;
 module.exports = {
 	env: {
 		devDir: 'http://localhost:3000',
-		prodDir: 'https://custom-vapes-app.vercel.app',
+		prodDir: 'https://customvapes.ikrusher.com',
 		mongodbURI: 'mongodb+srv://ikrusher-custom:wpyLX5LxPbgukfTB@cluster0.nscjp.mongodb.net/customDB?retryWrites=true&w=majority',
 		mongodbID: 'customDB',
 		mode: 'prod'
 	},
 	images: {
-		domains: ['custom-vapes-app.vercel.app']
+		domains: ['customvapes.ikrusher.com']
 	},
 	eslint: {
 		ignoreDuringBuilds: true

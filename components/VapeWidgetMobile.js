@@ -710,9 +710,38 @@ export default function VapeWidgetMobile(props) {
 			body: JSON.stringify(formInfo)
 		});
 		res = await res.json();
-		console.log('Response succeeded!');
-		setFormInfo('');
-		setSentEmail(true);
+
+		fetch('/api/email', {
+			method: 'POST',
+			// headers: {
+			// 	Accept: 'application/json, text/plain, */*',
+			// 	'Content-Type': 'application/json'
+			// },
+			body: `
+			<ul>
+				<li>Submission Time: ${formInfo.time},</li>
+				<li>Product Name: ${formInfo.product},</li>
+				<li>Color: ${formInfo.color},</li>
+				<li>Custom Text: ${formInfo.custom_text.map((text) => text)},</li>
+				<li>Custom User Manual: ${formInfo.custom_user_manual},</li>
+				<li>Custom Package: ${formInfo.custom_package},</li>
+				<li>Customer Name: ${formInfo.customer_name},</li>
+				<li>Phone Number: ${formInfo.phone_number},</li>
+				<li>Email: ${formInfo.email},</li>
+				<li>Message: ${formInfo.message},</li>
+				<li>Custom Designs: 
+				${formInfo.custom_designs.filter(link => link !== null).map((link) => link)},</li>
+				<li>Device: Mobile</li>
+			</ul>
+			`
+		}).then((res) => {
+			console.log('Response received');
+			if (res.status === 200) {
+				console.log('Response succeeded!');
+				setFormInfo('');
+				setSentEmail(true);
+			}
+		})
 	};
 
 	const uploadScreenToServer = () => {

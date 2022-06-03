@@ -13,17 +13,17 @@ export default async (req, res) => {
 		host: 'smtp.office365.com',
 		auth: {
 			user: 'info@ikrusher.com',
-			pass: 'sh9er#Sw5son@9IKrus.ComlY'
+			pass: 'Vuh05875'
 		},
 		secure: false
 	});
 	const mailData = {
 		from: 'info@ikrusher.com',
-		to: 'ecom@ikrusher.com',
-		cc: req.body.email ? req.body.email : '',
+		// to: 'inquiry@ikrusher.com',
+		// cc: 'ecom@ikrusher.com',
+		to: 'jinqi.li@ikrusher.com',
 		subject: 'New Custom Vape Request',
-		text: req.body.message,
-		html: req.body.links
+		html: req.body
 	};
 	console.log(JSON.stringify(mailData.text));
 	let emailSent = await transporter.sendMail(mailData, function(err, info) {
