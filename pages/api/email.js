@@ -19,9 +19,9 @@ export default async (req, res) => {
 	});
 	const mailData = {
 		from: 'info@ikrusher.com',
-		// to: 'inquiry@ikrusher.com',
-		// cc: 'ecom@ikrusher.com',
-		to: 'jinqi.li@ikrusher.com',
+		to: 'inquiry@ikrusher.com',
+		cc: 'ecom@ikrusher.com',
+		// to: 'jinqi.li@ikrusher.com',
 		subject: 'New Custom Vape Request',
 		html: req.body
 	};
