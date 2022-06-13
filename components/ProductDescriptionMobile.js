@@ -50,7 +50,7 @@ export default function ProductDescriptionMobile(props) {
 						</tr>
 						<tr>
 							<th>Minimum Order Quantity:</th>
-							<td>5,000 Pieces</td>
+							<td style={{ color: 'red', fontWeight: 'bold' }}>5,000 Pieces</td>
 						</tr>
 						<tr>
 							<td colSpan="2" style={{ textAlign: 'center', paddingTop: '1em' }}>
